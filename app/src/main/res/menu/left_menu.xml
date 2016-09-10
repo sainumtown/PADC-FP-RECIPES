@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/myanmar_attractions_recycler_view"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/myanmar_attractions_recycler_view"
+            android:checked="true"
+            />
+
+        <item
+            android:id="@+id/myanmar_attractions_list_view"
+            android:icon="@drawable/ic_favorite_black_24dp"
+            android:title="@string/myanmar_attractions_list_view"/>
+
+        <item
+            android:id="@+id/myanmar_attractions_grid_view"
+            android:icon="@drawable/ic_file_download_black_24dp"
+            android:title="@string/myanmar_attractions_grid_view"
+            />
+
+        <item
+            android:id="@+id/myanmar_attractions_tab_layout"
+            android:icon="@drawable/ic_recent_actors_24dp"
+            android:title="@string/myanmar_attractions_tab_layout"
+            />
+
+        <item
+            android:id="@+id/myanmar_attractions_notification"
+            android:icon="@drawable/ic_notifications_active_24dp"
+            android:title="@string/myanmar_attractions_notification"
+            />
+
+        <item
+            android:id="@+id/myanmar_attractions_touropia"
+            android:icon="@drawable/ic_healing_24dp"
+            android:title="@string/myanmar_attractions_touropia"
+            />
+
+    </group>
+</menu>
