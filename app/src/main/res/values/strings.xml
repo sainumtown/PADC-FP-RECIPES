@@ -15,6 +15,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="lbl_spinner_filter_category">filter category</string>
     <string name="lbl_search">Search</string>
+    <string name="restaurnat_search_dialog_title">Search Restarurant</string>
 
 
     <string-array name="recipes_category">
@@ -24,6 +25,26 @@
         <item>Noodle</item>
         <item>Sea Food</item>
         <item>Myanmar Traditional</item>
+
+    </string-array>
+
+    <string-array name="township_list">
+        <item>township 1</item>
+        <item>township 2</item>
+        <item>township 3</item>
+        <item>township 4</item>
+        <item>township 5</item>
+        <item>township 6</item>
+
+    </string-array>
+
+    <string-array name="food_list">
+        <item>Fried rice</item>
+        <item>Noodle</item>
+        <item>Chicken Donut</item>
+        <item>Pizza</item>
+        <item>Drinks</item>
+        <item>Fruit</item>
 
     </string-array>
 

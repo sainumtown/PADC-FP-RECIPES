@@ -1,6 +1,7 @@
 package com.padc.recipes.fragments;
 
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,12 +10,23 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Spinner;
 
 import com.padc.recipes.R;
+import com.padc.recipes.RecipesApp;
+import com.padc.recipes.adapters.FoodAdapter;
 import com.padc.recipes.adapters.RestaurantAdapter;
+import com.padc.recipes.adapters.TownshipAdapter;
+import com.padc.recipes.dialogs.ShareDialog;
 import com.padc.recipes.views.holders.RestaurntViewHolder;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,6 +42,8 @@ public class RestaurantListFragment extends Fragment {
     private RestaurantAdapter mRestaurantAdapter;
     RestaurntViewHolder.ControllerRestaurantItem mControllerRestaurantItem;
 
+    private TownshipAdapter mTownshipAdapter;
+    private FoodAdapter mFoodAdapter;
 
     public RestaurantListFragment() {
         // Required empty public constructor
@@ -77,8 +91,21 @@ public class RestaurantListFragment extends Fragment {
     public void onPrepareOptionsMenu(Menu menu) {
         menu.findItem(R.id.action_restaurant_search).setVisible(true);
         super.onPrepareOptionsMenu(menu);
-
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_restaurant_search: {
+                showSearchDialog();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
+    private void showSearchDialog() {
+        ShareDialog shareDialog = new ShareDialog();
+        shareDialog.show(getFragmentManager(), "SEARCH_DIALOG");
+    }
 }
