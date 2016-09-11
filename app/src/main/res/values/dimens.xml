@@ -56,4 +56,5 @@
     <dimen name="screen_title_size">19sp</dimen>
     <dimen name="restaurnt_width">100dp</dimen>
     <dimen name="restaurnt_height">100dp</dimen>
+    <dimen name="width_spinner_township">300dp</dimen>
 </resources>
