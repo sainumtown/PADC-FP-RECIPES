@@ -13,4 +13,18 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lbl_spinner_filter_category">filter category</string>
+    <string name="lbl_search">Search</string>
+
+
+    <string-array name="recipes_category">
+        <item>Chicken</item>
+        <item>Pork</item>
+        <item>Vegetable</item>
+        <item>Noodle</item>
+        <item>Sea Food</item>
+        <item>Myanmar Traditional</item>
+
+    </string-array>
+
 </resources>

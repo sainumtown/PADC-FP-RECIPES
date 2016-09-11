@@ -4,19 +4,28 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.padc.recipes.R;
+import com.padc.recipes.adapters.RecipeCategoryListAdapter;
 import com.padc.recipes.fragments.RecipeListFragment;
 import com.padc.recipes.fragments.RestaurantListFragment;
 import com.padc.recipes.views.holders.RecipeViewHolder;
 import com.padc.recipes.views.holders.RestaurntViewHolder;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,12 +43,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @BindView(R.id.navigation_view)
     NavigationView navigationView;
 
+    Spinner spinnerRecipeCategoryFilter;
+
+    private RecipeCategoryListAdapter mRecipeCategoryListAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this, this);
-
         setSupportActionBar(toolbar);
 
         final ActionBar actionBar = getSupportActionBar();
@@ -56,12 +68,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if (savedInstanceState == null) {
             navigateToRecipes();
         }
+
+        // for spinner recipe category filter
+        String[] recipesCategoryListArray = getResources().getStringArray(R.array.recipes_category);
+        List<String> recipesCategoryList = new ArrayList<>(Arrays.asList(recipesCategoryListArray));
+        mRecipeCategoryListAdapter = new RecipeCategoryListAdapter(recipesCategoryList);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_home, menu);
+        MenuItem item = menu.findItem(R.id.spinner_filter_category);
+
+        spinnerRecipeCategoryFilter = (Spinner) MenuItemCompat.getActionView(item);
+        spinnerRecipeCategoryFilter.setAdapter(mRecipeCategoryListAdapter);
+
         return true;
     }
 
@@ -74,9 +96,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         //noinspection SimplifiableIfStatement
         switch (id) {
-            case R.id.action_settings:
+            /*case R.id.action_settings:*/
      /*           GAUtils.getInstance().sendAppAction(GAUtils.ACTION_TAP_SETTINGS);*/
-                return true;
+              /*  return true;*/
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
@@ -103,12 +125,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, RecipeListFragment.newInstance())
                 .commit();
+
+
     }
 
     private void navigateToRestaurants() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, RestaurantListFragment.newInstance())
                 .commit();
+        /*spinnerRecipeCategoryFilter.setVisibility(View.GONE);*/
     }
 
     @Override
