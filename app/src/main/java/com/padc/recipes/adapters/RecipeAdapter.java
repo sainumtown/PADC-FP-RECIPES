@@ -15,19 +15,17 @@ import java.util.List;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeViewHolder> {
 
     private LayoutInflater mInflater;
+    private RecipeViewHolder.ControllerRecipeItem mController;
 
-
-    public RecipeAdapter() {
+    public RecipeAdapter(RecipeViewHolder.ControllerRecipeItem controllerRecipeItem) {
         mInflater = LayoutInflater.from(RecipesApp.getContext());
-
+        this.mController = controllerRecipeItem;
     }
-
 
     @Override
     public RecipeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.view_item_recipe, parent, false);
-
-        return new RecipeViewHolder(itemView);
+        return new RecipeViewHolder(itemView, mController);
     }
 
     @Override

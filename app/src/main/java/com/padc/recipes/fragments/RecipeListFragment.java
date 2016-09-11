@@ -1,5 +1,6 @@
 package com.padc.recipes.fragments;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,6 +13,7 @@ import android.widget.RelativeLayout;
 
 import com.padc.recipes.R;
 import com.padc.recipes.adapters.RecipeAdapter;
+import com.padc.recipes.views.holders.RecipeViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,13 +27,20 @@ public class RecipeListFragment extends Fragment {
     RecyclerView rvRecipes;
 
     private RecipeAdapter mRecipeAdapter;
+    RecipeViewHolder.ControllerRecipeItem mControllerRecipeItem;
 
     public RecipeListFragment() {
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mControllerRecipeItem = (RecipeViewHolder.ControllerRecipeItem) context;
+    }
+
     public static RecipeListFragment newInstance() {
         Bundle args = new Bundle();
-        
+
         RecipeListFragment fragment = new RecipeListFragment();
         fragment.setArguments(args);
         return fragment;
@@ -39,15 +48,15 @@ public class RecipeListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.fragment_recipe_list, container, false);
-        ButterKnife.bind(this,view);
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_recipe_list, container, false);
+        ButterKnife.bind(this, view);
 
-        mRecipeAdapter = new RecipeAdapter();
+        mRecipeAdapter = new RecipeAdapter(mControllerRecipeItem);
         rvRecipes.setAdapter(mRecipeAdapter);
 
         int gridColumnSpanCount = 1;
-        rvRecipes.setLayoutManager(new GridLayoutManager(getContext(),gridColumnSpanCount));
+        rvRecipes.setLayoutManager(new GridLayoutManager(getContext(), gridColumnSpanCount));
 
         return view;
     }

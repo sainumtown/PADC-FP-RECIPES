@@ -10,15 +10,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.padc.recipes.R;
 import com.padc.recipes.fragments.RecipeListFragment;
 import com.padc.recipes.fragments.RestaurantListFragment;
+import com.padc.recipes.views.holders.RecipeViewHolder;
+import com.padc.recipes.views.holders.RestaurntViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+        , RestaurntViewHolder.ControllerRestaurantItem
+        , RecipeViewHolder.ControllerRecipeItem {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -88,7 +93,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 navigateToRecipes();
                 return true;
             case R.id.restaurants:
-                navigateToRestaurnats();
+                navigateToRestaurants();
                 return true;
         }
         return false;
@@ -100,9 +105,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 .commit();
     }
 
-    private void navigateToRestaurnats() {
+    private void navigateToRestaurants() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, RestaurantListFragment.newInstance())
                 .commit();
+    }
+
+    @Override
+    public void onTapRestaurant() {
+        Toast.makeText(getApplicationContext(), "Will go to detail page", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onTapRecipe() {
+        Toast.makeText(getApplicationContext(), "Will go to detail page", Toast.LENGTH_SHORT).show();
     }
 }

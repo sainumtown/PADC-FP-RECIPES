@@ -11,7 +11,7 @@ import com.padc.recipes.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RecipeViewHolder extends RecyclerView.ViewHolder  {
+public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     @BindView(R.id.tv_recipe_title)
     TextView tvRecipeTitle;
@@ -19,9 +19,21 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder  {
     @BindView(R.id.iv_recipe)
     ImageView ivRecipe;
 
-    public RecipeViewHolder(View itemView) {
+    private ControllerRecipeItem mController;
+
+    public RecipeViewHolder(View itemView, ControllerRecipeItem controllerRecipeItem) {
         super(itemView);
         ButterKnife.bind(this, itemView);
+        itemView.setOnClickListener(this);
+        mController = controllerRecipeItem;
+    }
 
+    @Override
+    public void onClick(View view) {
+        mController.onTapRecipe();
+    }
+
+    public interface ControllerRecipeItem{
+        void onTapRecipe();
     }
 }
