@@ -21,6 +21,7 @@ import com.padc.recipes.RecipesApp;
 import com.padc.recipes.adapters.FoodAdapter;
 import com.padc.recipes.adapters.RestaurantAdapter;
 import com.padc.recipes.adapters.TownshipAdapter;
+import com.padc.recipes.dialogs.ShareDialog;
 import com.padc.recipes.views.holders.RestaurntViewHolder;
 
 import java.util.ArrayList;
@@ -101,45 +102,10 @@ public class RestaurantListFragment extends Fragment {
             }
         }
         return super.onOptionsItemSelected(item);
-
     }
 
     private void showSearchDialog() {
-        // custom dialog
-        final Dialog dialog = new Dialog(getActivity());
-        dialog.setContentView(R.layout.restaurant_search_dialog);
-        dialog.setTitle(getString(R.string.restaurnat_search_dialog_title));
-
-        // set the custom dialog components - spinner and button
-        // for data spinner township
-        String[] townShipArrayList = getResources().getStringArray(R.array.township_list);
-        List<String> townshipList = new ArrayList<>(Arrays.asList(townShipArrayList));
-        mTownshipAdapter = new TownshipAdapter(townshipList);
-
-        // for data spinner food
-        String[] foodArrayList = getResources().getStringArray(R.array.food_list);
-        List<String> foodList = new ArrayList<>(Arrays.asList(foodArrayList));
-        mFoodAdapter = new FoodAdapter(foodList);
-
-        // connect spinner township with adapter
-        Spinner spnTownShip = (Spinner) dialog.findViewById(R.id.sp_township);
-        spnTownShip.setAdapter(mTownshipAdapter);
-
-        // connect spinner food with adapter
-        Spinner spnFood = (Spinner) dialog.findViewById(R.id.sp_food);
-        spnFood.setAdapter(mFoodAdapter);
-
-        Button btnSearch = (Button) dialog.findViewById(R.id.btn_search);
-
-        // if search button click , show the search data to the restaurant list
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
-
+        ShareDialog shareDialog = new ShareDialog();
+        shareDialog.show(getFragmentManager(), "SEARCH_DIALOG");
     }
 }
