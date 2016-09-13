@@ -34,4 +34,9 @@
         <item name="android:background">@color/accent_dark</item>
     </style>
 
+    <style name="AccentLightButton" parent="AttractionButton">
+        <item name="android:backgroundTint">@color/accent</item>
+        <item name="android:background">@color/accent</item>
+    </style>
+
 </resources>

@@ -31,7 +31,8 @@ public class TownshipAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mTownshipList.size();
+        int count = mTownshipList.size();
+        return count > 0 ? count - 1 : count;
     }
 
     @Override

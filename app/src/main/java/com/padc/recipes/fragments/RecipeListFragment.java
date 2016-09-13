@@ -5,18 +5,21 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.Spinner;
 
 import com.padc.recipes.R;
 import com.padc.recipes.adapters.RecipeAdapter;
+import com.padc.recipes.adapters.RecipeCategoryListAdapter;
 import com.padc.recipes.views.holders.RecipeViewHolder;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +34,11 @@ public class RecipeListFragment extends Fragment {
 
     private RecipeAdapter mRecipeAdapter;
     RecipeViewHolder.ControllerRecipeItem mControllerRecipeItem;
+
+    @BindView(R.id.spn_filter_category)
+    Spinner spinnerRecipeCategoryFilter;
+
+    private RecipeCategoryListAdapter mRecipeCategoryListAdapter;
 
     public RecipeListFragment() {
     }
@@ -49,6 +57,7 @@ public class RecipeListFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,10 +67,25 @@ public class RecipeListFragment extends Fragment {
         mRecipeAdapter = new RecipeAdapter(mControllerRecipeItem);
         rvRecipes.setAdapter(mRecipeAdapter);
 
-        int gridColumnSpanCount = 1;
+        // spinner category filter
+        filterCategorySetting();
+
+        // grid setting
+        int gridColumnSpanCount = 2;
         rvRecipes.setLayoutManager(new GridLayoutManager(getContext(), gridColumnSpanCount));
 
         return view;
+    }
+
+    private void filterCategorySetting() {
+        // for spinner recipe category filter
+        String[] recipesCategoryListArray = getResources().getStringArray(R.array.recipes_category);
+        List<String> recipesCategoryList = new ArrayList<>(Arrays.asList(recipesCategoryListArray));
+        recipesCategoryList.add(getString(R.string.choose_food));
+
+        mRecipeCategoryListAdapter = new RecipeCategoryListAdapter(recipesCategoryList);
+        spinnerRecipeCategoryFilter.setAdapter(mRecipeCategoryListAdapter);
+        spinnerRecipeCategoryFilter.setSelection(mRecipeCategoryListAdapter.getCount());
     }
 
     @Override
@@ -72,7 +96,7 @@ public class RecipeListFragment extends Fragment {
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.spinner_filter_category).setVisible(true);
+        /*menu.findItem(R.id.spinner_filter_category).setVisible(true);*/
         super.onPrepareOptionsMenu(menu);
 
     }

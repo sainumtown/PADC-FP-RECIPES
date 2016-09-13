@@ -1,7 +1,9 @@
 package com.padc.recipes.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
@@ -43,6 +45,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @BindView(R.id.navigation_view)
     NavigationView navigationView;
 
+    @BindView(R.id.fab_search)
+    FloatingActionButton fabSearch;
+
     Spinner spinnerRecipeCategoryFilter;
 
     private RecipeCategoryListAdapter mRecipeCategoryListAdapter;
@@ -73,6 +78,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         String[] recipesCategoryListArray = getResources().getStringArray(R.array.recipes_category);
         List<String> recipesCategoryList = new ArrayList<>(Arrays.asList(recipesCategoryListArray));
         mRecipeCategoryListAdapter = new RecipeCategoryListAdapter(recipesCategoryList);
+
+        fabSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigateToSearch();
+            }
+        });
+    }
+
+    private void navigateToSearch() {
+        Intent intent = SearchActivity.newIntent();
+        startActivity(intent);
+       /* fabSearch.hide();*/
     }
 
     @Override
@@ -122,14 +140,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void navigateToRecipes() {
+        fabSearch.hide();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, RecipeListFragment.newInstance())
                 .commit();
-
-
     }
 
     private void navigateToRestaurants() {
+        fabSearch.show();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, RestaurantListFragment.newInstance())
                 .commit();

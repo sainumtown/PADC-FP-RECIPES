@@ -32,7 +32,8 @@ public class FoodAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mFoodList.size();
+        int count = mFoodList.size();
+        return count > 0 ? count - 1 : count;
     }
 
     @Override
