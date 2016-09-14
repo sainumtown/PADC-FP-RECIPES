@@ -3,13 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/margin_medium_2">
+    android:padding="@dimen/margin_medium">
 
-    <TextView
+    <com.padc.recipes.components.MMTextView
         android:id="@+id/tv_township"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:lineSpacingMultiplier="1.4"
         android:textColor="@color/black_full" />
 
 </com.padc.recipes.views.items.ViewItemTownship>

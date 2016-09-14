@@ -16,6 +16,12 @@
     <string name="lbl_spinner_filter_category">filter category</string>
     <string name="lbl_search">Search</string>
     <string name="restaurnat_search_dialog_title">Search Restarurant</string>
+    <string name="spinner_choose_category">Choose Category</string>
+    <string name="backdrop_title">စားေသာက္ဆိုင္</string>
+    <string name="backdrop_subtitle">ရွာရေအာင္</string>
+    <string name="enter_restaurant_name">ဆိုင္နာမည္ ကို ရိုက္သြင္းပါ</string>
+    <string name="choose_township">ျမိဳ႔နယ္ ေရြးပါ</string>
+    <string name="choose_food">အမ်ိဳးအစား ေရြးပါ</string>
 
 
     <string-array name="recipes_category">

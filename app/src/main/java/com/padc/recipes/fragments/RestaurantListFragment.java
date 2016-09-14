@@ -3,8 +3,10 @@ package com.padc.recipes.fragments;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +20,7 @@ import android.widget.Spinner;
 
 import com.padc.recipes.R;
 import com.padc.recipes.RecipesApp;
+import com.padc.recipes.activities.SearchActivity;
 import com.padc.recipes.adapters.FoodAdapter;
 import com.padc.recipes.adapters.RestaurantAdapter;
 import com.padc.recipes.adapters.TownshipAdapter;
@@ -38,6 +41,8 @@ public class RestaurantListFragment extends Fragment {
 
     @BindView(R.id.rv_restaurants)
     RecyclerView rvRestaurant;
+
+
 
     private RestaurantAdapter mRestaurantAdapter;
     RestaurntViewHolder.ControllerRestaurantItem mControllerRestaurantItem;
@@ -81,31 +86,4 @@ public class RestaurantListFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
-
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.action_restaurant_search).setVisible(true);
-        super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_restaurant_search: {
-                showSearchDialog();
-                return true;
-            }
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void showSearchDialog() {
-        ShareDialog shareDialog = new ShareDialog();
-        shareDialog.show(getFragmentManager(), "SEARCH_DIALOG");
-    }
 }

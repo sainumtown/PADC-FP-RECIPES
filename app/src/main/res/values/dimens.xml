@@ -57,4 +57,13 @@
     <dimen name="restaurnt_width">100dp</dimen>
     <dimen name="restaurnt_height">100dp</dimen>
     <dimen name="width_spinner_township">300dp</dimen>
+    <dimen name="card_margin">5dp</dimen>
+    <dimen name="card_album_radius">0dp</dimen>
+    <dimen name="margin_favourite">10dp</dimen>
+    <dimen name="ic_recipe_overflow_width">30dp</dimen>
+    <dimen name="ic_recipe_overflow_height">20dp</dimen>
+    <dimen name="recipe_image_height">160dp</dimen>
+    <dimen name="backdrop_title">30dp</dimen>
+    <dimen name="backdrop_subtitle">18dp</dimen>
+    <dimen name="overflow_favrite_margin">-30dp</dimen>
 </resources>
