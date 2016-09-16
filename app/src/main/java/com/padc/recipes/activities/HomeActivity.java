@@ -2,6 +2,7 @@ package com.padc.recipes.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -22,8 +23,10 @@ import com.padc.recipes.R;
 import com.padc.recipes.adapters.RecipeCategoryListAdapter;
 import com.padc.recipes.fragments.RecipeListFragment;
 import com.padc.recipes.fragments.RestaurantListFragment;
+import com.padc.recipes.fragments.VideoFragment;
 import com.padc.recipes.views.holders.RecipeViewHolder;
 import com.padc.recipes.views.holders.RestaurntViewHolder;
+import com.padc.recipes.views.holders.VideoViewHolder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +37,8 @@ import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
         , RestaurntViewHolder.ControllerRestaurantItem
-        , RecipeViewHolder.ControllerRecipeItem {
+        , RecipeViewHolder.ControllerRecipeItem
+        , VideoViewHolder.ControllerVideoItem {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -135,8 +139,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.restaurants:
                 navigateToRestaurants();
                 return true;
+            case R.id.videos:
+                navaigateToVideos();
+                return true;
         }
         return false;
+    }
+
+    private void navaigateToVideos() {
+        fabSearch.hide();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_container, VideoFragment.newInstance())
+                .commit();
     }
 
     private void navigateToRecipes() {
@@ -161,6 +175,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onTapRecipe() {
+        Toast.makeText(getApplicationContext(), "Will go to detail page", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onTapVideo() {
         Toast.makeText(getApplicationContext(), "Will go to detail page", Toast.LENGTH_SHORT).show();
     }
 }

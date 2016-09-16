@@ -22,6 +22,7 @@
     <string name="enter_restaurant_name">ဆိုင္နာမည္ ကို ရိုက္သြင္းပါ</string>
     <string name="choose_township">ျမိဳ႔နယ္ ေရြးပါ</string>
     <string name="choose_food">အမ်ိဳးအစား ေရြးပါ</string>
+    <string name="video_list_title">Video Title</string>
 
 
     <string-array name="recipes_category">
