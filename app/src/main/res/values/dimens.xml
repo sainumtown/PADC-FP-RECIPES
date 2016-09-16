@@ -70,20 +70,12 @@
     <dimen name="overflow_favrite_margin">-30dp</dimen>
 
     <dimen name="zero_width">0dp</dimen>
-
-
+    <dimen name="iv_video_icon_width">120dp</dimen>
+    <dimen name="iv_video_icon_height">120dp</dimen>
 
     <dimen name="detail_backdrop_height">300dp</dimen>
     <dimen name="icon_in_detail">48dp</dimen>
-
     <dimen name="height_xlarge">60dp</dimen>
-
     <dimen name="image_width">100dp</dimen>
     <dimen name="image_height">110dp</dimen>
-
-
-
-
-
-
 </resources>
