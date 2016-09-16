@@ -40,7 +40,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerInParent="@id/iv_recipe_video"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_play_circle_filled_black_24dp" />
+                    android:src="@drawable/play_video_1" />
             </RelativeLayout>
 
             <com.padc.recipes.components.MMTextView
@@ -52,6 +52,7 @@
                 android:paddingLeft="@dimen/padding_medium"
                 android:paddingRight="@dimen/padding_medium"
                 android:paddingTop="@dimen/margin_medium"
+                android:paddingBottom="@dimen/margin_medium"
                 android:text="အာလူးေခ်ာင္းေျကာ္ (French Fries) (ေအးေနလဲ စားလိုု ့ေကာင္းတဲ့နည္း)"
                 android:textColor="@color/primary"
                 android:textSize="@dimen/text_regular" />
