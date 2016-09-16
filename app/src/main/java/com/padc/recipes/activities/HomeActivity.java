@@ -22,6 +22,7 @@ import com.padc.recipes.R;
 import com.padc.recipes.adapters.RecipeCategoryListAdapter;
 import com.padc.recipes.fragments.RecipeListFragment;
 import com.padc.recipes.fragments.RestaurantListFragment;
+import com.padc.recipes.fragments.ShoppingListFragment;
 import com.padc.recipes.views.holders.RecipeViewHolder;
 import com.padc.recipes.views.holders.RestaurntViewHolder;
 
@@ -135,8 +136,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.restaurants:
                 navigateToRestaurants();
                 return true;
+            case R.id.shoppingList:
+                navigateToShoppingList();
+                return true;
         }
         return false;
+    }
+
+    private void navigateToShoppingList() {
+        fabSearch.hide();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_container, ShoppingListFragment.newInstance())
+                .commit();
     }
 
     private void navigateToRecipes() {

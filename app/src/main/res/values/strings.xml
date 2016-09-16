@@ -22,6 +22,8 @@
     <string name="enter_restaurant_name">ဆိုင္နာမည္ ကို ရိုက္သြင္းပါ</string>
     <string name="choose_township">ျမိဳ႔နယ္ ေရြးပါ</string>
     <string name="choose_food">အမ်ိဳးအစား ေရြးပါ</string>
+    <string name="remove">Remove</string>
+    <string name="chicken">ၾကက္သား</string>
 
 
     <string-array name="recipes_category">
@@ -52,6 +54,15 @@
         <item>Drinks</item>
         <item>Fruit</item>
 
+    </string-array>
+
+    <string-array name="material_list">
+        <item>အာလူး</item>
+        <item>ဂ်င္း</item>
+        <item>နံနံပင္</item>
+        <item>ဆား</item>
+        <item>အေၾကာ္မႈ႔န္</item>
+        <item>ဆီ</item>
     </string-array>
 
 </resources>
