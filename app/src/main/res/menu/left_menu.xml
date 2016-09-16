@@ -19,7 +19,7 @@
             android:title="@string/Resturants" />
 
         <item
-            android:id="@+id/myanmar_attractions_tab_layout"
+            android:id="@+id/videos"
             android:icon="@drawable/ic_recent_actors_24dp"
             android:title="@string/Video" />
 

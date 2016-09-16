@@ -66,4 +66,6 @@
     <dimen name="backdrop_title">30dp</dimen>
     <dimen name="backdrop_subtitle">18dp</dimen>
     <dimen name="overflow_favrite_margin">-30dp</dimen>
+    <dimen name="iv_video_icon_width">120dp</dimen>
+    <dimen name="iv_video_icon_height">120dp</dimen>
 </resources>
