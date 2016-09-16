@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
@@ -32,7 +33,7 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListViewHo
     public ShoppingListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.view_item_shopping_list, parent, false);
 
-        materailCheckBoxSetting( itemView);
+        materailCheckBoxSetting(itemView);
 
         return new ShoppingListViewHolder(itemView);
     }
@@ -45,17 +46,19 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListViewHo
             MMCheckBox cbMaterial = new MMCheckBox(RecipesApp.getContext());
             cbMaterial.setTextColor(view.getResources().getColor(R.color.text_black_ish));
             cbMaterial.setButtonDrawable(R.drawable.checkbox);
-             int p = R.dimen.padding_medium;
-            cbMaterial.setPadding(10,10,50,10);
+            int p = R.dimen.padding_medium;
+            cbMaterial.setPadding(10, 10, 50, 10);
             cbMaterial.setText(materiaLArray[i]);
 
             final int finalI = i;
-            cbMaterial.setOnClickListener(new View.OnClickListener() {
+            cbMaterial.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
-                public void onClick(View v) {
-                    Toast.makeText(RecipesApp.getContext(),materiaLArray[finalI].toString(),Toast.LENGTH_LONG).show();
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    Toast.makeText(RecipesApp.getContext(), materiaLArray[finalI].toString(), Toast.LENGTH_LONG).show();
                 }
             });
+
+
             llShoppingList.addView(cbMaterial);
         }
     }
