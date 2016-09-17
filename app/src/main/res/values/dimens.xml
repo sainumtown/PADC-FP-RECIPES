@@ -55,6 +55,7 @@
 
     <dimen name="margin_top_profile_pic">60dp</dimen>
 
+
     <dimen name="screen_title_size">19sp</dimen>
     <dimen name="restaurnt_width">100dp</dimen>
     <dimen name="restaurnt_height">100dp</dimen>
@@ -78,4 +79,5 @@
     <dimen name="height_xlarge">60dp</dimen>
     <dimen name="image_width">100dp</dimen>
     <dimen name="image_height">110dp</dimen>
+
 </resources>

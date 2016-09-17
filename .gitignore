@@ -38,3 +38,4 @@ captures/
 
 # Keystore files
 *.jks
+.idea/libraries/android_android_24.xml
