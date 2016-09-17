@@ -1,5 +1,6 @@
 package com.padc.recipes.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.padc.recipes.R;
+import com.padc.recipes.RecipesApp;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -14,6 +16,7 @@ import butterknife.ButterKnife;
 public class ResturantDetailScreenActivity extends AppCompatActivity {
 
 
+    private static final String IE_RESTAURANT_ID = "restaurant_id";
     @BindView(R.id.iv_attraction)
     ImageView ivAttraction;
 
@@ -61,6 +64,12 @@ public class ResturantDetailScreenActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_ykko4)
     TextView tvYKKO4;
+
+    public static Intent newIntent(String attractionName) {
+        Intent intent = new Intent(RecipesApp.getContext(), ResturantDetailScreenActivity.class);
+        intent.putExtra(IE_RESTAURANT_ID, attractionName);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

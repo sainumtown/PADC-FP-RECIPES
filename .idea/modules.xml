@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PADC_RECEIPES.iml" filepath="$PROJECT_DIR$/PADC_RECEIPES.iml" />
-      <module fileurl="file://$PROJECT_DIR$/PADC_RECIPES.iml" filepath="$PROJECT_DIR$/PADC_RECIPES.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>
