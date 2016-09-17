@@ -140,9 +140,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.restaurants:
                 navigateToRestaurants();
                 return true;
-
             case R.id.shoppingList:
                 navigateToShoppingList();
+                return true;
             case R.id.videos:
                 navaigateToVideos();
                 return true;
@@ -153,7 +153,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private void navigateToShoppingList() {
         fabSearch.hide();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fl_container, ShoppingListFragment.newInstance());
+                .replace(R.id.fl_container, ShoppingListFragment.newInstance())
+                .commit();
     }
 
     private void navaigateToVideos() {
@@ -181,12 +182,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onTapRestaurant() {
-        Toast.makeText(getApplicationContext(), "Will go to detail page", Toast.LENGTH_SHORT).show();
+        //TODO to get the real id.
+        String dummyRestaurantId ="1";
+        Intent intent = ResturantDetailScreenActivity.newIntent(dummyRestaurantId);
+        startActivity(intent);
     }
 
     @Override
     public void onTapRecipe() {
-        Toast.makeText(getApplicationContext(), "Will go to detail page", Toast.LENGTH_SHORT).show();
+        //TODO to get the real id.
+        String dummyRecipeId ="1";
+        Intent intent = RecipesDetailScreenActivity.newIntent(dummyRecipeId);
+        startActivity(intent);
     }
 
     @Override

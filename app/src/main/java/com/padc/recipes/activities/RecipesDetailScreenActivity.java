@@ -1,5 +1,6 @@
 package com.padc.recipes.activities;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,12 +10,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.padc.recipes.R;
+import com.padc.recipes.RecipesApp;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RecipesDetailScreenActivity extends AppCompatActivity {
 
+    private static final String IE_RECIPE_ID = "recipe_id";
     @BindView(R.id.iv_attraction)
     ImageView ivAttraction;
 
@@ -94,7 +97,11 @@ public class RecipesDetailScreenActivity extends AppCompatActivity {
     TextView tvYangon;
 
 
-
+    public static Intent newIntent(String attractionName) {
+        Intent intent = new Intent(RecipesApp.getContext(), RecipesDetailScreenActivity.class);
+        intent.putExtra(IE_RECIPE_ID, attractionName);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

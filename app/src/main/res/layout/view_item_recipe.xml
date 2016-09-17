@@ -23,7 +23,6 @@
                 android:id="@+id/iv_recipe"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/recipe_image_height"
-                android:clickable="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/sample_recipe_thumbnail" />
 
