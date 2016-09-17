@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/card_margin"
+        android:elevation="3dp"
+        card_view:cardBackgroundColor="@color/white_full"
+        card_view:cardCornerRadius="@dimen/card_album_radius">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_medium"
+            android:paddingLeft="@dimen/margin_medium"
+            android:paddingRight="@dimen/margin_medium"
+            android:paddingTop="@dimen/padding_medium">
+
+            <ImageView
+                android:id="@+id/iv_restaurant_photo"
+                android:layout_width="@dimen/restaurnt_width"
+                android:layout_height="@dimen/restaurnt_height"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="@dimen/margin_medium_2"
+                android:scaleType="centerCrop"
+                android:src="@drawable/restaurnt_ykko" />
+
+            <com.padc.recipes.components.MMTextView
+                android:id="@+id/tv_restaurant_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@id/iv_restaurant_photo"
+                android:lineSpacingMultiplier="1.2"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:text="YKKO"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/text_regular"
+                android:textStyle="bold" />
+
+            <com.padc.recipes.components.MMTextView
+                android:id="@+id/tv_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_restaurant_title"
+                android:layout_toRightOf="@id/iv_restaurant_photo"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="နံပါတ္ ၁၀ သစ်စာလမ္း, ရန္ကင္း မြိဒံန၊္, ရန္ကုန္"
+                android:textColor="@color/black_overlay_light"
+                android:textSize="@dimen/text_regular" />
+
+            <com.padc.recipes.components.MMTextView
+                android:id="@+id/tv_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_address"
+                android:layout_toRightOf="@id/iv_restaurant_photo"
+                android:text="951-572 196 , 9977118749"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/black_overlay_light"
+                android:textSize="@dimen/text_regular" />
+
+
+            <com.padc.recipes.components.MMTextView
+                android:id="@+id/tv_open_close_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_phone"
+                android:layout_toRightOf="@id/iv_restaurant_photo"
+                android:text="မနက္ ၉:၀၀ မှ ည ၁၀:၀၀ ထိ"
+                android:textColor="@color/black_overlay_light"
+                android:textSize="@dimen/text_regular" />
+
+            <com.padc.recipes.components.MMTextView
+                android:id="@+id/tv_township"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_open_close_time"
+                android:layout_toRightOf="@id/iv_restaurant_photo"
+                android:text="ရန္ကင္း"
+                android:textColor="@color/black_overlay_light"
+                android:textSize="@dimen/text_regular" />
+
+
+            <com.padc.recipes.components.MMTextView
+                android:id="@+id/tv_recommended_food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/tv_restaurant_title"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:text="​ေျကးအိုး"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/text_regular" />
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

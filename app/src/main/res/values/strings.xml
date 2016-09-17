@@ -1,4 +1,70 @@
 <resources>
     <string name="app_name">Recipes</string>
     <string name="action_settings">Settings</string>
+    <string name="Home">Home</string>
+    <string name="Recipes">Recipes</string>
+    <string name="Favourites">Favourties</string>
+    <string name="Resturants">Restaurants</string>
+    <string name="Video">Videos</string>
+    <string name="ShoppingList">Shopping List</string>
+    <string name="settting">Setting</string>
+    <string name="about_us">About us</string>
+    <string name="home_screen_title">Recipes</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lbl_spinner_filter_category">filter category</string>
+    <string name="lbl_search">Search</string>
+    <string name="restaurnat_search_dialog_title">Search Restarurant</string>
+    <string name="spinner_choose_category">Choose Category</string>
+    <string name="backdrop_title">စားေသာက္ဆိုင္</string>
+    <string name="backdrop_subtitle">ရွာရေအာင္</string>
+    <string name="enter_restaurant_name">ဆိုင္နာမည္ ကို ရိုက္သြင္းပါ</string>
+    <string name="choose_township">ျမိဳ႔နယ္ ေရြးပါ</string>
+    <string name="choose_food">အမ်ိဳးအစား ေရြးပါ</string>
+
+    <string name="remove">Remove</string>
+    <string name="chicken">ၾကက္သား</string>
+    <string name="video_list_title">Video Title</string>
+
+
+    <string-array name="recipes_category">
+        <item>Chicken</item>
+        <item>Pork</item>
+        <item>Vegetable</item>
+        <item>Noodle</item>
+        <item>Sea Food</item>
+        <item>Myanmar Traditional</item>
+
+    </string-array>
+
+    <string-array name="township_list">
+        <item>township 1</item>
+        <item>township 2</item>
+        <item>township 3</item>
+        <item>township 4</item>
+        <item>township 5</item>
+        <item>township 6</item>
+
+    </string-array>
+
+    <string-array name="food_list">
+        <item>Fried rice</item>
+        <item>Noodle</item>
+        <item>Chicken Donut</item>
+        <item>Pizza</item>
+        <item>Drinks</item>
+        <item>Fruit</item>
+
+    </string-array>
+
+    <string-array name="material_list">
+        <item>အာလူး</item>
+        <item>ဂ်င္း</item>
+        <item>နံနံပင္</item>
+        <item>ဆား</item>
+        <item>အေၾကာ္မႈ႔န္</item>
+        <item>ဆီ</item>
+    </string-array>
+
 </resources>
