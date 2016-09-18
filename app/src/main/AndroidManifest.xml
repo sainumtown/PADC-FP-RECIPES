@@ -25,6 +25,7 @@
         <activity android:name=".activities.ResturantDetailScreenActivity">
 
         </activity>
+        <activity android:name=".activities.SearchActivity"></activity>
     </application>
 
 </manifest>
