@@ -22,6 +22,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeViewHolder> {
         this.mController = controllerRecipeItem;
     }
 
+
+
     @Override
     public RecipeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.view_item_recipe, parent, false);

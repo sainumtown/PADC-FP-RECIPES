@@ -55,6 +55,7 @@
 
     <dimen name="margin_top_profile_pic">60dp</dimen>
 
+
     <dimen name="screen_title_size">19sp</dimen>
     <dimen name="restaurnt_width">100dp</dimen>
     <dimen name="restaurnt_height">100dp</dimen>
@@ -69,15 +70,17 @@
     <dimen name="backdrop_subtitle">18dp</dimen>
     <dimen name="overflow_favrite_margin">-30dp</dimen>
 
+    <dimen name="zero_width">0dp</dimen>
+    <dimen name="iv_video_icon_width">120dp</dimen>
+    <dimen name="iv_video_icon_height">120dp</dimen>
 
     <dimen name="detail_backdrop_height">300dp</dimen>
     <dimen name="icon_in_detail">48dp</dimen>
-
     <dimen name="height_xlarge">60dp</dimen>
-
     <dimen name="image_width">100dp</dimen>
     <dimen name="image_height">110dp</dimen>
 
+<<<<<<< HEAD
 
 <<<<<<< 8dddfad3b191ee6eb56176e43a7d1f0ca8eefcf6
 
@@ -85,4 +88,6 @@
 
 =======
 >>>>>>> finish resturant detail screen
+=======
+>>>>>>> 91a6c270cf3d00f7be4bfccf1f0eedc61d1dbcf8
 </resources>

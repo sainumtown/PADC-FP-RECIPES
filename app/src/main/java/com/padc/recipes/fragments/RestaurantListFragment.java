@@ -42,8 +42,6 @@ public class RestaurantListFragment extends Fragment {
     @BindView(R.id.rv_restaurants)
     RecyclerView rvRestaurant;
 
-
-
     private RestaurantAdapter mRestaurantAdapter;
     RestaurntViewHolder.ControllerRestaurantItem mControllerRestaurantItem;
 
