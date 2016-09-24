@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_medium">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/padding_medium"
+        android:paddingTop="@dimen/padding_medium">
+
+        <ImageView
+            android:id="@+id/iv_favourite_photo"
+            android:layout_width="@dimen/restaurnt_width"
+            android:layout_height="@dimen/restaurnt_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="@dimen/margin_medium_2"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pork" />
+
+        <TextView
+            android:id="@+id/tv_favourite_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:layout_toRightOf="@id/iv_favourite_photo"
+            android:lineSpacingMultiplier="1.2"
+            android:text="၀က္သားမုုန္ညွင္းခ်ဥ္ေပါင္း"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_regular_2x"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_chef"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tv_favourite_title"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="Wutt Yee Food House"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_regular" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>
