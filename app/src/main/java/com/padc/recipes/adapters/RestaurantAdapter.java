@@ -46,4 +46,8 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurntViewHolder>
     }
 
 
+    public void setNewData(List<RestaurantVO> newRestaurantList) {
+        mRestaurantList = newRestaurantList;
+        notifyDataSetChanged();
+    }
 }

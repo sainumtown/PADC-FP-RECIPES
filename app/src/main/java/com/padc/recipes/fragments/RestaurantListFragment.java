@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.padc.recipes.R;
 import com.padc.recipes.RecipesApp;
@@ -29,6 +30,7 @@ import com.padc.recipes.data.models.RestaurantModel;
 import com.padc.recipes.data.vos.RecipeVO;
 import com.padc.recipes.data.vos.RestaurantVO;
 import com.padc.recipes.dialogs.ShareDialog;
+import com.padc.recipes.events.DataEvent;
 import com.padc.recipes.views.holders.RestaurntViewHolder;
 
 import java.util.ArrayList;
@@ -37,6 +39,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -92,4 +95,33 @@ public class RestaurantListFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        EventBus eventBus = EventBus.getDefault();
+        if (!eventBus.isRegistered(this)) {
+            eventBus.register(this);
+        }
+    }
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        EventBus eventBus = EventBus.getDefault();
+        eventBus.unregister(this);
+    }
+
+    public void onEventMainThread(DataEvent.RestaurantDataLoadedEvent event) {
+        String extra = event.getExtraMessage();
+        Toast.makeText(getContext(), "Extra : " + extra, Toast.LENGTH_SHORT).show();
+
+
+        List<RestaurantVO> newRestaurantList = event.getRestaurantList();
+        mRestaurantAdapter.setNewData(newRestaurantList);
+    }
 }
+
+
