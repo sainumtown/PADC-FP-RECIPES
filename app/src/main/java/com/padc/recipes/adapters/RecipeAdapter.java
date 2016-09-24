@@ -45,4 +45,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeViewHolder> {
     }
 
 
+    public void setNewData(List<RecipeVO> newRecipeList) {
+        mRecipeList = newRecipeList;
+        notifyDataSetChanged();
+    }
 }
