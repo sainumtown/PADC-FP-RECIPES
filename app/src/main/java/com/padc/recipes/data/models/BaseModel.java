@@ -2,6 +2,7 @@ package com.padc.recipes.data.models;
 
 import com.padc.recipes.data.agents.OfflineDataAgent;
 import com.padc.recipes.data.agents.RecipeDataAgent;
+import com.padc.recipes.data.agents.retrofit.RetrofitDataAgent;
 
 import de.greenrobot.event.EventBus;
 
@@ -17,7 +18,7 @@ public abstract class BaseModel {
     protected RecipeDataAgent dataAgent;
 
     public BaseModel() {
-        initDataAgent(INIT_DATA_AGENT_OFFLINE);
+        initDataAgent(INIT_DATA_AGENT_RETROFIT);
 
        /* EventBus eventBus = EventBus.getDefault();
         if (!eventBus.isRegistered(this)) {
@@ -37,7 +38,7 @@ public abstract class BaseModel {
                 /*dataAgent = OkHttpDataAgent.getInstance();*/
                 break;
             case INIT_DATA_AGENT_RETROFIT:
-                /*dataAgent = RetrofitDataAgent.getInstance();*/
+                dataAgent = RetrofitDataAgent.getInstance();
                 break;
         }
     }
