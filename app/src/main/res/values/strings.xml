@@ -26,6 +26,9 @@
     <string name="remove">Remove</string>
     <string name="chicken">ၾကက္သား</string>
     <string name="video_list_title">Video Title</string>
+    <string name="lbl_morning">နံနက္</string>
+    <string name="lbl_from">မွ</string>
+    <string name="lbl_end">ည</string>
 
 
     <string-array name="recipes_category">

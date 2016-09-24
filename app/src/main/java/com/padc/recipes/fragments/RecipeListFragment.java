@@ -15,6 +15,8 @@ import android.widget.Spinner;
 import com.padc.recipes.R;
 import com.padc.recipes.adapters.RecipeAdapter;
 import com.padc.recipes.adapters.RecipeCategoryListAdapter;
+import com.padc.recipes.data.models.RecipeModel;
+import com.padc.recipes.data.vos.RecipeVO;
 import com.padc.recipes.views.holders.RecipeViewHolder;
 
 import java.util.ArrayList;
@@ -64,7 +66,11 @@ public class RecipeListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recipe_list, container, false);
         ButterKnife.bind(this, view);
 
-        mRecipeAdapter = new RecipeAdapter(mControllerRecipeItem);
+        // get recipe data
+        RecipeModel.getInstance().loadRecipes();
+        List<RecipeVO> recipeList = RecipeModel.getInstance().getRecipeList();
+
+        mRecipeAdapter = new RecipeAdapter(mControllerRecipeItem,recipeList);
         rvRecipes.setAdapter(mRecipeAdapter);
 
         // spinner category filter
