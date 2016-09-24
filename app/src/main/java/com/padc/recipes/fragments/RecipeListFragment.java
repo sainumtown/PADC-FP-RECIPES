@@ -1,9 +1,11 @@
 package com.padc.recipes.fragments;
 
 import android.content.Context;
+import android.content.IntentFilter;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,12 +13,14 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.padc.recipes.R;
 import com.padc.recipes.adapters.RecipeAdapter;
 import com.padc.recipes.adapters.RecipeCategoryListAdapter;
 import com.padc.recipes.data.models.RecipeModel;
 import com.padc.recipes.data.vos.RecipeVO;
+import com.padc.recipes.events.DataEvent;
 import com.padc.recipes.views.holders.RecipeViewHolder;
 
 import java.util.ArrayList;
@@ -25,6 +29,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -105,5 +110,33 @@ public class RecipeListFragment extends Fragment {
         /*menu.findItem(R.id.spinner_filter_category).setVisible(true);*/
         super.onPrepareOptionsMenu(menu);
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        EventBus eventBus = EventBus.getDefault();
+        if (!eventBus.isRegistered(this)) {
+            eventBus.register(this);
+        }
+    }
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        EventBus eventBus = EventBus.getDefault();
+        eventBus.unregister(this);
+    }
+
+    public void onEventMainThread(DataEvent.RecipeDataLoadedEvent event) {
+        String extra = event.getExtraMessage();
+        Toast.makeText(getContext(), "Extra : " + extra, Toast.LENGTH_SHORT).show();
+
+
+        List<RecipeVO> newRecipeList = event.getRecipeList();
+        mRecipeAdapter.setNewData(newRecipeList);
     }
 }
