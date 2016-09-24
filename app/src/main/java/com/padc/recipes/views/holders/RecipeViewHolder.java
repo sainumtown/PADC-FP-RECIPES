@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.padc.recipes.R;
+import com.padc.recipes.data.vos.RecipeVO;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,6 +21,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
     ImageView ivRecipe;
 
     private ControllerRecipeItem mController;
+    private RecipeVO mRecipe;
 
     public RecipeViewHolder(View itemView, ControllerRecipeItem controllerRecipeItem) {
         super(itemView);
@@ -31,6 +33,11 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
     @Override
     public void onClick(View view) {
         mController.onTapRecipe();
+    }
+
+    public void bindData(RecipeVO recipe) {
+        mRecipe = recipe;
+        tvRecipeTitle.setText(recipe.getRecipe_title());
     }
 
     public interface ControllerRecipeItem{
