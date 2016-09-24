@@ -1,6 +1,7 @@
 package com.padc.recipes.data.agents.retrofit;
 
 import com.padc.recipes.data.responses.RecipeListResponse;
+import com.padc.recipes.data.responses.RestaurantListResponse;
 import com.padc.recipes.utils.RecipeAppConstants;
 
 import retrofit2.Call;
@@ -16,5 +17,10 @@ public interface RecipeApi {
     @FormUrlEncoded
     @POST(RecipeAppConstants.API_GET_RECIPE_LIST)
     Call<RecipeListResponse> loadRecipes(
+            @Field(RecipeAppConstants.PARAM_ACCESS_TOKEN) String param);
+
+    @FormUrlEncoded
+    @POST(RecipeAppConstants.API_GET_RESTAURANT_LIST)
+    Call<RestaurantListResponse> loadRestaurants(
             @Field(RecipeAppConstants.PARAM_ACCESS_TOKEN) String param);
 }

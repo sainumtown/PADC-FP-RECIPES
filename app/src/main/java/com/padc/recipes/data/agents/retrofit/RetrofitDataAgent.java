@@ -1,9 +1,10 @@
 package com.padc.recipes.data.agents.retrofit;
 
-import com.padc.recipes.data.agents.OfflineDataAgent;
 import com.padc.recipes.data.agents.RecipeDataAgent;
 import com.padc.recipes.data.models.RecipeModel;
+import com.padc.recipes.data.models.RestaurantModel;
 import com.padc.recipes.data.responses.RecipeListResponse;
+import com.padc.recipes.data.responses.RestaurantListResponse;
 import com.padc.recipes.utils.CommonInstances;
 import com.padc.recipes.utils.RecipeAppConstants;
 
@@ -15,7 +16,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Field;
 
 
 /**
@@ -73,6 +73,23 @@ public class RetrofitDataAgent implements RecipeDataAgent {
 
     @Override
     public void loadRestaurants() {
+        Call<RestaurantListResponse> loadRestaurantCall = theApi.loadRestaurants(RecipeAppConstants.ACCESS_TOKEN);
+        loadRestaurantCall.enqueue(new Callback<RestaurantListResponse>() {
+            @Override
+            public void onResponse(Call<RestaurantListResponse> call, Response<RestaurantListResponse> response) {
+                RestaurantListResponse restaurantListResponse = response.body();
+                if(restaurantListResponse == null){
+                    RestaurantModel.getInstance().notifyErrorInLoadingRestaurant(response.message());
+                }else {
+                    RestaurantModel.getInstance().notifyRestaurantLoaded(restaurantListResponse.getRestaurantList());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RestaurantListResponse> call, Throwable t) {
+                RestaurantModel.getInstance().notifyErrorInLoadingRestaurant(t.getMessage());
+            }
+        });
 
     }
 }
