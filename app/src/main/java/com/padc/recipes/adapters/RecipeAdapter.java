@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.padc.recipes.R;
 import com.padc.recipes.RecipesApp;
+import com.padc.recipes.data.vos.RecipeVO;
 import com.padc.recipes.views.holders.RecipeViewHolder;
 
 import java.util.List;
@@ -16,10 +17,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeViewHolder> {
 
     private LayoutInflater mInflater;
     private RecipeViewHolder.ControllerRecipeItem mController;
+    private List<RecipeVO> mRecipeList;
 
-    public RecipeAdapter(RecipeViewHolder.ControllerRecipeItem controllerRecipeItem) {
+    public RecipeAdapter(RecipeViewHolder.ControllerRecipeItem controllerRecipeItem, List<RecipeVO> recipeList) {
         mInflater = LayoutInflater.from(RecipesApp.getContext());
         this.mController = controllerRecipeItem;
+        this.mRecipeList = recipeList;
     }
 
 
@@ -32,12 +35,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeViewHolder> {
 
     @Override
     public void onBindViewHolder(RecipeViewHolder holder, int position) {
+        holder.bindData(mRecipeList.get(position));
 
     }
 
     @Override
     public int getItemCount() {
-        return 20;
+        return mRecipeList.size();
     }
 
 

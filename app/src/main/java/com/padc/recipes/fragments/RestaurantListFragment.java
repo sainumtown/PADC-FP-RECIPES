@@ -24,6 +24,10 @@ import com.padc.recipes.activities.SearchActivity;
 import com.padc.recipes.adapters.FoodAdapter;
 import com.padc.recipes.adapters.RestaurantAdapter;
 import com.padc.recipes.adapters.TownshipAdapter;
+import com.padc.recipes.data.models.RecipeModel;
+import com.padc.recipes.data.models.RestaurantModel;
+import com.padc.recipes.data.vos.RecipeVO;
+import com.padc.recipes.data.vos.RestaurantVO;
 import com.padc.recipes.dialogs.ShareDialog;
 import com.padc.recipes.views.holders.RestaurntViewHolder;
 
@@ -75,7 +79,11 @@ public class RestaurantListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_restaurant_list, container, false);
         ButterKnife.bind(this, view);
 
-        mRestaurantAdapter = new RestaurantAdapter(mControllerRestaurantItem);
+        // get restaurant data
+        RestaurantModel.getInstance().loadRestaurants();
+        List<RestaurantVO> restaurantList = RestaurantModel.getInstance().getRestaurantList();
+
+        mRestaurantAdapter = new RestaurantAdapter(mControllerRestaurantItem,restaurantList);
         rvRestaurant.setAdapter(mRestaurantAdapter);
 
         int gridColumnSpanCount = 1;
