@@ -21,7 +21,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/pork" />
 
-        <TextView
+        <com.padc.recipes.components.MMTextView
             android:id="@+id/tv_favourite_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +34,20 @@
             android:textSize="@dimen/text_regular_2x"
             android:textStyle="bold" />
 
-        <TextView
+        <com.padc.recipes.components.MMTextView
+            android:id="@+id/tv_favourite_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/tv_favourite_title"
+            android:layout_toRightOf="@id/iv_favourite_photo"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="ၾကာျမင့္ခ်ိန္- ၂၀ မိနစ္"
+            android:textColor="@color/black_overlay_light"
+            android:textSize="@dimen/text_regular" />
+
+        <com.padc.recipes.components.MMTextView
             android:id="@+id/tv_chef"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

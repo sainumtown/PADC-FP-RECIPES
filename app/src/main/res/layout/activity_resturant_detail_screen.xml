@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <com.padc.recipes.components.MMTextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
             android:textSize="@dimen/text_heading_2x"
             android:text="YKKO(Hledan)"/>
 
-        <TextView
+        <com.padc.recipes.components.MMTextView
             android:id="@+id/tv_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
             android:textSize="@dimen/text_regular_3x"
             android:text="Kyae-Oh and BBQ Resturant"/>
 
-        <TextView
+        <com.padc.recipes.components.MMTextView
             android:id="@+id/tv_service"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
             android:textSize="@dimen/text_regular"
             android:text="YKKO serves local dishes, asian and western food also. I recommend to try Kyay-Oh which is noodle soup. You can choose the ingredient, seafood or pork or chicken. If you don't like soup you can order Kyay-Oh Sickyet which is the dry version of Kyay-Oh. It's a traditional food of Myanmar and taste good. For ladies, Kyay-Oh mini is enough (the kyay-oh is quiet big portion)."/>
 
-        <TextView
+        <com.padc.recipes.components.MMTextView
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
             android:textSize="@dimen/text_regular_2x"
             android:text="Today    : 11:00 AM to 9:30 PM"/>
 
-        <TextView
+        <com.padc.recipes.components.MMTextView
             android:id="@+id/tv_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
             android:textSize="@dimen/text_regular_2x"
             android:text="Phone    : +951 401192, +951 401179"/>
 
-        <TextView
+        <com.padc.recipes.components.MMTextView
             android:id="@+id/tv_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -170,25 +170,25 @@ Yangon, Myanmar"/>
                         android:layout_marginBottom="@dimen/margin_medium"
                         android:layout_marginLeft="@dimen/margin_medium_2">
 
-                        <TextView
+            <com.padc.recipes.components.MMTextView
                             android:id="@+id/tv_ykko1"
                             android:layout_width="@dimen/image_width"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/margin_medium"
                             android:text="Pork Rib Kyay-Oh Sichet" />
-                        <TextView
+            <com.padc.recipes.components.MMTextView
                             android:id="@+id/tv_ykko2"
                             android:layout_width="@dimen/image_width"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/margin_medium"
                             android:text="Grill Chicken" />
-                        <TextView
+            <com.padc.recipes.components.MMTextView
                             android:id="@+id/tv_ykko3"
                             android:layout_width="@dimen/image_width"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/margin_medium"
                             android:text="Pork Rib Kyay-Oh " />
-                        <TextView
+            <com.padc.recipes.components.MMTextView
                             android:id="@+id/tv_ykko4"
                             android:layout_width="@dimen/image_width"
                             android:layout_height="wrap_content"
