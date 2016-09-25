@@ -21,10 +21,12 @@ import android.widget.Toast;
 
 import com.padc.recipes.R;
 import com.padc.recipes.adapters.RecipeCategoryListAdapter;
+import com.padc.recipes.fragments.FavouriteFragment;
 import com.padc.recipes.fragments.RecipeListFragment;
 import com.padc.recipes.fragments.RestaurantListFragment;
 import com.padc.recipes.fragments.ShoppingListFragment;
 import com.padc.recipes.fragments.VideoFragment;
+import com.padc.recipes.views.holders.FavouriteViewHolder;
 import com.padc.recipes.views.holders.RecipeViewHolder;
 import com.padc.recipes.views.holders.RestaurntViewHolder;
 import com.padc.recipes.views.holders.VideoViewHolder;
@@ -39,7 +41,8 @@ import butterknife.ButterKnife;
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
         , RestaurntViewHolder.ControllerRestaurantItem
         , RecipeViewHolder.ControllerRecipeItem
-        , VideoViewHolder.ControllerVideoItem {
+        , VideoViewHolder.ControllerVideoItem
+        , FavouriteViewHolder.ControllerFavouriteItem {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -146,8 +149,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.videos:
                 navaigateToVideos();
                 return true;
+            case R.id.favourite:
+                navigateToFavourite();
+                return true;
+
         }
         return false;
+    }
+
+    private void navigateToFavourite() {
+        fabSearch.hide();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_container, FavouriteFragment.newInstance())
+                .commit();
     }
 
     private void navigateToShoppingList() {
@@ -200,4 +214,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public void onTapVideo() {
         Toast.makeText(getApplicationContext(), "Will go to detail page", Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void onTapFavourite() {
+        Toast.makeText(getApplicationContext(), "Will go to detail page", Toast.LENGTH_SHORT).show();
+    }
+
 }
