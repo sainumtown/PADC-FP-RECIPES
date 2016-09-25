@@ -46,6 +46,9 @@ public class ShoppingListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_shopping_list, container, false);
         ButterKnife.bind(this, view);
 
+        // title
+        getActivity().setTitle(R.string.ShoppingList);
+
         mShoppingListAdapter = new ShoppingListAdapter();
         rvShoppingList.setAdapter(mShoppingListAdapter);
 

@@ -39,7 +39,7 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListViewHo
     }
 
     private void materailCheckBoxSetting(View view) {
-        LinearLayout llShoppingList = (LinearLayout) view.findViewById(R.id.ll_shopping_list);
+        LinearLayout llShoppingList = (LinearLayout) view.findViewById(R.id.ll_tile_remove);
         final String[] materiaLArray = view.getResources().getStringArray(R.array.material_list);
 
         for (int i = 0; i < materiaLArray.length; i++) {
@@ -47,7 +47,7 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListViewHo
             cbMaterial.setTextColor(view.getResources().getColor(R.color.text_black_ish));
             cbMaterial.setButtonDrawable(R.drawable.checkbox);
             int p = R.dimen.padding_medium;
-            cbMaterial.setPadding(10, 10, 50, 10);
+            cbMaterial.setPadding(10, 10, 200, 10);
             cbMaterial.setText(materiaLArray[i]);
 
             final int finalI = i;

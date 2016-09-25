@@ -82,6 +82,9 @@ public class RestaurantListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_restaurant_list, container, false);
         ButterKnife.bind(this, view);
 
+        // title
+        getActivity().setTitle(R.string.Resturants);
+
         // get restaurant data
         RestaurantModel.getInstance().loadRestaurants();
         List<RestaurantVO> restaurantList = RestaurantModel.getInstance().getRestaurantList();
