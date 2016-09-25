@@ -2,8 +2,10 @@ package com.padc.recipes.activities;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -96,6 +98,9 @@ public class RecipesDetailScreenActivity extends AppCompatActivity {
     @BindView(R.id.tv_yangongrill)
     TextView tvYangon;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
 
     public static Intent newIntent(String attractionName) {
         Intent intent = new Intent(RecipesApp.getContext(), RecipesDetailScreenActivity.class);
@@ -108,6 +113,13 @@ public class RecipesDetailScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes_detail_screen);
         ButterKnife.bind(this, this);
+
+        setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
 
         Glide.with(ivAttraction.getContext())
