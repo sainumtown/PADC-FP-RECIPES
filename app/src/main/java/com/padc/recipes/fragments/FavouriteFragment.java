@@ -38,11 +38,7 @@ public class FavouriteFragment extends Fragment {
     }
 
     public static FavouriteFragment newInstance() {
-
-        Bundle args = new Bundle();
-
         FavouriteFragment fragment = new FavouriteFragment();
-        fragment.setArguments(args);
         return fragment;
     }
 
