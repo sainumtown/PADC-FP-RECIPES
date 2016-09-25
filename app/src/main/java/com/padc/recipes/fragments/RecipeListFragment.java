@@ -71,6 +71,9 @@ public class RecipeListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recipe_list, container, false);
         ButterKnife.bind(this, view);
 
+        // title
+        getActivity().setTitle(R.string.home_screen_title);
+
         // get recipe data
         RecipeModel.getInstance().loadRecipes();
         List<RecipeVO> recipeList = RecipeModel.getInstance().getRecipeList();
