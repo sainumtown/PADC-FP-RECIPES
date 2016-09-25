@@ -1,0 +1,1288 @@
+ [
+		{
+			"recipe-id": 1,
+			"recipe-title": "ငါးေပါင္း (တရုုတ္စတိုုင္လ္)",
+			"note": "",
+			"photos": [
+				"http://",
+				"http://",
+				"http://"
+			],
+			"video": "http://",
+			"category": {
+				"category-id": 1,
+				"category-name": "Sea Food",
+				"image": "http://",
+				"description": "Sea Food"
+			},
+			"tags": [
+				{
+					"tag-id": 1,
+					"tag-name": "Sweet",
+					"image": "http://",
+					"description": "Sweet"
+				}
+			],
+			"presenter": {
+				"persenter-id": 1,
+				"persenter-name": "U Kyaw"
+			},
+			"ingredients": [
+				{
+					"ingredient-id": 1,
+					"ingredient-name": "ငါး",
+					"note": "ျကိုုက္နွစ္သက္ရ",
+					"measurement": "၁ ေကာင္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 2,
+					"ingredient-name": "ဂ်င္း ",
+					"note": "",
+					"measurement": "လက္ ၂ ဆစ္ ခန္ ့",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 3,
+					"ingredient-name": "ျကက္သြန္ျမိတ္",
+					"note": "",
+					"measurement": "၂ ပင္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 4,
+					"ingredient-name": "နံနံပင္",
+					"note": "",
+					"measurement": "အနည္းငယ္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 5,
+					"ingredient-name": "ဆီ",
+					"note": "",
+					"measurement": "ထမင္းစားဇြန္း ၂ ဇြန္း",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 6,
+					"ingredient-name": "ဟင္းခ်က္ဆန္ ၀ိုုင္",
+					"note": "",
+					"measurement": "ထမင္းစားဇြန္း ၂ ဇြန္း",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 7,
+					"ingredient-name": "ပဲငံျပာရည္",
+					"note": "",
+					"measurement": "ထမင္းစားဇြန္း ၂ ဇြန္း",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 8,
+					"ingredient-name": "နွမ္းဆီေမြွး",
+					"note": "",
+					"measurement": "လက္ဖက္ရည္ဇြန္း တ ၀က္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 9,
+					"ingredient-name": "သျကား",
+					"note": "",
+					"measurement": "လက္ဖက္ရည္ဇြန္း တ ၀က္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 10,
+					"ingredient-name": "ေရ",
+					"note": "",
+					"measurement": "ထမင္းစားဇြန္း ၁ ဇြန္း",
+					"image": "http://"
+				}
+			],
+			"measurement-units": [
+				{
+					"measurement-unit-id": 1,
+					"measurement-unit-name": "ထမင္းစားဇြန္း = 1 tablespoon = 15 ml"
+				},
+				{
+					"measurement-unit-id": 2,
+					"measurement-unit-name": "လက္ဖက္ရည္ဇြန္း = 1 teaspoon = 5 ml"
+				}
+			],
+			"instructions": [
+				{
+					"instruction-desc": "ငါးကိုု သန္ ့စင္ထားပါ။ ဂ်င္း လက္တဆစ္ကိုု မညက္တညက္ေထာင္းထားပါ။ က်န္ဂ်င္းလက္တဆစ္ကိုု အေခ်ာင္းေသးေသးေလးေတြျဖစ္ေအာင္လွီးထားပါ။ ျကက္သြန္ျမိတ္ရဲ ့အစိမ္းပိုုင္းကိုု ပဲယူျပီး အမွ်င္ေလးေတြျဖစ္ေအာင္ လွီးထားပါ။ ",
+					"instruction-image": "http://",
+					"sort-order": 1
+				},
+				{
+					"instruction-desc": "ပန္းကန္လုုံး တခုုထဲတြင္ ေရ၊ ပဲငံျပာရည္၊ နွမ္းဆီေမြွး၊ သျကား၊ ဟင္းခ်က္၀ိုုင္ ထမင္းစားဇြန္း ၁ ဇြန္းတိုု ့ကိုု သမေအာင္လုုပ္ထားပါ။",
+					"instruction-image": "http://",
+					"sort-order": 2
+				},
+				{
+					"instruction-desc": "ပန္းကန္ျပားတခုုထဲတြင္ ငါးကိုု ထည့္ျပီး ငါးအေပၚကိုု ေထာင္းထားေသာ ဂ်င္းမွအ၇ည္မ်ားညွစ္ခ်ပါ။ ဂ်င္းဖတ္မ်ားကိုု ငါးရဲ့ ဗိုုက္ထဲမွာ အစာသြပ္ပါ။ ဟင္းခ်က္၀ိုုင္ ထမင္းစားဇြန္း ၁ ဇြန္းကိုု လဲ ငါးေပၚကိုု ဆမ္းေပးပါ။ ျပီးလွ်င္ ၁၅ မိနစ္ခန္ ့ေပါင္းပါ။",
+					"instruction-image": "http://",
+					"sort-order": 3
+				},
+				{
+					"instruction-desc": "ေပါင္းျပီး ငါးမွ ထြက္လာေသာ အ၇ည္မ်ားကိုု သြန္ပစ္ပါ။ ျပီးလွ်င္ ငါးေပၚကိုု ဂ်င္းေခ်ာင္းေလးမ်ား ျဖဴးထားပါ။",
+					"instruction-image": "http://",
+					"sort-order": 4
+				},
+				{
+					"instruction-desc": "ဒယ္အိုုးတခုုထဲတြင္ ဆီထည့္၇်္ အပူေပးပါ။ ဆီပူလာလွ်င္ ငါးေပၚသိုု ့ဆမ္းခ်ပါ။ (ငါးအေ၇ာင္လွျပီး ေမြွးလာေအာင္လိုု ့ပါ။)",
+					"instruction-image": "http://",
+					"sort-order": 5
+				},
+				{
+					"instruction-desc": "ဆီအပူေပးထားေသာ ဒယ္အိုုးထဲကိုု သမေအာင္ေဖ်ာ္ထားေသာ နံပါတ္ ၂။ မွ အ၇ည္မ်ား ထည့္ရ်္ အပူေပးပါ။ အ၇ည္မ်ား ပြက္လာလွ်င္ ငါးေပၚကိုု ေလာင္းခ်ပါ",
+					"instruction-image": "http://",
+					"sort-order": 6
+				},
+				{
+					"instruction-desc": "ထိုု ့ေနာက္ ျကက္သြန္ျမိတ္ နွင့္ နံနံပင္မ်ား ျဖဴးပါ။",
+					"instruction-image": "http://",
+					"sort-order": 7
+				},
+				{
+					"instruction-desc": "ငါးေပါင္း ပူပူေလးကိုု ထမင္းျဖင့္ သုုံးေဆာင္နိုုင္ပါျပီ။",
+					"instruction-image": "http://",
+					"sort-order": 8
+				}
+			],
+			"available-restaurants": [
+				{
+					"restaurants-id": 1,
+					"restaurants-name": "YKKO",
+					"image": "http://"
+				},
+				{
+					"restaurants-id": 2,
+					"restaurants-name": "ေရႊဘဲ",
+					"image": "http://"
+				}
+			]
+		},
+		{
+			"recipe-id": 2,
+			"recipe-title": "ေထာပတ္ ေက်ာက္ပုုဇြန္ကင္",
+			"note": "အိမ္မွာ ေက်ာက္ပုုဇြန္ကင္ေလးလုုပ္စားရင္း စားေကာင္းလိုု ့လုုပ္နည္းေလးေ၇းေပးလိုုက္တယ္ေနာ္။ ျပဳလုုပ္နည္းကေတာ့ ပုုဇြန္ကင္နဲ ့နည္းနည္းဆင္ပါတယ္။ လြယ္လဲလြယ္စားလိုု ့လဲေကာင္းလိုု ့လုုပ္စားျကည့္ေနာ္။",
+			"photos": [
+				"http://",
+				"http://",
+				"http://"
+			],
+			"video": "http://",
+			"category": {
+				"category-id": 1,
+				"category-name": "Sea Food",
+				"image": "http://",
+				"description": "Sea Food"
+			},
+			"tags": [
+				{
+					"tag-id": 1,
+					"tag-name": "Grill",
+					"image": "http://",
+					"description": "Grill"
+				}
+			],
+			"presenter": {
+				"persenter-id": "",
+				"persenter-name": ""
+			},
+			"ingredients": [
+				{
+					"ingredient-id": 11,
+					"ingredient-name": "ေက်ာက္ပုုဇြန္",
+					"note": "အျမီွးပိုုင္း",
+					"measurement": "၁ ေကာင္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 12,
+					"ingredient-name": "အရည္ေပ်ာ္ေနေသာ ေထာပတ္",
+					"note": "",
+					"measurement": "ထမင္းစားဇြန္း ၁ ဇြန္း့",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 13,
+					"ingredient-name": "ဆား",
+					"note": "",
+					"measurement": "အနည္းငယ္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 14,
+					"ingredient-name": "ကက္သြန္ျဖဴမွုုန္ ့",
+					"note": "",
+					"measurement": "အနည္းငယ္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 15,
+					"ingredient-name": "ငရုုတ္ေကာင္း",
+					"note": "",
+					"measurement": "အနည္းငယ္",
+					"image": "http://"
+				}
+			],
+			"measurement-units": [],
+			"instructions": [
+				{
+					"instruction-desc": "၁။ ေက်ာက္ပုုဇြန္အျမီွးကိုု ေက်ာကုုန္းမွေနျပီး ဓါးမျဖင့္ဖိခ်ျပီး ခြဲပါ။",
+					"instruction-image": "http://",
+					"sort-order": 1
+				},
+				{
+					"instruction-desc": "၂။ ေထာပတ္ကိုု ေက်ာက္ပုုဇြန္ အသားအနွံ ့ဆမ္းပါ။ ဆား၊ငရုုတ္ေကာင္း နွင့္ ျကက္သြန္ျဖဴ မွဳန္ ့တိုု ့ကိုု အနွံ ့ျဖဴးပါ။",
+					"instruction-image": "http://",
+					"sort-order": 2
+				},
+				{
+					"instruction-desc": "၃။ အပူခ်ိန္ ၄၅၀'F (230'C) မွာ oven ကိုု ၁၀ မိနစ္ခန္ ့ဘာမွမထည့္ပဲ အ၇င္အပူေပးပါ။ အပူေပးထားေသာ oven ထဲမွာ ေက်ာက္ပုုဇြန္ ကိုု ၁၀ မိနစ္ခန္ ့ထည့္ရ်္ကင္ပါ။ ထိုု ့ေနာက္ ပူပူေႏြးေႏြးေက်ာက္ပုုဇြန္ကိုု အခ်ဥ္ရည္ေလးနွင့္ သုုံးေဆာင္နိုုင္ပါျပီ။",
+					"instruction-image": "http://",
+					"sort-order": 3
+				},
+				{
+					"instruction-desc": "၄။ အခ်ဥ္ရည္အတြက္ ရွာလကာရည္ ထမင္းစားဇြန္း ၁ ဇြန္း၊ ေရ ထမင္းစားဇြန္း ၁ ဇြန္း၊ ငရုုတ္သီးစိမ္း ၁ ေတာင့္၊ နံနံပင္ အနည္းငယ္၊ ဆားအနည္းငယ္၊ သျကား လက္ဖက္ရည္ဇြန္း တ ၀က္ တိုု ့ကိုု ေဖ်ာ္စက္ထဲထည့္ ျကိတ္ျပီး ျပဳလုုပ္နိုုင္ပါတယ္။",
+					"instruction-image": "http://",
+					"sort-order": 4
+				}
+			],
+			"available-restaurants": [
+				{
+					"restaurants-id": 1,
+					"restaurants-name": "YKKO",
+					"image": "http://"
+				},
+				{
+					"restaurants-id": 3,
+					"restaurants-name": "မင္းလမ္း",
+					"image": "http://"
+				}
+			]
+		},
+		{
+			"recipe-id": 3,
+			"recipe-title": "၀က္သားမုုန္ညွင္းခ်ဥ္ေပါင္း",
+			"note": "တခ်ိဳ ့တရုုတ္ဆိုုင္ေတြမွာေရာင္းတဲ ့လူျကိုုက္မ်ားတဲ ့၀က္သားမုုန္ညွင္းခ်ဥ္ေပါင္းပါ။ အိစံတိုု ့အိမ္ကလူေတြေတာ့ တအိမ္လုုံးျကိုုက္ျကတဲ့ ဟင္းတခြက္ပါ။ ဒီဟင္းမွာ အဓိက က ဟင္းခ်က္ဆန္၀ိုုင္အနံ ့ေလးသင္းသင္းေလးနဲ ့အတြင္းထဲမွာ မုုန္ညွင္းခ်ဥ္ ခ်ဥ္ခ်ဥ္ေလးနဲ ့အ၇မ္းကိုု စားေကာင္းတဲ့ ဟင္းပါ။ ပါ၀င္ပစၥည္းပါ၀င္တာနည္းျပီး လုုပ္နည္းလဲ လြယ္ကူလိုု ့လုုပ္စားျကည့္ေနာ္။",
+			"photos": [
+				"http://",
+				"http://",
+				"http://"
+			],
+			"video": "http://",
+			"category": {
+				"category-id": 2,
+				"category-name": "Pork",
+				"image": "http://",
+				"description": "Pork"
+			},
+			"tags": [
+				{
+					"tag-id": 2,
+					"tag-name": "Steam",
+					"image": "http://",
+					"description": "Steam"
+				},
+				{
+					"tag-id": 3,
+					"tag-name": "Sour",
+					"image": "http://",
+					"description": "Sour"
+				}
+			],
+			"presenter": {
+				"persenter-id": "",
+				"persenter-name": ""
+			},
+			"ingredients": [
+				{
+					"ingredient-id": 31,
+					"ingredient-name": "၀က္သား သုုံးထပ္သား ",
+					"note": "",
+					"measurement": "၁ ေပါင္ (သိုု ့) ၂၅ က်ပ္သား",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 32,
+					"ingredient-name": "မုုန္ညွင္းခ်ဥ္ (သိုု ့) ရွမ္းခ်ဥ",
+					"note": "အခ်ဥ္ကိုု အသုုံးျပဳလွ်င္ ပိုု အအီေျပပါတယ္။",
+					"measurement": "၁၀ သား",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 33,
+					"ingredient-name": "ျကက္သြန္ျဖဴ ",
+					"note": "",
+					"measurement": "၂ တက္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 34,
+					"ingredient-name": "ဂ်င္း ",
+					"note": "",
+					"measurement": "၁ တက္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 35,
+					"ingredient-name": "သျကား",
+					"note": "",
+					"measurement": "လက္ဖက္ရည္ဇြန္း ၂ ဇြန္း",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 36,
+					"ingredient-name": "ပဲငံျပာရည္",
+					"note": "",
+					"measurement": "ထမင္းစားဇြန္း ၂ ဇြန္း",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 37,
+					"ingredient-name": "ဟင္းခ်က္ဆန္၀ိုုင္(cooking rice wine)",
+					"note": "",
+					"measurement": "ထမင္းစားဇြန္း ၂ ဇြန္း",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 38,
+					"ingredient-name": "ျကာညိုု ့(ပဲငံျပာရည္အပစ္) ",
+					"note": "",
+					"measurement": "လက္ဖက္ရည္ဇြန္း ၁ ဇြန္း္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 39,
+					"ingredient-name": "ဆီ",
+					"note": "",
+					"measurement": "ထမင္းစားဇြန္း ၁ ဇြန္း",
+					"image": "http://"
+				}
+			],
+			"measurement-units": [
+				{
+					"measurement-unit-id": 1,
+					"measurement-unit-name": "ထမင္းစားဇြန္း = 1 tablespoon = 15 ml"
+				},
+				{
+					"measurement-unit-id": 2,
+					"measurement-unit-name": "လက္ဖက္ရည္ဇြန္း = 1 teaspoon = 5 ml"
+				}
+			],
+			"instructions": [
+				{
+					"instruction-desc": "၁။ ျကက္သြန္ျဖဴကိုု ဓါးျပားရိုုက္ပါ။ ဂ်င္းကိုု အေခ်ာင္းေလးေတြလွီးထားပါ။ (မေထာင္းပါနဲ့ နွပ္တာမွာပဲထည့္ျပီး ျပီးလွ်င္ပစ္မွာမိုု ့ပါ။)",
+					"instruction-image": "http://",
+					"sort-order": 1
+				},
+				{
+					"instruction-desc": "၂။ သျကား၊ ပဲငံျပာရည္၊ ဟင္းခ်က္ဆိုုင္၀ိုုင္၊ျကာညိုု ့တိုု ့ကိုု ခြက္တခုုထဲထည့္ရ်္ သျကားမ်ားအ၇ည္ေပ်ာ္သည္ အထိ သမေအာင္လုုပ္ပါ။",
+					"instruction-image": "http://",
+					"sort-order": 2
+				},
+				{
+					"instruction-desc": "၃။ ၀က္သားအတုုံးလိုုက္ကိုု သန္ ့စင္ေအာင္ေဆးပါ။ ျပီးလွ်င္ သမေအာင္လုုပ္ထားေသာ အရည္ကိုု ၀က္သားထည့္ထားေသာ ဇလုုံတခုုထဲထည့္၊ ဂ်င္း နွင့္ ျကက္သြန္ျဖဴကိုု ထည့္ရ်္ အနည္းဆုုံး ၁ နာရီခန္ ့နွပ္ထားပါ။",
+					"instruction-image": "http://",
+					"sort-order": 3
+				},
+				{
+					"instruction-desc": "၄။ ဒယ္အိုုး ကိုု အပူေပးျပီး ဆီထည့္ပါ။ဆီပူလာလွ်င္ နွပ္ထားေသာ ၀က္သားအတုုံးလိုုက္ကိုု ၀က္ေခါက္မ်က္နွာျပင္ကိုု ဒယ္အိုုးမွာ အပူေပးပါ။ (နွပ္ထားေသာ အရည္မ်ားကိုု မသြန္ပစ္ပါနဲ ့။ဂ်င္းနွင့္ ျကက္သြန္ျဖဴမ်ားကိုုေတာ့ ဖယ္ပစ္လိုုက္ပါ။)",
+					"instruction-image": "http://",
+					"sort-order": 4
+				},
+				{
+					"instruction-desc": "၅။ ျပီးလွ်င္ ၀က္သားကိုု ေနာက္တဖက္လွန္ရ်္ အိုုးပူတိုုက္ပါ။ ျပီးလွ်င္ မီးဖိုုေပၚမွခ်ရ်္ ေရခဲေသတၱာအေပၚထပ္တြင္ ၃၀ မိနစ္ခန္ ့ထည့္ပါ။ (ပါးပါးေလးေတြလွီးလိုု ့ေကာင္းေအာင္လိုု ့ပါ။ )",
+					"instruction-image": "http://",
+					"sort-order": 5
+				},
+				{
+					"instruction-desc": "၆။ ၀က္သားကိုု ေရခဲေသတၱာထဲမွ ထုုတ္ရ်္ ပါးပါးေလးေတြလွီးပါ။ ျပီးလွ်င္ ခုုနက နွပ္ထားေသာ အရည္မ်ားျဖင့္ ၁၅ မိနစ္ခန္ ့ျပန္နွပ္ပါ။",
+					"instruction-image": "http://",
+					"sort-order": 6
+				},
+				{
+					"instruction-desc": "၇။ ပန္းကန္လုုံး အျကီးတခုုထဲကိုု ပါးပါးလွီးထားေသာ ၀က္သားမ်ားကိုု ေဘးပတ္ပတ္လည္ ထည့္ပါ။ ၀က္ေခါက္ကိုု ေအာက္ဖက္ထားျပီးထည့္ပါ။ အလည္တြင္ မုုန္ညွင္းခ်ဥ္မ်ားထည့္ပါ။ ေနာက္ဆုုံး အေပၚမွ လွီးထားေသာ ၀က္သားမ်ားျဖင့္ ပိတ္ပါ။",
+					"instruction-image": "http://",
+					"sort-order": 7
+				},
+				{
+					"instruction-desc": "၈။ ျပီးလွ်င္ ပန္းကန္ျပားတခုုျဖင့္ အုုပ္ရ်္ ေပါင္း အိုုးတြင္ ၁ နာရီခန္ ့ထည့္ေပါင္းပါ။ ၀က္သားနူးမနူးျကည့္ျပီးလိုုခ်င္ေသာ အေနအထားတြင္ ေပါင္းအိုုးေပၚမွခ်ပါ။",
+					"instruction-image": "http://",
+					"sort-order": 8
+				},
+				{
+					"instruction-desc": "၉။ ပန္းကန္လုုံး အေပၚကိုု ပန္းကန္ျပားအျကီးတခုုေမွာက္ခ်ပါ။ ျပီးလွ်င္ အထက္ေအာက္လွန္လိုုက္ပါ။ ပန္းကန္ျပားေပၚတြင္ ပုုံထဲကလိုု မ်ိဳးေလး ၀က္သားမုုန္ညွင္းခ်ဥ္ေပါင္းကိုု ၇ပါျပီ။ ထမင္းပူပူေလးနဲ ့ခ်ဥ္ခ်ဥ္ခ်ိဳခ်ိဳ ၀က္သားမုုန္ညွင္းခ်ဥ္ေပါင္းကိုု သုုံးေဆာင္နိုုင္ပါျပီ။",
+					"instruction-image": "http://",
+					"sort-order": 9
+				}
+			],
+			"available-restaurants": [
+				{
+					"restaurants-id": 4,
+					"restaurants-name": "Moon Bakery",
+					"image": "http://"
+				},
+				{
+					"restaurants-id": 2,
+					"restaurants-name": "ေရႊဘဲ",
+					"image": "http://"
+				}
+			]
+		},
+		{
+			"recipe-id": 4,
+			"recipe-title": "လက္ဖက္ရည္ဆိုင္ေတြ မွာ ေ၇ာင္းတဲ ့၀က္သားေပါင္း",
+			"note": "အိစံတို ့ငယ္ငယ္ထဲက လက္ဖက္ရည္ဆိင္ေတြ ေရာက္ရင္ ၀က္သားေပါင္း အရမ္းျကိုက္ေတာ့ ၀ယ္၀ယ္စားျဖစ္တယ္။ လက္ဖက္ရည္ဆိုင္ေတြက လုပ္တဲ့ ၀က္သားေပါင္းက ျကက္သြန္နီနွင့္ အသားကိုပဲထည့္ထားတာပါ။ ျကက္သားနွင့္လဲ ျပဳလုပ္လို ့ရပါတယ္။",
+			"photos": [
+				"http://",
+				"http://",
+				"http://"
+			],
+			"video": "http://",
+			"category": {
+				"category-id": 2,
+				"category-name": "Pork",
+				"image": "http://",
+				"description": "Pork"
+			},
+			"tags": [
+				{
+					"tag-id": 2,
+					"tag-name": "Steam",
+					"image": "http://",
+					"description": "Steam"
+				},
+				{
+					"tag-id": 1,
+					"tag-name": "sweet",
+					"image": "http://",
+					"description": "Sweet"
+				}
+			],
+			"presenter": {
+				"persenter-id": 1,
+				"persenter-name": "အိစံ"
+			},
+			"ingredients": [
+				{
+					"ingredient-id": 41,
+					"ingredient-name": "ျကိတ္ထားေသာ ၀က္သား (သို ့) ျကက္သား",
+					"note": "",
+					"measurement": "၂၅ က်ပ္သား",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 42,
+					"ingredient-name": "နုတ္နုတ္စင္းထားေသာ ျကက္သြန္နီ",
+					"note": "",
+					"measurement": "တရုတ္ထမင္းစား ပန္းကန္ ၁ လုံး",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 43,
+					"ingredient-name": "ပဲငံျပာရည္ အျကည္",
+					"note": "",
+					"measurement": "ထမင္းစားဇြန္း ၁ ဇြန္း",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 44,
+					"ingredient-name": "ခရုဆီ",
+					"note": "",
+					"measurement": "လက္ဖက္ရည္ဇြန္း ၁ ဇြန္း",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 45,
+					"ingredient-name": "ျကက္သားမွုန္",
+					"note": "",
+					"measurement": "လက္ဖက္ရည္ဇြန္း တ ၀က္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 46,
+					"ingredient-name": "သျကား",
+					"note": "",
+					"measurement": "လက္ဖက္ရည္ဇြန္း ၁ ဇြန္း္း",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 47,
+					"ingredient-name": "ေကာ္မွုန္ ့",
+					"note": "",
+					"measurement": "ထမင္းစားဇြန္း ၁ ဇြန္း္း",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 48,
+					"ingredient-name": "ၾကက္ဥ",
+					"note": "",
+					"measurement": "၂ လုံး",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 49,
+					"ingredient-name": "ဖက္ထုပ္ အရြက္",
+					"note": "အ၀ိုင္းေကာ၊ ေလးေထာင့္ေကာ သုံးလို ့ရပါတယ္။ ပုံထဲမွာ ၂ မ်ိဳးလုံးကိုသုံးထားပါတယ္",
+					"measurement": "အခု ၃၀ (သို ့) ၂၀",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 400,
+					"ingredient-name": "ငရုတ္ေကာင္း",
+					"note": "",
+					"measurement": "အနညး္ငယ္္း",
+					"image": "http://"
+				}
+			],
+			"measurement-units": [],
+			"instructions": [
+				{
+					"instruction-desc": "၁။ ျကက္ဥကို အကာ နွင့္ အနွစ္ သက္သက္ဆီ ခြဲျပီးခေလာက္ထားပါ။",
+					"instruction-image": "http://",
+					"sort-order": 1
+				},
+				{
+					"instruction-desc": "၂။ ဇလုံ တခုထဲတြင္ အသား၊ ျကက္သြန္နီ ၊ ပဲငံျပာရည္အျကည္၊ ခရုဆီ၊ ျကက္သားမွုန္ ့၊ သျကား၊ ေကာ္မွုန္ ့၊ ျကက္ဥအႏွစ္ ၊ငရုတ္ေကာင္းတို ့ကို ထည့္ရ်္ သမေအာင္ နယ္ပါ။",
+					"instruction-image": "http://",
+					"sort-order": 2
+				},
+				{
+					"instruction-desc": "၃။ ဖက္ထုပ္အရြက္ကို ျကက္ဥ အကာ တျပင္လုံးသုပ္ပါ။ ျပီးလွ်င္ အသားကို အလယ္က ထည့္ရ်္ အသားေဘးကို ဖက္ထုပ္အရြက္ မ်ားကပ္ပါ။ ေနာက္ထပ္ျကက္ဥ ၁ လုံးကို ေခါက္ရ်္ အသားေပါင္း အေပၚမွ နည္းနည္းဆီ စမ္းပါ။",
+					"instruction-image": "http://",
+					"sort-order": 3
+				},
+				{
+					"instruction-desc": "၄။ ေရေႏြးေငြ ့ေပါင္းအိုးထဲတြင္ အသားေပါင္းမ်ားကို နာရီ ၀က္ ၁ နာရီ ေပါင္းပါ။ သုံးေဆာင္နိုင္ပါျပီ။ အသားေ ပါ င္း အတြ က္ အခ် ဥ္ ငရု တ္ေ ဆာ့ ထမင္း စား ဇြ န္း၁ ဇြ န္း၊ သျ ကား လက္ ဖက္ ရည္ ဇြ န္း တ၀က္၊ ဗီ နီ ဂါ ထမင္း စား ဇြ န္း၁ ဇြ န္း၊ေ ရ ထမင္း စား ဇြ န္း၂ ဇြ န္း တို့ ကို သမေ အာ င္ေ မြွ ရ်္ အခ် ဥ္ျ ပု လု ပ္ ပါ။ ",
+					"instruction-image": "http://",
+					"sort-order": 4
+				}
+			],
+			"available-restaurants": [
+				{
+					"restaurants-id": 4,
+					"restaurants-name": "IT",
+					"image": "http://"
+				},
+				{
+					"restaurants-id": 2,
+					"restaurants-name": "ဓႏုျဖဴ ေဒၚေစာရီ",
+					"image": "http://"
+				},
+				{
+					"restaurants-id": 5,
+					"restaurants-name": "ခိုင္ခိုင္ေက်ာ္",
+					"image": "http://"
+				}
+			]
+		},
+		{
+			"recipe-id": 5,
+			"recipe-title": "မႏ ၱေလး ျမီးရွည္",
+			"note": "ျမီးရွည္လုပ္၇တာ အရမ္းလြယ္ပါတယ္....ျမီးရွည္အဖတ္အေျခာက္ကို ျပဳတ္တဲ ့အခ်ိန္ပဲျကာတယ္ ေရထဲ အ၇င္စိမ္ထားရင္ ပိုျမန္ပါတယ္ ..က်န္တာေတြက ( ျကက္သားနဲ ့ဆိုရင္)၄၅မိနစ္ကေန ၁နာ၇ီေလာက္ (၀က္သားနဲ ဆိုရင္) ၀က္သားနူးေအာင္ ၂နာ၇ီေလာက္ျပဳတ္ထားရတယ္ (ပြဲ ၂၀စာ)",
+			"photos": [
+				"http://",
+				"http://",
+				"http://"
+			],
+			"video": "http://",
+			"category": {
+				"category-id": 3,
+				"category-name": "Noodle",
+				"image": "http://",
+				"description": "Noodle"
+			},
+			"tags": [
+				{
+					"tag-id": 1,
+					"tag-name": "Sweet",
+					"image": "http://",
+					"description": "Sweet"
+				}
+			],
+			"presenter": {
+				"persenter-id": "",
+				"persenter-name": ""
+			},
+			"ingredients": [
+				{
+					"ingredient-id": 51,
+					"ingredient-name": "ျမီးရွည္အဖတ္",
+					"note": "",
+					"measurement": "",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 52,
+					"ingredient-name": "ျကက္သား (သို ့)၀က္သား",
+					"note": "",
+					"measurement": "၅၀သား",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 53,
+					"ingredient-name": "မုန္ ့ညင္းခ်ဥ္",
+					"note": "",
+					"measurement": "",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 54,
+					"ingredient-name": "ေကာ္",
+					"note": "",
+					"measurement": "",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 55,
+					"ingredient-name": "အီျကာေကြး",
+					"note": "",
+					"measurement": "",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 56,
+					"ingredient-name": "ျကက္သြန္ျဖဴ",
+					"note": "",
+					"measurement": "ထမင္းစားဇြန္း ၂ ဇြန္း",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 57,
+					"ingredient-name": "တရုတ္နံနံ",
+					"note": "",
+					"measurement": "",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 58,
+					"ingredient-name": "ပဲငပိအခ်ိဳ",
+					"note": "",
+					"measurement": "လက္ဖက္ရည္ဇြန္း တ ၀က္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 59,
+					"ingredient-name": "ျကက္သြန္ျဖဴဆီခ်က္",
+					"note": "",
+					"measurement": "",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 500,
+					"ingredient-name": "ငရုတ္သီးဆီခ်က္",
+					"note": "",
+					"measurement": "",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 501,
+					"ingredient-name": "ပဲပင္ေပါက္",
+					"note": "",
+					"measurement": "",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 502,
+					"ingredient-name": "အျကြပ္ေျကာ္",
+					"note": "ၾကိဳက္လၽင္",
+					"measurement": "",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 503,
+					"ingredient-name": "၀က္ဆီဖတ္ေျကာ္",
+					"note": "ၾကိဳက္လၽင္",
+					"measurement": "",
+					"image": "http://"
+				}
+			],
+			"measurement-units": [],
+			"instructions": [
+				{
+					"instruction-desc": "၁။ျမီးရွည္အေျခာက္ဖတ္ဆို၇င္ အ၇င္ျပဳတ္ပါ အဲတာအျကာဆုံးပဲ",
+					"instruction-image": "http://",
+					"sort-order": 1
+				},
+				{
+					"instruction-desc": "၂။ျကက္သား (သို ့) ၀က္သားကို ဆား၊ သျကား (သို ့) ဟင္းခ်ိဳ မွဳန္ ့နဲ ့အ၇ည္မ်ားမ်ားနဲ ့တည္ထားပါ။ အ၇ည္ကို ဟင္း၇ည္အေနနဲ ့လဲေသာက္လို ့ရတယ္။ (အျခားအနံ မ်ားမထည့္ပါနဲ ့အျခားအနံေတြနဲ ့ဆို မႏ ၱေလးျမီးရွည္နဲ ့မတူပါ",
+					"instruction-image": "http://",
+					"sort-order": 2
+				},
+				{
+					"instruction-desc": "၃။မုန္ ့ညင္းခ်ဥ္ကို အေသးေလးေတြလွီးပါ။",
+					"instruction-image": "http://",
+					"sort-order": 3
+				},
+				{
+					"instruction-desc": "၄။ေကာ္လုပ္လွ်င္ ေကာ္မွဳန္ ့ကိုသုံးလို ့လဲ၇ပါတယ္။ ေကာက္ညွင္းမွဳန္ ့ကိုသုံးလို ့လဲရပါတယ္။ ေကာက္ညွင္းမွဳန္ ့နဲ ့ေကာ္မွဳန္ ့ကို ဆတူေ၇ာရ်္လုပ္လ််င္ပိုေကာင္းပါသည္။ အမွဳန္ ့ကိုေရေအးနဲ ့အ၇င္ေဖ်ာ္ျပီး ေကာ္လုပ္မယ့္အိုးထဲမွာ ျကိုပါ။ ေကာ္မွဳန္ ့အ၇မ္းပစ္ေနရင္ ေအးရင္ အ၇မ္းခဲသြားတတ္ပါတယ္။ ခဲသြားရင္ ေရထည့္ျပီး မီးဖို ေပၚျပန္ တည္လိုက္ပါ။ ေကာ္ ျပန္က်ဲသြားပါလိမ့္မည္။ ",
+					"instruction-image": "http://",
+					"sort-order": 4
+				},
+				{
+					"instruction-desc": "၅။အီျကာေကြးကို ကပ္ေက်းနဲ ့အေသးေလးေတြညွပ္ပါ။ တခ်ိဳ ့ကအျကြပ္ေျကာ္နဲ ့စားျကသည္။ အ၇မ္းေကာင္းပါတယ္။ အျကြပ္ေျကာ္အတြက္......တ၀က္ကိုဆီနဲ ့ျပန္ေျကာ္ပါ။ ျကြပ္ပီး အညိုေ၇ာင္သန္းလာ၇င္ အျကြပ္ေျကာ္အတြက္၇ပါပီ။",
+					"instruction-image": "http://",
+					"sort-order": 5
+				},
+				{
+					"instruction-desc": "၆။ျကက္သြန္ျဖဴကို မညက္တညက္ေထာင္းပါ၊ တ၇ုတ္နံနံ ကုိကပ္ေက်းနဲ ့ညွပ္ပီး အဲ၂ခုကိုေ၇ာပီး ပန္းကန္တလုံးထဲထည့္ပါ၊ ေ၇ေႏြးေလာင္းလိုက္ပါ၊ အဲ၂ခုေ၇ာတဲ့အ၇ည္ပါမွ အနံ ့ေမြွးပါမယ္....",
+					"instruction-image": "http://",
+					"sort-order": 6
+				},
+				{
+					"instruction-desc": "၇။ပဲပင္ေပါက္ကို ေ၇ေဆးပီး ေ၇ေႏြးေဖ်ာထားပါ။",
+					"instruction-image": "http://",
+					"sort-order": 7
+				},
+				{
+					"instruction-desc": "၈။ ငရုတ္သီးဆီခ်က္လုပ္ပုံက ပုံထဲမွာ ပါတဲ ့တရုတ္မပုံတံဆိပ္ ငရုတ္သီးဆီခ်က္ကို အပူခံတဲ ့ပန္းကန္လုံး အျကီးထဲမွာ ထည့္ ..ပီးရင္ ဆီမ်ားမ်ားလို ခ်င္ရင္ ဆီမ်ားမ်ားကို အိုးတခုထဲမွာ အပူေပး... ဆီအ၇မ္းပူလာရင္ ခုနက ပန္းကန္ထဲကို ေလာင္းထည့္လိုက္ပါ။ ငရုတ္သီးဆီခ်က္ရပါတယ္...(ငရုတ္သီးဆီခ်က္လုပ္၇င္အိမ္အရမ္းနံေတာ့ အဲဒီနည္းကိုပဲသုံးတယ္) စား ခါ နီး၇ င္ျ မီး၇ွ ည္ ဖတ္ေ အးေ န၇င္ျ မီး၇ွ ည္ ဖတ္ နဲ့ ပဲ ပင္ေ ပါ က္ ကိုေ ရေ နြးျ ပန္ေ ဖ်ာ ပါ၊ျ ပီး လွ် င္....ေကာ္(ဟင္း ခ် က္ ရင္ေ မြွ တဲ့ ဇြ န္း နဲ့ တဇြ န္း)၊ အသား(ျကို က္ သေ လာ က္)၊ အီျ ကာေ ကြး၊ျ ကက္ သြ န္ျ ဖဴ နဲ့ နံ့ န့ံ ထမင္း စား ဇြ န္း၁ ဇြ န္း၊ အျ ကြ ပ္ေျ ကာ္၊ မု န့္ ညင္း ခ် ဥ္၊ အခ်ိဳ မု န့္(သို့) သျ ကား လက္ ဖက္ ရည္ ဇြ န္း တ၀က္၊ ဆီ ခ် က္ ထမင္း စား ဇြ န္း၁ ဇြ န္း၊ ငရု တ္ သီး ဆီ ခ် က္ ထမင္း စား ဇြ န္း၁ ဇြ န္း၊ ပဲ ငပိ အခ်ိဳ၊ ထမင္း စား ဇြ န္း သုံး ပုံ၂ ပုံ၊ အား လုံး ထည့္ ပီးေ၇ာ နယ္ လို က္ ပါ ",
+					"instruction-image": "http://",
+					"sort-order": 8
+				}
+			],
+			"available-restaurants": [
+				{
+					"restaurants-id": 5,
+					"restaurants-name": "IT",
+					"image": "http://"
+				},
+				{
+					"restaurants-id": 6,
+					"restaurants-name": "Feel",
+					"image": "http://"
+				}
+			]
+		},
+		{
+			"recipe-id": 6,
+			"recipe-title": "ဆန္ျပားလိပ္/ဆန္ျပားသုုပ္",
+			"note": "အိစံတိုု ့တကၠသိုုလ္တက္ေတာ့ ေက်ာင္းနားမွာရွိတဲ့ ဆန္ျပားလိပ္ဆိုုင္သြားသြားစားျဖစ္တယ္။ အ၇မ္းစားေကာင္းလိုု ့လူျကိုုက္လဲမ်ားပါတယ္။ နဂိုုထဲက မုုန္ ့လုုပ္နည္းေတြဆိုု စပ္စုုတတ္ေတာ့ အစာပလာ ဘာေတြပါလဲဆိုုျပီး လုုပ္တာသြားျကည့္တာေပါ့။ အတြင္းထဲမွာ ခရမ္းခ်ဥ္သီး အနွစ္ရယ္၊ ပဲငပိအစပ္ရယ္၊ ပဲပင္ေပါက္၊ ဂ်ဴးျမိတ္အနည္းငယ္တိုု ့နဲ ့ထည့္လိပ္ထားတာပါ။ ဆန္ျပားကိုုအခ်ပ္လိုုက္မ၇၇င္လဲ ဒီနည္းနဲ ့ပဲသုုပ္စားလဲတူတူပါပဲ။ လုုပ္နည္းကေတာ့ လြယ္လြယ္ေလးပါ။ လုုပ္စားျကည့္ရေအာင္ေနာ္။",
+			"photos": [
+				"http://",
+				"http://",
+				"http://"
+			],
+			"video": "http://",
+			"category": {
+				"category-id": 3,
+				"category-name": "Noodle",
+				"image": "http://",
+				"description": "Noodle"
+			},
+			"tags": [
+				{
+					"tag-id": 1,
+					"tag-name": "Sweet",
+					"image": "http://",
+					"description": "Sweet"
+				}
+			],
+			"presenter": {
+				"persenter-id": 1,
+				"persenter-name": "အိစံ"
+			},
+			"ingredients": [
+				{
+					"ingredient-id": 61,
+					"ingredient-name": "ဆန္ျပား အခ်ပ္လိုုက္",
+					"note": "",
+					"measurement": "၁၀ ခ်ပ္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 62,
+					"ingredient-name": "ခရမ္းခ်ဥ္သီး (အခ်ဥ္သီး) ",
+					"note": "",
+					"measurement": "၅၀သား",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 63,
+					"ingredient-name": "ဆား",
+					"note": "",
+					"measurement": "လက္ဖက္ရည္ဇြန္း ေလးပုုံတပုုံ",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 64,
+					"ingredient-name": "သျကား (သိုု ့) အခ်ိဳမွဳန္ ",
+					"note": "",
+					"measurement": "လက္ဖက္ရည္ဇြန္း ၁ ဇြန္း",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 65,
+					"ingredient-name": "ပဲငံျပာရည္အပစ္ (သိုု ့) ျကာညိုု ",
+					"note": "",
+					"measurement": "လက္ဖက္ရည္ဇြန္း တ ၀က္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 66,
+					"ingredient-name": "ေျမပဲေထာင္း",
+					"note": "",
+					"measurement": "",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 67,
+					"ingredient-name": "ႏွမ္းေလွာ္",
+					"note": "",
+					"measurement": "",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 68,
+					"ingredient-name": "ပဲပင္ေပါက္",
+					"note": "",
+					"measurement": "လက္ ၂ ဆုုပ္စာ",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 69,
+					"ingredient-name": "ဂ်ဴးျမိတ္ (ခုုခ်ိဳင္) ",
+					"note": "",
+					"measurement": "အနည္းငယ္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 600,
+					"ingredient-name": "ၾကက္သြန္ျဖဴ ဆီခ်က္",
+					"note": "",
+					"measurement": "",
+					"image": "http://"
+				}
+			],
+			"measurement-units": [],
+			"instructions": [
+				{
+					"instruction-desc": "၁။ ခရမ္းခ်ဥ္သီးကိုု ဆား၊ သျကား(သိုု ့) အခ်ိဳမွဳန္ ့၊ ပဲငံျပာရည္အပစ္ တိုု ့ျဖင့္ မပ်စ္မက်ဲေလးခ်က္ထားပါ။ ဂ်ဴးျမိတ္ကိုု ၁ လက္မအ၇ြက္ ျဖတ္ျပီး၊ ေရေႏြးေဖ်ာထားပါ။ ပဲပင္ေပါက္ကိုုလဲေရေႏြးေဖ်ာထားပါ။",
+					"instruction-image": "http://",
+					"sort-order": 1
+				},
+				{
+					"instruction-desc": "၂။ ဆန္ျပားလိပ္လုုပ္ရန္ အတြက္ ဆန္ျပားအခ်ပ္လိုုက္ကိုု ျဖန္ ့ခင္းပါ။ ျပီးလွ်င္ ဆန္ျပားအလယ္ေလာက္ကိုု ခရမ္းခ်ဥ္သီးအနွစ္ ထမင္းစားဇြန္း ၂ ဇြန္း၊ ျကက္သြန္ျဖဴဆီခ်က္ လက္ဖက္ရည္ဇြန္း တဇြန္း၊ ေျမပဲေထာင္း လက္ဖက္ရည္ဇြန္း ၁ ဇြန္း ခြဲ တိုု ့ကိုုထည့္ရ်္ ဇြန္းရဲ ့ေအာက္ေျချဖင့္ ဆန္ျပားအနွံ ့ကိုုအနွစ္မ်ား နွံ ့သြားေအာင္ ျဖန္ ့ေပးပါ။ ျပီးလွ်င္ နွမ္းအနည္းငယ္ကိုု အနွံ ့ျဖဴးပါ။",
+					"instruction-image": "http://",
+					"sort-order": 2
+				},
+				{
+					"instruction-desc": "၃။ ျပီးလွ်င္ ဆန္ျပားအခ်ပ္ရဲ ့ အနံလိုုက္ တဖက္ အစြန္းမွာ ေရေႏြးေဖ်ာထားေသာ ပဲပင္ေပါက္ ကိုု ထည့္၊ ဂ်ဴးျမိတ္ကိုုနည္းနည္းပဲထည့္ျပီးလိပ္ပါ။ ",
+					"instruction-image": "http://",
+					"sort-order": 3
+				},
+				{
+					"instruction-desc": "၄။ ျပီးလွ်င္ ၁ လက္မအရြယ္ လွီးရ်္ ပန္းကန္ထဲထည့္ျပီး သုုံးေဆာင္နိုုင္ပါျပီ။ (ဆန္ျ ပား အခ် ပ္ လိုု က္ မရွိ လွ် င္ ဆန္ျ ပား သုု ပ္ ကိုု လဲ ဆန္းျ ပား လိ ပ္ က ပါ၀ င္ေ သာ အခ်ိဳး အစား အတိုု င္း သုု ပ္ ပါ။ ",
+					"instruction-image": "http://",
+					"sort-order": 4
+				}
+			],
+			"available-restaurants": [
+				{
+					"restaurants-id": 5,
+					"restaurants-name": "IT",
+					"image": "http://"
+				},
+				{
+					"restaurants-id": 6,
+					"restaurants-name": "Feel",
+					"image": "http://"
+				}
+			]
+		},
+		{
+			"recipe-id": 7,
+			"recipe-title": "မုန္ ့လက္ေကာက္ေျကာ္",
+			"note": "မႏၱေလးကိုလဲ လြမ္း သျက္န္ကိုလဲလြမ္းလို ့မေန ့ကမုန္ ့လုံးေရေပၚလုပ္စားတယ္။ ဒီေန ့ေတာ့ မုန္ ့လာက္ေကာက္ေျကာ္စားတယ္။ မုန္ ့လုံးေရေပၚကေတာ့ သိျပီးသားဆိုေတာ့ မေရးေတာ့ဘူး။ မု န့္ လက္ေ ကာ က္ ကို တခ်ိဳ့ က ပဲ မွဳ န့္ ထည့္ေျ ကာ္ျ ကတယ္။ တခ်ိဳ့ ကေ တာ့ ငွ က္ေ ပ်ာ သီး ထည့္ေျ ကာ္ တယ္။ အိ စံ ကေ တာ့ မု န့္ လက္ေ ကာ က္ ဆိုျ ဖဴျ ဖဴျ ကြ ပ္ျ ကြ ပ္ေ လးေ တြ မွျ ကို က္ လို့ ပဲ မွဳ န့္ တို့ ငွ က္ေ ပ်ာ သီး တို့ မထည့္ ပါ ဘူး။ မု န့္ လက္ေ ကာ က္ ကေျ ကာ္ ရတာ လြ ယ္ေ ပမယ့္ ဆီေ ပါ က္ တတ္ ပါ တယ္။ ဆီ မေ ပါ က္ ပဲ အိ မ္ မွာ လြ ယ္ လြ ယ္ေျ ကာ္ စား လို့ ရမည့္ နည္း ပါ။ ",
+			"photos": [
+				"http://",
+				"http://",
+				"http://"
+			],
+			"video": "http://",
+			"category": {
+				"category-id": 4,
+				"category-name": "Myanmar Traditional",
+				"image": "http://",
+				"description": "Myanmar Traditional"
+			},
+			"tags": [
+				{
+					"tag-id": 1,
+					"tag-name": "Sweet",
+					"image": "http://",
+					"description": "Sweet"
+				}
+			],
+			"presenter": {
+				"persenter-id": "",
+				"persenter-name": ""
+			},
+			"ingredients": [
+				{
+					"ingredient-id": 1,
+					"ingredient-name": "ေကာက္ညွင္းမွဳန္ ့",
+					"note": "",
+					"measurement": "၄ ခြက္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 2,
+					"ingredient-name": "ဆန္ မွဳန္  ",
+					"note": "(အိမ္မွာ ပြဲလုပ္တိုင္း လာလာကူေပးတဲ ့အန္တီျကီးက ငယ္ငယ္ေလးကတည္းက သင္ေပးထားတဲ ့နည္းပါ ။ေကာက္ညွင္းေလးပုံ ဆန္မွုန္ ့၁ပုံဆိုျပီးသင္ေပးထားပါတယ္။ ေကာက္ညွင္းနွင့္ ပတ္သတ္တဲ ့မုန္ ့ေတာ္ေတာ္မ်ားမ်ား အဲဒီနည္းနဲ ့လုပ္ပါတယ္။)",
+					"measurement": "၁ ခြက္ ",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 3,
+					"ingredient-name": "ဆား ",
+					"note": "",
+					"measurement": "လက္ဖက္ရည္ဇြန္း တ ၀က္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 4,
+					"ingredient-name": "ဆိုဒါ (အပြမွုန္ ့) baking soda ",
+					"note": "",
+					"measurement": "လက္ဖက္ရည္ ဇြန္း တ ဝက္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 5,
+					"ingredient-name": "ထန္းညက္",
+					"note": "",
+					"measurement": "၁၅ က်ပ္သား (သို ့) ၂ ခြက္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 6,
+					"ingredient-name": "ဟင္းခ်က္ဆန္ ၀ိုုင္",
+					"note": "",
+					"measurement": "ထမင္းစားဇြန္း ၂ ဇြန္း",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 7,
+					"ingredient-name": "ေရ",
+					"note": "",
+					"measurement": "၂ခြက္ ႏွင့္ ခြက္ ေလးပုံတပုံ",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 8,
+					"ingredient-name": "ေျကာ္ရန္ဆီ",
+					"note": "",
+					"measurement": "",
+					"image": "http://"
+				}
+			],
+			"measurement-units": [],
+			"instructions": [
+				{
+					"instruction-desc": "၁။ ေကာက္ညွင္းမွုန္ ့၊ ဆန္မွုန္ ့၊ဆား ၊ ဆိုဒါတို ့ကိုေရာပါ။ ျပီးလွ်င္ ေရ ၂ ခြက္ကို အရင္ထည့္ျပီး နယ္ပါ။ အလုံးလုံးလို ့၇တဲ ့အေနအထားဆိုရင္ က်န္ေရ ေလးပုံတပုံကို မထည့္ပါနွင့္ ။ မရေသးရင္ ေရေလးပုံတပုံကို ေျဖးေျဖးခ်င္းထည့္နယ္ပါ။ ထို ့ေနာက္ ေရခဲ ေသတၱာထဲတြင္ ၈ နာရီခန္ ့(တည) ႏွပ္ထားပါ။(ေ၇ခဲေသတၱာထဲမနွပ္ထားရင္ဆီေပါက္တတ္ပါသည္။)",
+					"instruction-image": "http://",
+					"sort-order": 1
+				},
+				{
+					"instruction-desc": "၂။ ထန္းလ်က္ ကို ဆားအနညး္ငယ္ထည့္၊ ေရထည့္ျပီး ထန္းလ်က္ အရည္ေပ်ာ္ေအာင္တည္ပါ။ အရည္ေပ်ာ္လွ်င္ ေရစစ္နွင့္ အမွိဳက္မ်ား စင္သြားေအာင္ စစ္ပါ။ စစ္ထားေသာ ထန္းလ်က္ရည္မ်ားကို ျကြက္ျမီွးတန္းေအာင္အထိတည္ျပီး မီးဖိုေပၚမွခ်ပါ။",
+					"instruction-image": "http://",
+					"sort-order": 2
+				},
+				{
+					"instruction-desc": "၃။ ေျကာ္ရန္ဆီကို အပူေပးပါ။(ဒယ္အုိးကို ေဇာက္နက္ေသာဒယ္အိုးကိုသုံးပါ။) နွပ္ထားေသာ မုန္ ့နွစ္မ်ားကို မုန္ ့လက္ေကာက္လုပ္ရန္ အလုံး လုံးျပီး ရွည္ရွည္ေလးေတြရေအာင္လက္နွင့္လိွမ့္ျပီး ထိပ္၂ ခုကိုဆက္ျပီး ဆီထဲထည့္ေျကာ္ပါ။ မုန္ ့လက္ေကာက္မ်ားကို ဆီထဲ ျမဳ ပ္ေအာင္ထည့္ပါ။ (ဆီအေပၚေပၚေနရင္လဲ ဆီေပါက္တတ္ပါသည္။)",
+					"instruction-image": "http://",
+					"sort-order": 3
+				},
+				{
+					"instruction-desc": "၄။ မုန္ ့လက္ေကာက္မ်ား ျကြပ္လာလွ်င္ ဆီအိုးထဲမွဆယ္ရ်္ ဆီစစ္ထားပါ။ ထန္းလ်က္ရည္ ျဖင့္သုံးေဆာင္နိုင္ပါျပီ။",
+					"instruction-image": "http://",
+					"sort-order": 4
+				}
+			],
+			"available-restaurants": [
+				{
+					"restaurants-id": 6,
+					"restaurants-name": "ေရႊရည္ လက္ဖက္ရည္ဆိုင္",
+					"image": "http://"
+				},
+				{
+					"restaurants-id": 5,
+					"restaurants-name": "FEEL",
+					"image": "http://"
+				}
+			]
+		},
+		{
+			"recipe-id": 7,
+			"recipe-title": "မုန္ ့လက္ေကာက္ေျကာ္",
+			"note": "မႏၱေလးကိုလဲ လြမ္း သျက္န္ကိုလဲလြမ္းလို ့မေန ့ကမုန္ ့လုံးေရေပၚလုပ္စားတယ္။ ဒီေန ့ေတာ့ မုန္ ့လာက္ေကာက္ေျကာ္စားတယ္။ မုန္ ့လုံးေရေပၚကေတာ့ သိျပီးသားဆိုေတာ့ မေရးေတာ့ဘူး။ မု န့္ လက္ေ ကာ က္ ကို တခ်ိဳ့ က ပဲ မွဳ န့္ ထည့္ေျ ကာ္ျ ကတယ္။ တခ်ိဳ့ ကေ တာ့ ငွ က္ေ ပ်ာ သီး ထည့္ေျ ကာ္ တယ္။ အိ စံ ကေ တာ့ မု န့္ လက္ေ ကာ က္ ဆိုျ ဖဴျ ဖဴျ ကြ ပ္ျ ကြ ပ္ေ လးေ တြ မွျ ကို က္ လို့ ပဲ မွဳ န့္ တို့ ငွ က္ေ ပ်ာ သီး တို့ မထည့္ ပါ ဘူး။ မု န့္ လက္ေ ကာ က္ ကေျ ကာ္ ရတာ လြ ယ္ေ ပမယ့္ ဆီေ ပါ က္ တတ္ ပါ တယ္။ ဆီ မေ ပါ က္ ပဲ အိ မ္ မွာ လြ ယ္ လြ ယ္ေျ ကာ္ စား လို့ ရမည့္ နည္း ပါ။ ",
+			"photos": [
+				"http://",
+				"http://",
+				"http://"
+			],
+			"video": "http://",
+			"category": {
+				"category-id": 4,
+				"category-name": "Myanmar Traditional",
+				"image": "http://",
+				"description": "Myanmar Traditional"
+			},
+			"tags": [
+				{
+					"tag-id": 1,
+					"tag-name": "Sweet",
+					"image": "http://",
+					"description": "Sweet"
+				}
+			],
+			"presenter": {
+				"persenter-id": "",
+				"persenter-name": ""
+			},
+			"ingredients": [
+				{
+					"ingredient-id": 1,
+					"ingredient-name": "ေကာက္ညွင္းမွဳန္ ့",
+					"note": "",
+					"measurement": "၄ ခြက္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 2,
+					"ingredient-name": "ဆန္ မွဳန္  ",
+					"note": "(အိမ္မွာ ပြဲလုပ္တိုင္း လာလာကူေပးတဲ ့အန္တီျကီးက ငယ္ငယ္ေလးကတည္းက သင္ေပးထားတဲ ့နည္းပါ ။ေကာက္ညွင္းေလးပုံ ဆန္မွုန္ ့၁ပုံဆိုျပီးသင္ေပးထားပါတယ္။ ေကာက္ညွင္းနွင့္ ပတ္သတ္တဲ ့မုန္ ့ေတာ္ေတာ္မ်ားမ်ား အဲဒီနည္းနဲ ့လုပ္ပါတယ္။)",
+					"measurement": "၁ ခြက္ ",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 3,
+					"ingredient-name": "ဆား ",
+					"note": "",
+					"measurement": "လက္ဖက္ရည္ဇြန္း တ ၀က္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 4,
+					"ingredient-name": "ဆိုဒါ (အပြမွုန္ ့) baking soda ",
+					"note": "",
+					"measurement": "လက္ဖက္ရည္ ဇြန္း တ ဝက္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 5,
+					"ingredient-name": "ထန္းညက္",
+					"note": "",
+					"measurement": "၁၅ က်ပ္သား (သို ့) ၂ ခြက္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 6,
+					"ingredient-name": "ဟင္းခ်က္ဆန္ ၀ိုုင္",
+					"note": "",
+					"measurement": "ထမင္းစားဇြန္း ၂ ဇြန္း",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 7,
+					"ingredient-name": "ေရ",
+					"note": "",
+					"measurement": "၂ခြက္ ႏွင့္ ခြက္ ေလးပုံတပုံ",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 8,
+					"ingredient-name": "ေျကာ္ရန္ဆီ",
+					"note": "",
+					"measurement": "",
+					"image": "http://"
+				}
+			],
+			"measurement-units": [],
+			"instructions": [
+				{
+					"instruction-desc": "၁။ ေကာက္ညွင္းမွုန္ ့၊ ဆန္မွုန္ ့၊ဆား ၊ ဆိုဒါတို ့ကိုေရာပါ။ ျပီးလွ်င္ ေရ ၂ ခြက္ကို အရင္ထည့္ျပီး နယ္ပါ။ အလုံးလုံးလို ့၇တဲ ့အေနအထားဆိုရင္ က်န္ေရ ေလးပုံတပုံကို မထည့္ပါနွင့္ ။ မရေသးရင္ ေရေလးပုံတပုံကို ေျဖးေျဖးခ်င္းထည့္နယ္ပါ။ ထို ့ေနာက္ ေရခဲ ေသတၱာထဲတြင္ ၈ နာရီခန္ ့(တည) ႏွပ္ထားပါ။(ေ၇ခဲေသတၱာထဲမနွပ္ထားရင္ဆီေပါက္တတ္ပါသည္။)",
+					"instruction-image": "http://",
+					"sort-order": 1
+				},
+				{
+					"instruction-desc": "၂။ ထန္းလ်က္ ကို ဆားအနညး္ငယ္ထည့္၊ ေရထည့္ျပီး ထန္းလ်က္ အရည္ေပ်ာ္ေအာင္တည္ပါ။ အရည္ေပ်ာ္လွ်င္ ေရစစ္နွင့္ အမွိဳက္မ်ား စင္သြားေအာင္ စစ္ပါ။ စစ္ထားေသာ ထန္းလ်က္ရည္မ်ားကို ျကြက္ျမီွးတန္းေအာင္အထိတည္ျပီး မီးဖိုေပၚမွခ်ပါ။",
+					"instruction-image": "http://",
+					"sort-order": 2
+				},
+				{
+					"instruction-desc": "၃။ ေျကာ္ရန္ဆီကို အပူေပးပါ။(ဒယ္အုိးကို ေဇာက္နက္ေသာဒယ္အိုးကိုသုံးပါ။) နွပ္ထားေသာ မုန္ ့နွစ္မ်ားကို မုန္ ့လက္ေကာက္လုပ္ရန္ အလုံး လုံးျပီး ရွည္ရွည္ေလးေတြရေအာင္လက္နွင့္လိွမ့္ျပီး ထိပ္၂ ခုကိုဆက္ျပီး ဆီထဲထည့္ေျကာ္ပါ။ မုန္ ့လက္ေကာက္မ်ားကို ဆီထဲ ျမဳ ပ္ေအာင္ထည့္ပါ။ (ဆီအေပၚေပၚေနရင္လဲ ဆီေပါက္တတ္ပါသည္။)",
+					"instruction-image": "http://",
+					"sort-order": 3
+				},
+				{
+					"instruction-desc": "၄။ မုန္ ့လက္ေကာက္မ်ား ျကြပ္လာလွ်င္ ဆီအိုးထဲမွဆယ္ရ်္ ဆီစစ္ထားပါ။ ထန္းလ်က္ရည္ ျဖင့္သုံးေဆာင္နိုင္ပါျပီ။",
+					"instruction-image": "http://",
+					"sort-order": 4
+				}
+			],
+			"available-restaurants": [
+				{
+					"restaurants-id": 6,
+					"restaurants-name": "ေရႊရည္ လက္ဖက္ရည္ဆိုင္",
+					"image": "http://"
+				},
+				{
+					"restaurants-id": 5,
+					"restaurants-name": "FEEL",
+					"image": "http://"
+				}
+			]
+		},
+		{
+			"recipe-id": 8,
+			"recipe-title": "ေကာ္ဖီနို ့စိမ္းသာဂူျပင္ (ဘန္းအေသး ၁ခုစာအတြက္)",
+			"note": "ေကာ္ဖီ ျကိုက္သူမ်ားအတြက္ ေကာ အုံးနို ့ေျကာက္သူမ်ားအတြက္ေကာ အလြန္ေကာင္းတဲ ့ေကာ္ဖီနို ့စိမ္းသာဂူျပင္ေလးပါ။ သာဂူျပင္ အေပၚလြွာ အရသာက ကူလ္ဖီးမလိုင္ အရသာလို ပါပဲ။ အရမ္း စားေကာင္းပါတယ္။",
+			"photos": [
+				"http://",
+				"http://",
+				"http://"
+			],
+			"video": "http://",
+			"category": {
+				"category-id": 4,
+				"category-name": "Myanmar Traditional",
+				"image": "http://",
+				"description": "Myanmar Traditional"
+			},
+			"tags": [
+				{
+					"tag-id": 1,
+					"tag-name": "Sweet",
+					"image": "http://",
+					"description": "Sweet"
+				}
+			],
+			"presenter": {
+				"persenter-id": "",
+				"persenter-name": ""
+			},
+			"ingredients": [
+				{
+					"ingredient-id": 1,
+					"ingredient-name": "သာဂူေစ့့",
+					"note": "",
+					"measurement": "၁ ခြက္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 2,
+					"ingredient-name": "သျကား",
+					"note": "",
+					"measurement": "၁ ခြက္ ",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 3,
+					"ingredient-name": "သျကားမပါေသာ Black coffee ",
+					"note": "",
+					"measurement": "၁ ခြက္္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 4,
+					"ingredient-name": "ေရ",
+					"note": "",
+					"measurement": "၁ ခြက္",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 5,
+					"ingredient-name": "နို ့ဆီ ",
+					"note": "",
+					"measurement": "၁ ဗူး",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 6,
+					"ingredient-name": "ဟင္းခ်က္ဆန္ ၀ိုုင္",
+					"note": "",
+					"measurement": "ထမင္းစားဇြန္း ၂ ဇြန္း",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 7,
+					"ingredient-name": "ႏို ့စိမ္း ",
+					"note": "",
+					"measurement": "၁ ဗူး ခြဲုံ",
+					"image": "http://"
+				},
+				{
+					"ingredient-id": 8,
+					"ingredient-name": "ဂ်ံဳမွုန္ ့",
+					"note": "",
+					"measurement": "ထမင္းစားဇြန္း ၃ ဇြန္း",
+					"image": "http://"
+				}
+			],
+			"measurement-units": [],
+			"instructions": [
+				{
+					"instruction-desc": "၁။ သာဂူေစ့ကို ေရေဆးျပီး ေ၇ျပန္စစ္ထားပါ။",
+					"instruction-image": "http://",
+					"sort-order": 1
+				},
+				{
+					"instruction-desc": "၂။ အိုးအျကီးတခုထဲတြင္ ေရ၊ ေကာ္ဖီ၊ ဆား ၊ သျကားတို ့ကို ပြက္လာသည္အထိ တည္ပါ။",
+					"instruction-image": "http://",
+					"sort-order": 2
+				},
+				{
+					"instruction-desc": "၃။ ပြက္လာလွ်င္ မီးဖိုကို medium heat မွာထားရ်္ သာဂူေစ့မ်ားထည့္အဆက္မပ်က္ ေမြွပါ။",
+					"instruction-image": "http://",
+					"sort-order": 3
+				},
+				{
+					"instruction-desc": "၄။ ၁၅ မိနစ္ (သိ ု့) မိနစ္ ၂၀ အျဖဴစံ ေသးေသးေလးက်န္ေသာ အခ်ိန္တြင္ မီးဖိုေပၚမွ ခ်ရ်္ ဆီသုတ္ထားေသာ ဗန္းထဲထည့္ရ်္ အေအးခံပါ။",
+					"instruction-image": "http://",
+					"sort-order": 4
+				},
+				{
+					"instruction-desc": "၅။ သာဂူ အေအးခံထားခ်ိန္တြင္ အိုးျကီးျကီးတအိုးထဲတြင္ နို ့စိမ္း ၊ နို ့ဆီ၊ ဂ်ံဳမွဳန္ ့တို ့ကိုထည့္ရ်္ ဂ်ံဳမွဳန္ ့သမသြားသည္အထိ ခေလာက္ပါ။ ( နို ့စိမ္းမ်ားေ၀က်တတ္ေသာေျကာင့္ အိုးျကီးျကီးကို သုံးပါသည္။)",
+					"instruction-image": "http://",
+					"sort-order": 5
+				},
+				{
+					"instruction-desc": "၆။ ျပီးလွ်င္ မီးေအးေအး တြင္ တည္ပါ။ အဆက္မပ်က္ ေမြွေပးပါ။ မိနစ္ ၂၀ ေလာက္ေမြွျပီးလွ်င္ နို ့ဆီလို အပစ္အေနအထား ရလ််င္ မီးဖိုေပၚမွ ခ်ရ်္ အေအးခံထားေသာ သာဂူေပၚသို ့ညီညီညာညာ ျဖန္ ့ထည့္ပါ။",
+					"instruction-image": "http://",
+					"sort-order": 6
+				},
+				{
+					"instruction-desc": "ရ။ oven ကို အပူခ်ိန္ အျမင့္ဆုံးမွာ ၃ မိနစ္ခန္ ့ဘာမွ မထည့္ပဲ အပူေပးထားပါ။",
+					"instruction-image": "http://",
+					"sort-order": 7
+				},
+				{
+					"instruction-desc": "၈။ ထို ့ေနာက္ အျမင့္ဆုံးအပူခ်ိန္ ထားထားေသာ oven ထဲတြင္ ၁၅ မိနစ္ (သို ့) မိနစ္ ၂၀ ထည့္ ဖုတ္ပါ။ (အေပၚယံ အလြွာ နည္းနည္းညို လာလွ်င္ ရပါျပီ။)",
+					"instruction-image": "http://",
+					"sort-order": 8
+				},
+				{
+					"instruction-desc": "၉။ လုံး၀ေအးသြားမွ သာဂူျပင္ကို လွီးပါ။ သုံးေဆာင္နိုင္ပါျပီ။",
+					"instruction-image": "http://",
+					"sort-order": 9
+				}
+			],
+			"available-restaurants": [
+				{
+					"restaurants-id": 6,
+					"restaurants-name": "ေရႊရည္ လက္ဖက္ရည္ဆိုင္",
+					"image": "http://"
+				},
+				{
+					"restaurants-id": 5,
+					"restaurants-name": "FEEL",
+					"image": "http://"
+				}
+			]
+		}
+	]

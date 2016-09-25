@@ -55,6 +55,9 @@ public class VideoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_video, container, false);
 
+        // title
+        getActivity().setTitle(R.string.video_list_title);
+
         ButterKnife.bind(this, view);
 
         mVideoAdapter = new VideoListAdapter(mController);

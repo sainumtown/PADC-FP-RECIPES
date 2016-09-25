@@ -60,6 +60,8 @@ public class SearchActivity extends AppCompatActivity {
        /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
 
+        setTitle(R.string.restaurnat_search_dialog_title);
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
