@@ -43,9 +43,9 @@ public class RecipeModel extends BaseModel {
         mRecipeList = recipeList;
 
         //keep the data in persistent layer.
-        // RecipeVO.saveAttractions(mRecipeList);
+        RecipeVO.saveRecipes(mRecipeList);
 
-        broadcastAttractionLoadedWithEventBus();
+        // broadcastAttractionLoadedWithEventBus();
     }
 
     public void notifyErrorInLoadingRecipes(String message) {
@@ -54,5 +54,9 @@ public class RecipeModel extends BaseModel {
 
     private void broadcastAttractionLoadedWithEventBus() {
         EventBus.getDefault().post(new DataEvent.RecipeDataLoadedEvent("extra-in-broadcast", mRecipeList));
+    }
+
+    public void setStoredData(List<RecipeVO> recipeList) {
+        mRecipeList =recipeList;
     }
 }

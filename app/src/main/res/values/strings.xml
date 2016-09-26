@@ -70,4 +70,6 @@
         <item>ဆီ</item>
     </string-array>
 
+    <string name="content_authority">com.padc.recipes</string>
+
 </resources>

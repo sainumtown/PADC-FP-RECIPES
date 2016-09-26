@@ -1,8 +1,16 @@
 package com.padc.recipes.data.vos;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
+import com.padc.recipes.RecipesApp;
+import com.padc.recipes.data.persistence.RecipeContract;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by sainumtown on 9/24/16.
@@ -93,5 +101,48 @@ public class RecipeVO {
 
     public List<AvailableRestaurantVO> getAvailable_restaurants() {
         return available_restaurants;
+    }
+
+    public static void saveRecipes(List<RecipeVO> recipeList) {
+        Context context = RecipesApp.getContext();
+        ContentValues[] recipeCVs = new ContentValues[recipeList.size()];
+        for (int index = 0; index < recipeList.size(); index++) {
+            RecipeVO recipe = recipeList.get(index);
+            recipeCVs[index] = recipe.parseToContentValues();
+
+            //Bulk insert into recipe_images.
+            /*RecipeVO.saveAttractionImages(attraction.getTitle(), attraction.getImages());*/
+        }
+
+        //Bulk insert into attractions.
+        int insertedCount = context.getContentResolver().bulkInsert(RecipeContract.RecipeEntry.CONTENT_URI, recipeCVs);
+
+        Log.d(RecipesApp.TAG, "Bulk inserted into recipe table : " + insertedCount);
+    }
+
+    private ContentValues parseToContentValues() {
+        ContentValues cv = new ContentValues();
+        cv.put(RecipeContract.RecipeEntry.COLUMN_ID, recipe_id);
+        cv.put(RecipeContract.RecipeEntry.COLUMN_TITLE, recipe_title);
+        cv.put(RecipeContract.RecipeEntry.COLUMN_NOTE, note);
+        cv.put(RecipeContract.RecipeEntry.COLUMN_VIDEO, video);
+        cv.put(RecipeContract.RecipeEntry.COLUMN_CATEGORY_ID,category.getCategory_id());
+
+        return cv;
+    }
+
+    public static RecipeVO parseFromCursor(Cursor data) {
+        RecipeVO recipe = new RecipeVO();
+        recipe.recipe_id = Integer.parseInt(data.getString(data.getColumnIndex(RecipeContract.RecipeEntry.COLUMN_ID)));
+        recipe.recipe_title = data.getString(data.getColumnIndex(RecipeContract.RecipeEntry.COLUMN_TITLE));
+        recipe.note = data.getString(data.getColumnIndex(RecipeContract.RecipeEntry.COLUMN_NOTE));
+        recipe.video = data.getString(data.getColumnIndex(RecipeContract.RecipeEntry.COLUMN_VIDEO));
+
+        String category_id = data.getString(data.getColumnIndex(RecipeContract.RecipeEntry.COLUMN_CATEGORY_ID));
+        CategoryVO category = new CategoryVO();
+        category.setCategory_id(Integer.parseInt(category_id));
+        recipe.category = category;
+
+        return recipe;
     }
 }

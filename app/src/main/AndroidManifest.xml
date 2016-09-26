@@ -3,7 +3,7 @@
     package="com.padc.recipes">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".RecipesApp"
@@ -29,6 +29,11 @@
 
         </activity>
         <activity android:name=".activities.SearchActivity"></activity>
+
+        <!-- content provider -->
+        <provider
+            android:name=".data.persistence.RecipeProvider"
+            android:authorities="@string/content_authority" />
     </application>
 
 </manifest>
