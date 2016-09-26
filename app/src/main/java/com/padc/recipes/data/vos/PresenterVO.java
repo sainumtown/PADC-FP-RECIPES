@@ -20,4 +20,12 @@ public class PresenterVO {
     public String getPresenter_name() {
         return presenter_name;
     }
+
+    public void setPresenter_id(String presenter_id) {
+        this.presenter_id = presenter_id;
+    }
+
+    public void setPresenter_name(String presenter_name) {
+        this.presenter_name = presenter_name;
+    }
 }
