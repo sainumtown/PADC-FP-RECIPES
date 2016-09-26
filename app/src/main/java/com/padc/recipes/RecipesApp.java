@@ -8,6 +8,7 @@ import android.content.Context;
  */
 public class RecipesApp extends Application {
 
+    public static final String TAG = "RECIPE_APP";
     private static Context context;
 
     public static Context getContext() {

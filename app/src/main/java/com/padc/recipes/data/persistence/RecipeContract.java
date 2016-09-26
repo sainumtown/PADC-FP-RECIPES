@@ -37,18 +37,18 @@ public class RecipeContract {
         public static final String COLUMN_TITLE = "recipe_title";
         public static final String COLUMN_NOTE = "note";
         public static final String COLUMN_VIDEO ="video";
-
-        public static final String COLUMN_DESC = "desc";
+        public static final String COLUMN_CATEGORY_ID ="category_id";
+        public static final String COLUMN_PRESENTER_ID ="presenter_id";
 
         public static Uri buildRecipeUri(long id) {
             //content://com.padc.recipes/recipes/1
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
-        public static Uri buildAttractionUriWithTitle(String attractionTitle) {
-            //content://xyz.aungpyaephyo.padc.myanmarattractions/attractions?title="Yangon"
+        public static Uri buildRecipeUriWithTitle(String recipeTitle) {
+            //content://com.padc.recipes/recipes?title="Something"
             return CONTENT_URI.buildUpon()
-                    .appendQueryParameter(COLUMN_TITLE, attractionTitle)
+                    .appendQueryParameter(COLUMN_TITLE, recipeTitle)
                     .build();
         }
 
@@ -56,38 +56,4 @@ public class RecipeContract {
             return uri.getQueryParameter(COLUMN_TITLE);
         }
     }
-
-  /*  public static final class AttractionImageEntry implements BaseColumns {
-        public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_ATTRACTION_IMAGES).build();
-
-        public static final String DIR_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_ATTRACTION_IMAGES;
-
-        public static final String ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_ATTRACTION_IMAGES;
-
-        public static final String TABLE_NAME = "attraction_images";
-
-        public static final String COLUMN_ATTRACTION_TITLE = "attraction_title";
-        public static final String COLUMN_IMAGE = "image";
-
-        public static Uri buildAttractionImageUri(long id) {
-            //content://xyz.aungpyaephyo.padc.myanmarattractions/attraction_images/1
-            return ContentUris.withAppendedId(CONTENT_URI, id);
-        }
-
-        public static Uri buildAttractionImageUriWithTitle(String attractionTitle) {
-            //content://xyz.aungpyaephyo.padc.myanmarattractions/attraction_images?attraction_title=Yangon
-            return CONTENT_URI.buildUpon()
-                    .appendQueryParameter(COLUMN_ATTRACTION_TITLE, attractionTitle)
-                    .build();
-        }
-
-        public static String getAttractionTitleFromParam(Uri uri) {
-            return uri.getQueryParameter(COLUMN_ATTRACTION_TITLE);
-        }
-    }
-*/
-
 }
