@@ -17,11 +17,13 @@ import android.text.TextUtils;
 public class RecipeProvider extends ContentProvider {
 
     public static final int RECIPE = 100;
+    public static final int RECIPE_IMAGES = 101;
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private RecipeDBHelper mRecipeDBHelper;
 
     private static final String sRecipetitleSelection = RecipeContract.RecipeEntry.COLUMN_TITLE + " = ?";
+    private static final String sRecipeImageSelectionWithTitle = RecipeContract.RecipeImageEntry.COLUMN_RECIPE_TITLE + " = ?";
 
     @Override
     public boolean onCreate() {
@@ -50,7 +52,20 @@ public class RecipeProvider extends ContentProvider {
                         null, //having
                         sortOrder);
                 break;
-
+            case RECIPE_IMAGES:
+                String title = RecipeContract.RecipeImageEntry.getRecipeTitleFromParam(uri);
+                if (title != null) {
+                    selection = sRecipeImageSelectionWithTitle;
+                    selectionArgs = new String[]{title};
+                }
+                queryCursor = mRecipeDBHelper.getReadableDatabase().query(RecipeContract.RecipeImageEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+                break;
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -69,6 +84,8 @@ public class RecipeProvider extends ContentProvider {
         switch (matchUri) {
             case RECIPE:
                 return RecipeContract.RecipeEntry.DIR_TYPE;
+            case RECIPE_IMAGES:
+                return RecipeContract.RecipeImageEntry.DIR_TYPE;
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -90,7 +107,15 @@ public class RecipeProvider extends ContentProvider {
                     throw new SQLException("Failed to insert row into " + uri);
                 }
                 break;
-
+            }
+            case RECIPE_IMAGES: {
+                long _id = db.insert(RecipeContract.RecipeImageEntry.TABLE_NAME, null, contentValues);
+                if (_id > 0) {
+                    insertedUri = RecipeContract.RecipeImageEntry.buildRecipeImageUri(_id);
+                } else {
+                    throw new SQLException("Failed to insert row into " + uri);
+                }
+                break;
             }
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
@@ -164,6 +189,7 @@ public class RecipeProvider extends ContentProvider {
         final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
         uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_RECIPES, RECIPE);
+        uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_RECIPE_IMAGES, RECIPE_IMAGES);
 
         return uriMatcher;
     }
@@ -174,6 +200,8 @@ public class RecipeProvider extends ContentProvider {
         switch (matchUri) {
             case RECIPE:
                 return RecipeContract.RecipeEntry.TABLE_NAME;
+            case RECIPE_IMAGES:
+                return RecipeContract.RecipeImageEntry.TABLE_NAME;
 
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
