@@ -86,6 +86,9 @@ public class RecipesDetailScreenActivity extends AppCompatActivity {
     @BindView(R.id.iv_yangon)
     ImageView ivYangon;
 
+    @BindView(R.id.iv_yangon1)
+    ImageView ivYangon1;
+
     @BindView(R.id.iv_taipot)
     ImageView ivTaipot;
 
@@ -97,6 +100,9 @@ public class RecipesDetailScreenActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_yangongrill)
     TextView tvYangon;
+
+    @BindView(R.id.tv_yangongrill1)
+    TextView tvYangon1;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -143,6 +149,11 @@ public class RecipesDetailScreenActivity extends AppCompatActivity {
                 .load(R.drawable.yangon)
                 .centerCrop()
                 .into(ivYangon);
+
+        Glide.with(ivYangon1.getContext())
+                .load(R.drawable.yangon)
+                .centerCrop()
+                .into(ivYangon1);
 
 
 

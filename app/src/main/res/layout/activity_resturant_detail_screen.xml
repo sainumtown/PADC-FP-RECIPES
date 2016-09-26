@@ -123,83 +123,95 @@
 Race Course Condominium, Tamwe Township,
 Yangon, Myanmar"/>
 
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
         <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="@dimen/margin_medium_2"
-                        android:layout_marginLeft="@dimen/margin_medium_2">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:layout_marginLeft="@dimen/margin_medium_2">
 
-                    <ImageView
-                            android:id="@+id/iv_ykko1"
-                            android:layout_width="@dimen/image_width"
-                            android:layout_height="@dimen/image_height"
-                        android:layout_marginRight="@dimen/margin_medium"
-                            android:scaleType="centerCrop"
-                            tools:src="@drawable/pork_kyay_oh_sichet"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/iv_ykko1"
+                    android:layout_width="@dimen/image_width"
+                    android:layout_height="@dimen/image_height"
+                    android:layout_marginRight="@dimen/margin_medium"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/pork_kyay_oh_sichet"/>
+                <com.padc.recipes.components.MMTextView
+                    android:id="@+id/tv_ykko1"
+                    android:layout_width="@dimen/image_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_medium"
+                    android:text="Pork Rib Kyay-Oh Sichet" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/iv_ykko2"
+                    android:layout_width="@dimen/image_width"
+                    android:layout_height="@dimen/image_height"
+                    android:layout_marginRight="@dimen/margin_medium"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/grill_chicken"/>
+                <com.padc.recipes.components.MMTextView
+                    android:id="@+id/tv_ykko2"
+                    android:layout_width="@dimen/image_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_medium"
+                    android:text="Grill Chicken" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/iv_ykko3"
+                    android:layout_width="@dimen/image_width"
+                    android:layout_height="@dimen/image_height"
+                    android:layout_marginRight="@dimen/margin_medium"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/pork_rib_kyay_oh"/>
+                <com.padc.recipes.components.MMTextView
+                    android:id="@+id/tv_ykko3"
+                    android:layout_width="@dimen/image_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_medium"
+                    android:text="Pork Rib Kyay-Oh " />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/iv_ykko4"
+                    android:layout_width="@dimen/image_width"
+                    android:layout_height="@dimen/image_height"
+                    android:layout_marginRight="@dimen/margin_medium"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/grill_chicken_sausage"/>
+                <com.padc.recipes.components.MMTextView
+                    android:id="@+id/tv_ykko4"
+                    android:layout_width="@dimen/image_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_medium"
+                    android:text="Grill Chicken Sausage " />
+            </LinearLayout>
+        </LinearLayout>
+        </HorizontalScrollView>
 
-                        <ImageView
-                            android:id="@+id/iv_ykko2"
-                            android:layout_width="@dimen/image_width"
-                            android:layout_height="@dimen/image_height"
-                            android:layout_marginRight="@dimen/margin_medium"
-                            android:scaleType="centerCrop"
-                            tools:src="@drawable/grill_chicken"/>
-                        <ImageView
-                            android:id="@+id/iv_ykko3"
-                            android:layout_width="@dimen/image_width"
-                            android:layout_height="@dimen/image_height"
-                            android:layout_marginRight="@dimen/margin_medium"
-                            android:scaleType="centerCrop"
-                            tools:src="@drawable/pork_rib_kyay_oh"/>
-
-                         <ImageView
-                            android:id="@+id/iv_ykko4"
-                            android:layout_width="@dimen/image_width"
-                            android:layout_height="@dimen/image_height"
-                            android:layout_marginRight="@dimen/margin_medium"
-                            android:scaleType="centerCrop"
-                            tools:src="@drawable/grill_chicken_sausage"/>
-                    </LinearLayout>
-        <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                       android:layout_marginTop="@dimen/margin_medium"
-                        android:layout_marginBottom="@dimen/margin_medium"
-                        android:layout_marginLeft="@dimen/margin_medium_2">
-
-            <com.padc.recipes.components.MMTextView
-                            android:id="@+id/tv_ykko1"
-                            android:layout_width="@dimen/image_width"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/margin_medium"
-                            android:text="Pork Rib Kyay-Oh Sichet" />
-            <com.padc.recipes.components.MMTextView
-                            android:id="@+id/tv_ykko2"
-                            android:layout_width="@dimen/image_width"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/margin_medium"
-                            android:text="Grill Chicken" />
-            <com.padc.recipes.components.MMTextView
-                            android:id="@+id/tv_ykko3"
-                            android:layout_width="@dimen/image_width"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/margin_medium"
-                            android:text="Pork Rib Kyay-Oh " />
-            <com.padc.recipes.components.MMTextView
-                            android:id="@+id/tv_ykko4"
-                            android:layout_width="@dimen/image_width"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/margin_medium"
-                            android:text="Grill Chicken Sausage " />
-
-                    </LinearLayout>
     </LinearLayout>
+
     </android.support.v4.widget.NestedScrollView>
-
-
 
 </android.support.design.widget.CoordinatorLayout>
 
