@@ -19,6 +19,7 @@ public class RecipeContract {
 
     public static final String PATH_RECIPES= "recipes";
     public static final String PATH_RECIPE_IMAGES = "recipe_images";
+    public static final String PATH_CATEGORIES = "categories";
 
 
     public static final class RecipeEntry implements BaseColumns {
@@ -55,5 +56,73 @@ public class RecipeContract {
         public static String getTitleFromParam(Uri uri) {
             return uri.getQueryParameter(COLUMN_TITLE);
         }
+    }
+
+    public static final class RecipeImageEntry implements BaseColumns{
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_CATEGORIES).build();
+
+        public static  final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE+ "/" + CONTENT_AUTHORITY+"/" + PATH_CATEGORIES;
+
+        public static  final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE+ "/" + CONTENT_AUTHORITY+"/" + PATH_CATEGORIES;
+
+        public static final String TABLE_NAME = "recipe_images";
+
+        public static final String COLUMN_RECIPE_TITLE = "recipe_title";
+        public static final String COLUMN_IMAGE = "image";
+
+        public static Uri buildRecipeImageUri(long id) {
+            // content://com.padc.recipes/recipe_images/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildRecipeImageUriWithTitle(String recipeTitle) {
+            //content://com.padc.recipes/recipe_images/?recipe_title=something
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_RECIPE_TITLE, recipeTitle)
+                    .build();
+        }
+
+        public static String getRecipeTitleFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_RECIPE_TITLE);
+        }
+
+    }
+
+    public static final class CategoryEntry implements BaseColumns{
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_RECIPE_IMAGES).build();
+
+        public static  final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE+ "/" + CONTENT_AUTHORITY+"/" + PATH_RECIPE_IMAGES;
+
+        public static  final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE+ "/" + CONTENT_AUTHORITY+"/" + PATH_RECIPE_IMAGES;
+
+        public static final String TABLE_NAME = "categories";
+
+        public static final String COLUMN_CATEGORY_ID = "category_id";
+        public static final String COLUMN_CATEGORY_NAME = "category_name";
+        public static final String COLUMN_DESCRIPTION = "description";
+        public static final String COLUMN_IMAGE = "image";
+
+        public static Uri buildCategoryUri(long id) {
+            // content://com.padc.recipes/category_id/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildCategoryUriWithTitle(String categoryName) {
+            //content://com.padc.recipes/categories/?category_name=something
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_CATEGORY_NAME, categoryName)
+                    .build();
+        }
+
+        public static String getCategoryNameFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_CATEGORY_NAME);
+        }
+
     }
 }

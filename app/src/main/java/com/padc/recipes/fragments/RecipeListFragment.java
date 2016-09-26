@@ -138,9 +138,6 @@ public class RecipeListFragment extends BaseFragment implements LoaderManager.Lo
         }
     }
 
-
-
-
     @Override
     public void onStop() {
         super.onStop();
@@ -176,7 +173,7 @@ public class RecipeListFragment extends BaseFragment implements LoaderManager.Lo
         if (data != null && data.moveToFirst()) {
             do {
                 RecipeVO recipe = RecipeVO.parseFromCursor(data);
-                /*recipe.setImages(AttractionVO.loadAttractionImagesByTitle(attraction.getTitle()));*/
+                recipe.setPhotos(RecipeVO.loadRecipeImagesByTitle(recipe.getRecipe_title()));
                 recipeList.add(recipe);
             } while (data.moveToNext());
         }
