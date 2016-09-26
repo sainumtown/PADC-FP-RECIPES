@@ -9,6 +9,7 @@ import com.google.gson.annotations.SerializedName;
 import com.padc.recipes.RecipesApp;
 import com.padc.recipes.data.persistence.RecipeContract;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -103,6 +104,11 @@ public class RecipeVO {
         return available_restaurants;
     }
 
+
+    public void setPhotos(String[] photos) {
+        this.photos = photos;
+    }
+
     public static void saveRecipes(List<RecipeVO> recipeList) {
         Context context = RecipesApp.getContext();
         ContentValues[] recipeCVs = new ContentValues[recipeList.size()];
@@ -111,7 +117,10 @@ public class RecipeVO {
             recipeCVs[index] = recipe.parseToContentValues();
 
             //Bulk insert into recipe_images.
-            /*RecipeVO.saveAttractionImages(attraction.getTitle(), attraction.getImages());*/
+            RecipeVO.saveRecipeImages(recipe.getRecipe_title(), recipe.getPhotos());
+
+            // insert into category
+            RecipeVO.saveCategory(recipe.category);
         }
 
         //Bulk insert into attractions.
@@ -120,13 +129,38 @@ public class RecipeVO {
         Log.d(RecipesApp.TAG, "Bulk inserted into recipe table : " + insertedCount);
     }
 
+    private static void saveCategory(CategoryVO category) {
+        ContentValues cv =new ContentValues();
+        cv.put(RecipeContract.CategoryEntry.COLUMN_CATEGORY_ID,category.getCategory_id());
+        cv.put(RecipeContract.CategoryEntry.COLUMN_CATEGORY_NAME,category.getCategory_name());
+        cv.put(RecipeContract.CategoryEntry.COLUMN_DESCRIPTION,category.getDescription());
+        cv.put(RecipeContract.CategoryEntry.COLUMN_IMAGE,category.getImage());
+    }
+
+    private static void saveRecipeImages(String title, String[] images) {
+        ContentValues[] attractionImagesCVs = new ContentValues[images.length];
+        for (int index = 0; index < images.length; index++) {
+            String image = images[index];
+
+            ContentValues cv = new ContentValues();
+            cv.put(RecipeContract.RecipeImageEntry.COLUMN_RECIPE_TITLE, title);
+            cv.put(RecipeContract.RecipeImageEntry.COLUMN_IMAGE, image);
+
+            attractionImagesCVs[index] = cv;
+        }
+
+        Context context = RecipesApp.getContext();
+        int insertCount = context.getContentResolver().bulkInsert(RecipeContract.RecipeImageEntry.CONTENT_URI, attractionImagesCVs);
+
+    }
+
     private ContentValues parseToContentValues() {
         ContentValues cv = new ContentValues();
         cv.put(RecipeContract.RecipeEntry.COLUMN_ID, recipe_id);
         cv.put(RecipeContract.RecipeEntry.COLUMN_TITLE, recipe_title);
         cv.put(RecipeContract.RecipeEntry.COLUMN_NOTE, note);
         cv.put(RecipeContract.RecipeEntry.COLUMN_VIDEO, video);
-        cv.put(RecipeContract.RecipeEntry.COLUMN_CATEGORY_ID,category.getCategory_id());
+        cv.put(RecipeContract.RecipeEntry.COLUMN_CATEGORY_ID, category.getCategory_id());
 
         return cv;
     }
@@ -144,5 +178,24 @@ public class RecipeVO {
         recipe.category = category;
 
         return recipe;
+    }
+
+    public static String[] loadRecipeImagesByTitle(String title) {
+
+        Context context = RecipesApp.getContext();
+        ArrayList<String> images = new ArrayList<>();
+
+        Cursor cursor = context.getContentResolver().query(RecipeContract.RecipeImageEntry.buildRecipeImageUriWithTitle(title),
+                null, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                images.add(cursor.getString(cursor.getColumnIndex(RecipeContract.RecipeImageEntry.COLUMN_IMAGE)));
+            } while (cursor.moveToNext());
+        }
+
+        String[] imageArray = new String[images.size()];
+        images.toArray(imageArray);
+        return imageArray;
     }
 }
