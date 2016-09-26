@@ -18,12 +18,17 @@ public class RecipeProvider extends ContentProvider {
 
     public static final int RECIPE = 100;
     public static final int RECIPE_IMAGES = 101;
+    public static final int CATEGORY = 102;
+    public static final int PRESENTER = 103;
+
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private RecipeDBHelper mRecipeDBHelper;
 
     private static final String sRecipetitleSelection = RecipeContract.RecipeEntry.COLUMN_TITLE + " = ?";
     private static final String sRecipeImageSelectionWithTitle = RecipeContract.RecipeImageEntry.COLUMN_RECIPE_TITLE + " = ?";
+    private static final String sCategorySelectionWithID = RecipeContract.CategoryEntry.COLUMN_CATEGORY_ID + " = ?";
+    private static final String sPresenterSelectionWithID = RecipeContract.PresenterEntry.COLUMN_PRESENTER_ID + " = ?";
 
     @Override
     public boolean onCreate() {
@@ -66,6 +71,34 @@ public class RecipeProvider extends ContentProvider {
                         null,
                         sortOrder);
                 break;
+            case CATEGORY:
+                String categoryId = RecipeContract.CategoryEntry.getCategoryIDFromParam(uri);
+                if (categoryId != null) {
+                    selection = sCategorySelectionWithID;
+                    selectionArgs = new String[]{categoryId};
+                }
+                queryCursor = mRecipeDBHelper.getReadableDatabase().query(RecipeContract.CategoryEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+                break;
+            case PRESENTER:
+                String presenterId = RecipeContract.PresenterEntry.getPresenterIDFromParam(uri);
+                if (presenterId != null) {
+                    selection = sPresenterSelectionWithID;
+                    selectionArgs = new String[]{presenterId};
+                }
+                queryCursor = mRecipeDBHelper.getReadableDatabase().query(RecipeContract.PresenterEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+                break;
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -86,6 +119,10 @@ public class RecipeProvider extends ContentProvider {
                 return RecipeContract.RecipeEntry.DIR_TYPE;
             case RECIPE_IMAGES:
                 return RecipeContract.RecipeImageEntry.DIR_TYPE;
+            case CATEGORY:
+                return RecipeContract.CategoryEntry.ITEM_TYPE;
+            case PRESENTER:
+                return RecipeContract.PresenterEntry.ITEM_TYPE;
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -116,6 +153,26 @@ public class RecipeProvider extends ContentProvider {
                     throw new SQLException("Failed to insert row into " + uri);
                 }
                 break;
+            }
+            case CATEGORY: {
+                long _id = db.insert(RecipeContract.CategoryEntry.TABLE_NAME, null, contentValues);
+                if (_id > 0) {
+                    insertedUri = RecipeContract.CategoryEntry.buildCategoryUri(_id);
+                } else {
+                    throw new SQLException("Failed to insert row into " + uri);
+                }
+                break;
+
+            }
+            case PRESENTER: {
+                long _id = db.insert(RecipeContract.PresenterEntry.TABLE_NAME, null, contentValues);
+                if (_id > 0) {
+                    insertedUri = RecipeContract.PresenterEntry.builPresenterUri(_id);
+                } else {
+                    throw new SQLException("Failed to insert row into " + uri);
+                }
+                break;
+
             }
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
@@ -190,6 +247,8 @@ public class RecipeProvider extends ContentProvider {
 
         uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_RECIPES, RECIPE);
         uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_RECIPE_IMAGES, RECIPE_IMAGES);
+        uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_CATEGORIES, CATEGORY);
+        uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_PRESENTERS, PRESENTER);
 
         return uriMatcher;
     }
@@ -202,6 +261,10 @@ public class RecipeProvider extends ContentProvider {
                 return RecipeContract.RecipeEntry.TABLE_NAME;
             case RECIPE_IMAGES:
                 return RecipeContract.RecipeImageEntry.TABLE_NAME;
+            case CATEGORY:
+                return RecipeContract.CategoryEntry.TABLE_NAME;
+            case PRESENTER:
+                return RecipeContract.PresenterEntry.TABLE_NAME;
 
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);

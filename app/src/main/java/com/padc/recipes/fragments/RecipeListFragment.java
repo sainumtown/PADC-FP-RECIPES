@@ -39,8 +39,7 @@ import de.greenrobot.event.EventBus;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class RecipeListFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<Cursor>{
-
+public class RecipeListFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
 
     @BindView(R.id.rv_recipes)
@@ -85,7 +84,7 @@ public class RecipeListFragment extends BaseFragment implements LoaderManager.Lo
         RecipeModel.getInstance().loadRecipes();
         List<RecipeVO> recipeList = new ArrayList<RecipeVO>();
 
-        mRecipeAdapter = new RecipeAdapter(mControllerRecipeItem,recipeList);
+        mRecipeAdapter = new RecipeAdapter(mControllerRecipeItem, recipeList);
         rvRecipes.setAdapter(mRecipeAdapter);
 
         // spinner category filter
@@ -156,7 +155,6 @@ public class RecipeListFragment extends BaseFragment implements LoaderManager.Lo
     }
 
 
-
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(getContext(),
@@ -174,6 +172,11 @@ public class RecipeListFragment extends BaseFragment implements LoaderManager.Lo
             do {
                 RecipeVO recipe = RecipeVO.parseFromCursor(data);
                 recipe.setPhotos(RecipeVO.loadRecipeImagesByTitle(recipe.getRecipe_title()));
+                recipe.setCategory(RecipeVO.loadCategoryByCategoryId(String.valueOf(recipe.getCategory().getCategory_id())));
+                if (recipe.getPresenter().getPresenter_id() != null) {
+                    recipe.setPresenter(RecipeVO.loadPresenterByPresenterId(String.valueOf(recipe.getPresenter().getPresenter_id())));
+                }
+
                 recipeList.add(recipe);
             } while (data.moveToNext());
         }
@@ -189,6 +192,7 @@ public class RecipeListFragment extends BaseFragment implements LoaderManager.Lo
     public void onLoaderReset(Loader<Cursor> loader) {
 
     }
+
     @Override
     protected void onSendScreenHit() {
 

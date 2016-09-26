@@ -20,6 +20,7 @@ public class RecipeContract {
     public static final String PATH_RECIPES= "recipes";
     public static final String PATH_RECIPE_IMAGES = "recipe_images";
     public static final String PATH_CATEGORIES = "categories";
+    public static final String PATH_PRESENTERS = "presenters";
 
 
     public static final class RecipeEntry implements BaseColumns {
@@ -60,13 +61,13 @@ public class RecipeContract {
 
     public static final class RecipeImageEntry implements BaseColumns{
         public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_CATEGORIES).build();
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_RECIPE_IMAGES).build();
 
         public static  final String DIR_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE+ "/" + CONTENT_AUTHORITY+"/" + PATH_CATEGORIES;
+                ContentResolver.CURSOR_DIR_BASE_TYPE+ "/" + CONTENT_AUTHORITY+"/" + PATH_RECIPE_IMAGES;
 
         public static  final String ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE+ "/" + CONTENT_AUTHORITY+"/" + PATH_CATEGORIES;
+                ContentResolver.CURSOR_ITEM_BASE_TYPE+ "/" + CONTENT_AUTHORITY+"/" + PATH_RECIPE_IMAGES;
 
         public static final String TABLE_NAME = "recipe_images";
 
@@ -93,13 +94,13 @@ public class RecipeContract {
 
     public static final class CategoryEntry implements BaseColumns{
         public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_RECIPE_IMAGES).build();
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_CATEGORIES).build();
 
         public static  final String DIR_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE+ "/" + CONTENT_AUTHORITY+"/" + PATH_RECIPE_IMAGES;
+                ContentResolver.CURSOR_DIR_BASE_TYPE+ "/" + CONTENT_AUTHORITY+"/" + PATH_CATEGORIES;
 
         public static  final String ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE+ "/" + CONTENT_AUTHORITY+"/" + PATH_RECIPE_IMAGES;
+                ContentResolver.CURSOR_ITEM_BASE_TYPE+ "/" + CONTENT_AUTHORITY+"/" + PATH_CATEGORIES;
 
         public static final String TABLE_NAME = "categories";
 
@@ -113,15 +114,51 @@ public class RecipeContract {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
-        public static Uri buildCategoryUriWithTitle(String categoryName) {
-            //content://com.padc.recipes/categories/?category_name=something
+        public static Uri buildCategoryUriWithId(String categoryId) {
+            //content://com.padc.recipes/categories/?category_id=2
             return CONTENT_URI.buildUpon()
-                    .appendQueryParameter(COLUMN_CATEGORY_NAME, categoryName)
+                    .appendQueryParameter(COLUMN_CATEGORY_ID, categoryId)
                     .build();
         }
 
-        public static String getCategoryNameFromParam(Uri uri) {
-            return uri.getQueryParameter(COLUMN_CATEGORY_NAME);
+
+        public static String getCategoryIDFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_CATEGORY_ID);
+        }
+
+    }
+
+
+
+    public static final class PresenterEntry implements BaseColumns{
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_PRESENTERS).build();
+
+        public static  final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE+ "/" + CONTENT_AUTHORITY+"/" + PATH_PRESENTERS;
+
+        public static  final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE+ "/" + CONTENT_AUTHORITY+"/" + PATH_PRESENTERS;
+
+        public static final String TABLE_NAME = "presenters";
+
+        public static final String COLUMN_PRESENTER_ID = "presenter_id";
+        public static final String COLUMN_PRESENTER_NAME = "presenter_name";
+
+        public static Uri builPresenterUri(long id) {
+            // content://com.padc.recipes/presenters_id/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildPresenteriWithId(String presenter_id) {
+            //content://com.padc.recipes/presnters/?presenter_id=2
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_PRESENTER_ID, presenter_id)
+                    .build();
+        }
+
+        public static String getPresenterIDFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_PRESENTER_ID);
         }
 
     }
