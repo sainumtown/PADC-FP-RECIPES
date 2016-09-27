@@ -45,6 +45,9 @@ public class RestaurantModel extends BaseModel {
         //keep the data in persistent layer.
         RestaurantVO.saveAttractions(mRestaurantList);
 
+        // save township
+        
+
         //broadcastRestaurantLoadedWithEventBus();
     }
 

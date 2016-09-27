@@ -10,6 +10,7 @@ import com.padc.recipes.RecipesApp;
 import com.padc.recipes.data.persistence.RecipeContract;
 import com.padc.recipes.utils.RecipeAppConstants;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -94,6 +95,10 @@ public class RestaurantVO {
         return most_popular_recipes;
     }
 
+    public void setPhotos(String[] photos) {
+        this.photos = photos;
+    }
+
     public static void saveAttractions(List<RestaurantVO> restaurantList) {
         Context context = RecipesApp.getContext();
         ContentValues[] restaurantCVs = new ContentValues[restaurantList.size()];
@@ -101,8 +106,8 @@ public class RestaurantVO {
             RestaurantVO restaurant = restaurantList.get(index);
             restaurantCVs[index] = restaurant.parseToContentValues();
 
-            //Bulk insert into attraction_images.
-            // AttractionVO.saveAttractionImages(attraction.getTitle(), attraction.getImages());
+            //Bulk insert into restaurant_images.
+            RestaurantVO.saveRestaurantImages(restaurant.getRestaurant_id(), restaurant.getPhotos());
         }
 
         //Bulk insert into restaurants.
@@ -134,5 +139,42 @@ public class RestaurantVO {
         restaurant.facebook = data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_FACEBOOK));
 
         return restaurant;
+    }
+
+    private static void saveRestaurantImages(int restaurant_id, String[] images) {
+        ContentValues[] restaurantImagesCVs = new ContentValues[images.length];
+        for (int index = 0; index < images.length; index++) {
+            String image = images[index];
+
+            ContentValues cv = new ContentValues();
+            cv.put(RecipeContract.RestaurantImageEntry.COLUMN_RESTAURANT_ID, restaurant_id);
+            cv.put(RecipeContract.RestaurantImageEntry.COLUMN_IMAGE, image);
+
+            restaurantImagesCVs[index] = cv;
+        }
+
+        Context context = RecipesApp.getContext();
+        int insertCount = context.getContentResolver().bulkInsert(RecipeContract.RestaurantImageEntry.CONTENT_URI, restaurantImagesCVs);
+        Log.d(RecipesApp.TAG, "Bulk inserted into restaurant_images table : " + insertCount);
+
+
+    }
+
+    public String[] loadRestaurantImagesByRestaurantId(int restaurant_id) {
+        Context context = RecipesApp.getContext();
+        ArrayList<String> images = new ArrayList<>();
+
+        Cursor cursor = context.getContentResolver().query(RecipeContract.RestaurantImageEntry.buildRestaurantImageUriWithId(String.valueOf(restaurant_id)),
+                null, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                images.add(cursor.getString(cursor.getColumnIndex(RecipeContract.RestaurantImageEntry.COLUMN_IMAGE)));
+            } while (cursor.moveToNext());
+        }
+
+        String[] imageArray = new String[images.size()];
+        images.toArray(imageArray);
+        return imageArray;
     }
 }

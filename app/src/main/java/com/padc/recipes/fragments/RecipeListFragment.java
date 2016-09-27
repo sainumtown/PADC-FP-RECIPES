@@ -81,7 +81,7 @@ public class RecipeListFragment extends BaseFragment implements LoaderManager.Lo
         getActivity().setTitle(R.string.home_screen_title);
 
         // get recipe data
-        // RecipeModel.getInstance().loadRecipes();
+        RecipeModel.getInstance().loadRecipes();
         List<RecipeVO> recipeList = new ArrayList<RecipeVO>();
 
         mRecipeAdapter = new RecipeAdapter(mControllerRecipeItem, recipeList);
