@@ -43,7 +43,7 @@ public class RestaurantModel extends BaseModel {
         mRestaurantList = restaurantList;
 
         //keep the data in persistent layer.
-        RestaurantVO.saveAttractions(mRestaurantList);
+        RestaurantVO.saveRestaurants(mRestaurantList);
 
         // save township
         
