@@ -142,6 +142,10 @@ public class RecipeVO {
                 RecipeVO.savePresenter(recipe.presenter);
             }
 
+            // insert into ingredients
+            //Bulk insert into recipes_ingredients.
+            RecipeVO.saveRecipeIngredients(recipe.recipe_id, recipe.getIngredients());
+
         }
 
         //Bulk insert into attractions.
@@ -285,5 +289,27 @@ public class RecipeVO {
 
 
         return presenter;
+    }
+
+    private static void saveRecipeIngredients(int recipe_id, List<IngredientVO> ingredients) {
+        ContentValues[] recipeIngredientCVs = new ContentValues[ingredients.size()];
+        for (int index = 0; index < ingredients.size(); index++) {
+            IngredientVO ingredient = ingredients.get(index);
+
+            ContentValues cv = new ContentValues();
+            cv.put(RecipeContract.IngredientEntry.COLUMN_RECIPE_ID, recipe_id);
+            cv.put(RecipeContract.IngredientEntry.COLUMN_INGREDIENT_ID, ingredient.getIngredient_id());
+            cv.put(RecipeContract.IngredientEntry.COLUMN_INGREDIENT_NAME, ingredient.getIngredient_name());
+            cv.put(RecipeContract.IngredientEntry.COLUMN_NOTE, ingredient.getNote());
+            cv.put(RecipeContract.IngredientEntry.COLUMN_MEASUREMENT, ingredient.getMeasurement());
+            cv.put(RecipeContract.IngredientEntry.COLUMN_IMAGE_URL, ingredient.getImage());
+
+            recipeIngredientCVs[index] = cv;
+        }
+
+        Context context = RecipesApp.getContext();
+        int insertedCount = context.getContentResolver().bulkInsert(RecipeContract.IngredientEntry.CONTENT_URI, recipeIngredientCVs);
+        Log.d(RecipesApp.TAG, "Bulk inserted into recipes_ingredients table : " + insertedCount);
+
     }
 }
