@@ -4,12 +4,17 @@ package com.padc.recipes.fragments;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +32,7 @@ import com.padc.recipes.adapters.RestaurantAdapter;
 import com.padc.recipes.adapters.TownshipAdapter;
 import com.padc.recipes.data.models.RecipeModel;
 import com.padc.recipes.data.models.RestaurantModel;
+import com.padc.recipes.data.persistence.RecipeContract;
 import com.padc.recipes.data.vos.RecipeVO;
 import com.padc.recipes.data.vos.RestaurantVO;
 import com.padc.recipes.dialogs.ShareDialog;
@@ -44,7 +50,7 @@ import de.greenrobot.event.EventBus;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RestaurantListFragment extends Fragment {
+public class RestaurantListFragment extends BaseFragment  implements LoaderManager.LoaderCallbacks<Cursor> {
 
     @BindView(R.id.rv_restaurants)
     RecyclerView rvRestaurant;
@@ -108,6 +114,11 @@ public class RestaurantListFragment extends Fragment {
         }
     }
 
+    @Override
+    protected void onSendScreenHit() {
+
+    }
+
 
     @Override
     public void onStop() {
@@ -124,6 +135,40 @@ public class RestaurantListFragment extends Fragment {
 
         List<RestaurantVO> newRestaurantList = event.getRestaurantList();
         mRestaurantAdapter.setNewData(newRestaurantList);
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(getContext(),
+                RecipeContract.RestaurantEntry.CONTENT_URI,
+                null,
+                null,
+                null,
+                null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        List<RestaurantVO> restaurantList = new ArrayList<>();
+        if (data != null && data.moveToFirst()) {
+            do {
+                RestaurantVO restaurant = RestaurantVO.parseFromCursor(data);
+                // attraction.setImages(AttractionVO.loadAttractionImagesByTitle(attraction.getTitle()));
+                restaurantList.add(restaurant);
+            } while (data.moveToNext());
+        }
+
+        Log.d(RecipesApp.TAG, "Retrieved restaurants : " + restaurantList.size());
+        mRestaurantAdapter.setNewData(restaurantList);
+
+        RestaurantModel.getInstance().setStoredData(restaurantList);
+
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
     }
 }
 
