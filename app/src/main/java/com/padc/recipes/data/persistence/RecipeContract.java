@@ -21,6 +21,7 @@ public class RecipeContract {
     public static final String PATH_CATEGORIES = "categories";
     public static final String PATH_PRESENTERS = "presenters";
     public static final String PATH_INGREDIENTS = "ingredients";
+    public static final String PATH_RECIPE_INSTRUCTIONS = "recipe_instructions";
 
 
     public static final class RecipeEntry implements BaseColumns {
@@ -201,7 +202,51 @@ public class RecipeContract {
 
         // content://com.padc.recipes/ingredients/?recipe_id=2
         // get the parameter from the uri ( parameter is 2)
-        public static String getIngredientIdFromParam(Uri uri) {
+        public static String getRecipeIdFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_RECIPE_ID);
+        }
+
+    }
+
+    //  1. ingredients
+    public static final class InstructionEntry implements BaseColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_RECIPE_INSTRUCTIONS).build();
+
+        // return type many
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_RECIPE_INSTRUCTIONS;
+
+        // return type one
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_RECIPE_INSTRUCTIONS;
+
+        // 2.  Table name and Column
+        // table name is recipes_instructions
+        public static final String TABLE_NAME = "recipes_instructions";
+
+        public static final String COLUMN_RECIPE_ID = "recipe_id";                          // recipe id
+        public static final String COLUMN_INSTRUCTION_DESC = "instruction_desc";            // instruction
+        public static final String COLUMN_INSTRUCTION_IMAGE = "image_url";                  // image url
+        public static final String COLUMN_SORT_ORDER= "sort_order";                         // sort order
+
+        // 3 . build for parameter with content uri
+        // generate the contentUri plus table name
+        public static Uri buildInstructionUri(long id) {
+            // content://com.padc.recipes/instructions/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildInstructionWithRecipeId(String recipeId) {
+            //content://com.padc.recipes/instruction/?recipe_id=2
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_RECIPE_ID, recipeId)
+                    .build();
+        }
+
+        // content://com.padc.recipes/instructions/?recipe_id=2
+        // get the parameter from the uri ( parameter is 2)
+        public static String getRecipeIdFromParam(Uri uri) {
             return uri.getQueryParameter(COLUMN_RECIPE_ID);
         }
 
