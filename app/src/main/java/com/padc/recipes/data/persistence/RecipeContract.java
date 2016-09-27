@@ -22,7 +22,9 @@ public class RecipeContract {
     public static final String PATH_PRESENTERS = "presenters";
     public static final String PATH_INGREDIENTS = "ingredients";
     public static final String PATH_RECIPE_INSTRUCTIONS = "recipe_instructions";
+
     public static final String PATH_RESTAURANTS = "restaurants";
+    public static final String PATH_RESTAURANT_IMAGES = "restaurant_images";
 
 
     public static final class RecipeEntry implements BaseColumns {
@@ -294,5 +296,38 @@ public class RecipeContract {
         public static String getRestaurantIdFromParam(Uri uri) {
             return uri.getQueryParameter(COLUMN_RESTAURANT_ID);
         }
+    }
+
+    public static final class RestaurantImageEntry implements BaseColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_RESTAURANT_IMAGES).build();
+
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_RESTAURANT_IMAGES;
+
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_RESTAURANT_IMAGES;
+
+        public static final String TABLE_NAME = "restaurant_images";
+
+        public static final String COLUMN_RESTAURANT_ID = "restaurant_id";
+        public static final String COLUMN_IMAGE = "image";
+
+        public static Uri buildRestaurantImageUri(long id) {
+            // content://com.padc.recipes/restaurant_images/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildRestaurantImageUriWithId(String restaurantId) {
+            //content://com.padc.recipes/restaurant_images/?restaurant_id=1
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_RESTAURANT_ID, restaurantId)
+                    .build();
+        }
+
+        public static String getRestaurantIdFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_RESTAURANT_ID);
+        }
+
     }
 }
