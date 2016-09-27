@@ -25,6 +25,7 @@ public class RecipeContract {
 
     public static final String PATH_RESTAURANTS = "restaurants";
     public static final String PATH_RESTAURANT_IMAGES = "restaurant_images";
+    public static final String PATH_TOWNSHIP = "townships";
 
 
     public static final class RecipeEntry implements BaseColumns {
@@ -276,6 +277,7 @@ public class RecipeContract {
         public static final String COLUMN_BRANCH_NAME = "branch_ame";                               // branch name
         public static final String COLUMN_ADDRESS= "address";                                       // address
         public static final String COLUMN_FACEBOOK= "facebook";                                     // facebook
+        public static final String COLUMN_TOWNSHIP_ID= "township_id";                               // townshipId
 
         // 3 . build for parameter with content uri
         // generate the contentUri plus table name
@@ -327,6 +329,38 @@ public class RecipeContract {
 
         public static String getRestaurantIdFromParam(Uri uri) {
             return uri.getQueryParameter(COLUMN_RESTAURANT_ID);
+        }
+
+    }
+    public static final class TownshipEntry implements BaseColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_TOWNSHIP).build();
+
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TOWNSHIP;
+
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TOWNSHIP;
+
+        public static final String TABLE_NAME = "townships";
+
+        public static final String COLUMN_TOWNSHIP_ID = "township_id";
+        public static final String COLUMN_TOWNSHIP_NAME = "township_name";
+
+        public static Uri buildTownshipUri(long id) {
+            // content://com.padc.recipes/townships/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildTownshipUriWithId(String categoryId) {
+            //content://com.padc.recipes/townships/?township=2
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_TOWNSHIP_ID, categoryId)
+                    .build();
+        }
+
+        public static String getTownshipIdFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_TOWNSHIP_ID);
         }
 
     }
