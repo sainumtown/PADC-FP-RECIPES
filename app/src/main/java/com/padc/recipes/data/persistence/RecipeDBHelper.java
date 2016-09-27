@@ -10,6 +10,7 @@ import com.padc.recipes.data.persistence.RecipeContract.RecipeImageEntry;
 import com.padc.recipes.data.persistence.RecipeContract.CategoryEntry;
 import com.padc.recipes.data.persistence.RecipeContract.PresenterEntry;
 import com.padc.recipes.data.persistence.RecipeContract.IngredientEntry;
+import com.padc.recipes.data.persistence.RecipeContract.InstructionEntry;
 
 
 /**
@@ -73,6 +74,17 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
             " UNIQUE (" + IngredientEntry.COLUMN_RECIPE_ID + ", " +
             IngredientEntry.COLUMN_INGREDIENT_ID + ") ON CONFLICT IGNORE" +
             " );";
+    // 4.Create table for recipes_instructions
+    private static final String SQL_CREATE_RECIPES_INSTRUCTIONS_TABLE = "CREATE TABLE " + InstructionEntry.TABLE_NAME + " (" +
+            InstructionEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            InstructionEntry.COLUMN_RECIPE_ID + " TEXT NOT NULL, " +
+            InstructionEntry.COLUMN_INSTRUCTION_DESC + " TEXT NOT NULL, " +
+            InstructionEntry.COLUMN_INSTRUCTION_IMAGE + " TEXT NOT NULL, " +
+            InstructionEntry.COLUMN_SORT_ORDER + " INTEGER , " +
+
+            " UNIQUE (" + InstructionEntry.COLUMN_RECIPE_ID + ", " +
+            InstructionEntry.COLUMN_INSTRUCTION_DESC + ") ON CONFLICT IGNORE" +
+            " );";
 
     public RecipeDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -86,6 +98,7 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(SQL_CREATE_CATEGORY_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_PRESENTER_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_RECIPES_INGREDIENTS_TABLE);
+        sqLiteDatabase.execSQL(SQL_CREATE_RECIPES_INSTRUCTIONS_TABLE);
 
     }
 
@@ -96,6 +109,7 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + CategoryEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + PresenterEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + IngredientEntry.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + InstructionEntry.TABLE_NAME);
 
         onCreate(sqLiteDatabase);
     }
