@@ -37,6 +37,7 @@ import com.padc.recipes.data.vos.RecipeVO;
 import com.padc.recipes.data.vos.RestaurantVO;
 import com.padc.recipes.dialogs.ShareDialog;
 import com.padc.recipes.events.DataEvent;
+import com.padc.recipes.utils.RecipeAppConstants;
 import com.padc.recipes.views.holders.RestaurntViewHolder;
 
 import java.util.ArrayList;
@@ -92,8 +93,8 @@ public class RestaurantListFragment extends BaseFragment  implements LoaderManag
         getActivity().setTitle(R.string.Resturants);
 
         // get restaurant data
-        RestaurantModel.getInstance().loadRestaurants();
-        List<RestaurantVO> restaurantList = RestaurantModel.getInstance().getRestaurantList();
+        // RestaurantModel.getInstance().loadRestaurants();
+        List<RestaurantVO> restaurantList = new ArrayList<>();
 
         mRestaurantAdapter = new RestaurantAdapter(mControllerRestaurantItem,restaurantList);
         rvRestaurant.setAdapter(mRestaurantAdapter);
@@ -119,7 +120,11 @@ public class RestaurantListFragment extends BaseFragment  implements LoaderManag
 
     }
 
-
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getActivity().getSupportLoaderManager().initLoader(RecipeAppConstants.RESTAURANT_LIST_LOADER, null, this);
+    }
     @Override
     public void onStop() {
         super.onStop();

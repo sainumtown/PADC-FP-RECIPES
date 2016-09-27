@@ -16,4 +16,5 @@ public class RecipeAppConstants {
 
     // loader
     public static final int RECIPE_LIST_LOADER = 1;
+    public static final int RESTAURANT_LIST_LOADER = 2;
 }
