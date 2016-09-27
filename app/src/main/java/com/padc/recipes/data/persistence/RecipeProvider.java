@@ -102,7 +102,7 @@ public class RecipeProvider extends ContentProvider {
                         sortOrder);
                 break;
             case RECIPES_INGREDIENTS:
-                String recipeId = RecipeContract.IngredientEntry.getIngredientIdFromParam(uri);
+                String recipeId = RecipeContract.IngredientEntry.getRecipeIdFromParam(uri);
                 if (recipeId != null) {
                     selection = sRecipeIngredientWithRecipeID;
                     selectionArgs = new String[]{recipeId};
