@@ -66,6 +66,7 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
             IngredientEntry.COLUMN_RECIPE_ID + " TEXT NOT NULL, " +
             IngredientEntry.COLUMN_INGREDIENT_ID + " TEXT NOT NULL, " +
             IngredientEntry.COLUMN_INGREDIENT_NAME + " TEXT NOT NULL, " +
+            IngredientEntry.COLUMN_MEASUREMENT + " TEXT , " +
             IngredientEntry.COLUMN_NOTE + " TEXT , " +
             IngredientEntry.COLUMN_IMAGE_URL + " TEXT , " +
 
