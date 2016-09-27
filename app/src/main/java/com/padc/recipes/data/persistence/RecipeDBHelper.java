@@ -11,7 +11,8 @@ import com.padc.recipes.data.persistence.RecipeContract.CategoryEntry;
 import com.padc.recipes.data.persistence.RecipeContract.PresenterEntry;
 import com.padc.recipes.data.persistence.RecipeContract.IngredientEntry;
 import com.padc.recipes.data.persistence.RecipeContract.InstructionEntry;
-
+import com.padc.recipes.data.persistence.RecipeContract.RestaurantEntry;
+import com.padc.recipes.data.responses.RestaurantListResponse;
 
 /**
  * Created by sainumtown on 9/36/16.
@@ -86,6 +87,18 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
             InstructionEntry.COLUMN_INSTRUCTION_DESC + ") ON CONFLICT IGNORE" +
             " );";
 
+    private static final String SQL_CREATE_RESTAURANT_TABLE = "CREATE TABLE " + RestaurantEntry.TABLE_NAME + " (" +
+            RestaurantEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            RestaurantEntry.COLUMN_RESTAURANT_ID + " TEXT NOT NULL, " +
+            RestaurantEntry.COLUMN_RESTAURANT_NAME + " TEXT NOT NULL, " +
+            RestaurantEntry.COLUMN_BRANCH_NAME + " TEXT NOT NULL, " +
+            RestaurantEntry.COLUMN_ADDRESS + " TEXT, " +
+            RestaurantEntry.COLUMN_PHONE_NUMBER + " TEXT, " +
+            RestaurantEntry.COLUMN_FACEBOOK + " TEXT, " +
+
+            " UNIQUE (" + RestaurantEntry.COLUMN_RESTAURANT_ID + ") ON CONFLICT IGNORE" +
+            " );";
+
     public RecipeDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -99,6 +112,7 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(SQL_CREATE_PRESENTER_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_RECIPES_INGREDIENTS_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_RECIPES_INSTRUCTIONS_TABLE);
+        sqLiteDatabase.execSQL(SQL_CREATE_RESTAURANT_TABLE);
 
     }
 
@@ -110,6 +124,7 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + PresenterEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + IngredientEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + InstructionEntry.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RestaurantEntry.TABLE_NAME);
 
         onCreate(sqLiteDatabase);
     }
