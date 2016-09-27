@@ -292,7 +292,7 @@ public class RecipeContract {
 
         // content://com.padc.recipes/restaurant/?restaurant_id=2
         // get the parameter from the uri ( parameter is 2)
-        public static String getRecipeIdFromParam(Uri uri) {
+        public static String getRestaurantIdFromParam(Uri uri) {
             return uri.getQueryParameter(COLUMN_RESTAURANT_ID);
         }
     }
