@@ -13,7 +13,7 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by sainumtown on 9/24/16.
  */
-public class RestaurantModel extends BaseModel{
+public class RestaurantModel extends BaseModel {
     private static RestaurantModel objInstance;
 
     private List<RestaurantVO> mRestaurantList;
@@ -43,9 +43,9 @@ public class RestaurantModel extends BaseModel{
         mRestaurantList = restaurantList;
 
         //keep the data in persistent layer.
-        // RecipeVO.saveAttractions(mRecipeList);
+        RestaurantVO.saveAttractions(mRestaurantList);
 
-        broadcastRestaurantLoadedWithEventBus();
+        //broadcastRestaurantLoadedWithEventBus();
     }
 
     private void broadcastRestaurantLoadedWithEventBus() {
@@ -54,5 +54,9 @@ public class RestaurantModel extends BaseModel{
 
     public void notifyErrorInLoadingRestaurant(String message) {
 
+    }
+
+    public void setStoredData(List<RestaurantVO> restaurantList) {
+        mRestaurantList = restaurantList;
     }
 }

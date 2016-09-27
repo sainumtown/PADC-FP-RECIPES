@@ -1,6 +1,14 @@
 package com.padc.recipes.data.vos;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
+import com.padc.recipes.RecipesApp;
+import com.padc.recipes.data.persistence.RecipeContract;
+import com.padc.recipes.utils.RecipeAppConstants;
 
 import java.util.List;
 
@@ -84,5 +92,47 @@ public class RestaurantVO {
 
     public List<MostPopularRecipeVO> getMost_popular_recipes() {
         return most_popular_recipes;
+    }
+
+    public static void saveAttractions(List<RestaurantVO> restaurantList) {
+        Context context = RecipesApp.getContext();
+        ContentValues[] restaurantCVs = new ContentValues[restaurantList.size()];
+        for (int index = 0; index < restaurantList.size(); index++) {
+            RestaurantVO restaurant = restaurantList.get(index);
+            restaurantCVs[index] = restaurant.parseToContentValues();
+
+            //Bulk insert into attraction_images.
+            // AttractionVO.saveAttractionImages(attraction.getTitle(), attraction.getImages());
+        }
+
+        //Bulk insert into restaurants.
+        int insertedCount = context.getContentResolver().bulkInsert(RecipeContract.RestaurantEntry.CONTENT_URI, restaurantCVs);
+
+        Log.d(RecipesApp.TAG, "Bulk inserted into restaurant table : " + insertedCount);
+
+    }
+
+    private ContentValues parseToContentValues() {
+
+        ContentValues cv = new ContentValues();
+        cv.put(RecipeContract.RestaurantEntry.COLUMN_RESTAURANT_ID, restaurant_id);
+        cv.put(RecipeContract.RestaurantEntry.COLUMN_RESTAURANT_NAME, restaurant_name);
+        cv.put(RecipeContract.RestaurantEntry.COLUMN_BRANCH_NAME, branch_name);
+        cv.put(RecipeContract.RestaurantEntry.COLUMN_ADDRESS, address);
+        cv.put(RecipeContract.RestaurantEntry.COLUMN_FACEBOOK, facebook);
+
+        return cv;
+    }
+
+    public static RestaurantVO parseFromCursor(Cursor data) {
+
+        RestaurantVO restaurant = new RestaurantVO();
+        restaurant.restaurant_id = Integer.parseInt(data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_RESTAURANT_ID)));
+        restaurant.restaurant_name = data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_RESTAURANT_NAME));
+        restaurant.branch_name = data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_BRANCH_NAME));
+        restaurant.address =data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_ADDRESS));
+        restaurant.facebook = data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_FACEBOOK));
+
+        return restaurant;
     }
 }
