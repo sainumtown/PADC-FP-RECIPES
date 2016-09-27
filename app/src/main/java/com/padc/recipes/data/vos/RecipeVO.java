@@ -326,8 +326,8 @@ public class RecipeVO {
 
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                IngredientVO ingredient = null;
-                ingredient.setIngredient_id(cursor.getColumnIndex(RecipeContract.IngredientEntry.COLUMN_INGREDIENT_ID));
+                IngredientVO ingredient = new IngredientVO();
+                ingredient.setIngredient_id(Integer.parseInt(cursor.getString(cursor.getColumnIndex(RecipeContract.IngredientEntry.COLUMN_INGREDIENT_ID))));
                 ingredient.setIngredient_name(cursor.getString(cursor.getColumnIndex(RecipeContract.IngredientEntry.COLUMN_INGREDIENT_NAME)));
                 ingredient.setNote(cursor.getString(cursor.getColumnIndex(RecipeContract.IngredientEntry.COLUMN_NOTE)));
                 ingredient.setMeasurement(cursor.getString(cursor.getColumnIndex(RecipeContract.IngredientEntry.COLUMN_MEASUREMENT)));
