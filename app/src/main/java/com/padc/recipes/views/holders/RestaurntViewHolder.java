@@ -55,12 +55,21 @@ public class RestaurntViewHolder extends RecyclerView.ViewHolder implements View
         mRestaurant = restaurantVO;
         tvRestaurantTitle.setText(mRestaurant.getRestaurant_name());
         tvAddress.setText(mRestaurant.getAddress());
-        String serviceTime = RecipesApp.getContext().getString(R.string.lbl_morning) + " " + mRestaurant.getService_time().getStart()
-                + RecipesApp.getContext().getString(R.string.lbl_from) + " " + RecipesApp.getContext().getString(R.string.lbl_end)
-                + " " + mRestaurant.getService_time().getFinish();
-        tvOpenCloseTime.setText(serviceTime);
-        tvTownship.setText(mRestaurant.getTownship().getTownship_name());
-        tvRecommendedFood.setText(mRestaurant.getMost_popular_recipes().get(0).getRecipe_name());
+
+        if (mRestaurant.getService_time() != null) {
+            String serviceTime = RecipesApp.getContext().getString(R.string.lbl_morning) + " " + mRestaurant.getService_time().getStart()
+                    + RecipesApp.getContext().getString(R.string.lbl_from) + " " + RecipesApp.getContext().getString(R.string.lbl_end)
+                    + " " + mRestaurant.getService_time().getFinish();
+            tvOpenCloseTime.setText(serviceTime);
+        }
+
+        if (mRestaurant.getTownship() != null) {
+            tvTownship.setText(mRestaurant.getTownship().getTownship_name());
+        }
+
+        if (mRestaurant.getMost_popular_recipes() != null) {
+            tvRecommendedFood.setText(mRestaurant.getMost_popular_recipes().get(0).getRecipe_name());
+        }
     }
 
     public interface ControllerRestaurantItem {
