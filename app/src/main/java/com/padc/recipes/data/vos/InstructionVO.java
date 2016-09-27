@@ -26,4 +26,16 @@ public class InstructionVO {
     public int getSort_order() {
         return sort_order;
     }
+
+    public void setInstruction_desc(String instruction_desc) {
+        this.instruction_desc = instruction_desc;
+    }
+
+    public void setInstruction_image(String instruction_image) {
+        this.instruction_image = instruction_image;
+    }
+
+    public void setSort_order(int sort_order) {
+        this.sort_order = sort_order;
+    }
 }
