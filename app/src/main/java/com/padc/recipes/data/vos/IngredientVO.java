@@ -41,4 +41,24 @@ public class IngredientVO {
     public String getImage() {
         return image;
     }
+
+    public void setIngredient_id(int ingredient_id) {
+        this.ingredient_id = ingredient_id;
+    }
+
+    public void setIngredient_name(String ingredient_name) {
+        this.ingredient_name = ingredient_name;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public void setMeasurement(String measurement) {
+        this.measurement = measurement;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }
