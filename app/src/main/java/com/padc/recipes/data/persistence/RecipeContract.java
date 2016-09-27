@@ -176,7 +176,7 @@ public class RecipeContract {
 
         // 2.  Table name and Column
         // table name is ingredients
-        public static final String TABLE_NAME = "ingredients_recipes";
+        public static final String TABLE_NAME = "recipes_ingredients";
 
         public static final String COLUMN_RECIPE_ID = "recipe_id";                      // recipe id
         public static final String COLUMN_INGREDIENT_ID = "ingredient_id";              // id
@@ -197,7 +197,7 @@ public class RecipeContract {
                     .appendQueryParameter(COLUMN_RECIPE_ID, recipeId)
                     .build();
         }
-        
+
         // content://com.padc.recipes/ingredients/?recipe_id=2
         // get the parameter from the uri ( parameter is 2)
         public static String getIngredientIdFromParam(Uri uri) {
