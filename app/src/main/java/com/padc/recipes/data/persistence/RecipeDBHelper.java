@@ -132,6 +132,7 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(SQL_CREATE_RECIPES_INSTRUCTIONS_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_RESTAURANT_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_RESTAURANT_IMAGE_TABLE);
+        sqLiteDatabase.execSQL(SQL_CREATE_TOWNSHIP_TABLE);
 
     }
 
@@ -145,6 +146,7 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + InstructionEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RestaurantEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RestaurantImageEntry.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RecipeContract.TownshipEntry.TABLE_NAME);
 
         onCreate(sqLiteDatabase);
     }
