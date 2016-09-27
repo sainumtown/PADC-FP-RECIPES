@@ -25,8 +25,7 @@ public class RecipeProvider extends ContentProvider {
 
     public static final int RESTAURANTS = 106;
     public static final int RESTAURANTS_IMAGES =107;
-
-
+    public static final int TOWNSHIPS =108;
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private RecipeDBHelper mRecipeDBHelper;
@@ -39,6 +38,7 @@ public class RecipeProvider extends ContentProvider {
     private static final String sRecipeInstructionWithRecipeID = RecipeContract.InstructionEntry.COLUMN_RECIPE_ID + " = ?";
     private static final String sRestaurantWithRestaurantID = RecipeContract.RestaurantEntry.COLUMN_RESTAURANT_ID + " = ?";
     private static final String sRestaurantImageSelectionWithRestaurantID = RecipeContract.RestaurantImageEntry.COLUMN_RESTAURANT_ID + " = ?";
+    private static final String sTownshipWithTownshipId = RecipeContract.TownshipEntry.COLUMN_TOWNSHIP_ID +" = ?";
 
     @Override
     public boolean onCreate() {
@@ -154,10 +154,24 @@ public class RecipeProvider extends ContentProvider {
             case RESTAURANTS_IMAGES:
                 String restaurantIdImage = RecipeContract.RestaurantImageEntry.getRestaurantIdFromParam(uri);
                 if (restaurantIdImage != null) {
-                    selection = sRestaurantWithRestaurantID;
+                    selection = sRestaurantImageSelectionWithRestaurantID;
                     selectionArgs = new String[]{restaurantIdImage};
                 }
                 queryCursor = mRecipeDBHelper.getReadableDatabase().query(RecipeContract.RestaurantImageEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+                break;
+            case TOWNSHIPS:
+                String townshipId = RecipeContract.TownshipEntry.getTownshipIdFromParam(uri);
+                if (townshipId != null) {
+                    selection = sTownshipWithTownshipId;
+                    selectionArgs = new String[]{townshipId};
+                }
+                queryCursor = mRecipeDBHelper.getReadableDatabase().query(RecipeContract.TownshipEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -197,6 +211,8 @@ public class RecipeProvider extends ContentProvider {
                 return RecipeContract.RestaurantEntry.DIR_TYPE;
             case RESTAURANTS_IMAGES:
                 return RecipeContract.RecipeImageEntry.DIR_TYPE;
+            case TOWNSHIPS:
+                return RecipeContract.RecipeImageEntry.ITEM_TYPE;
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -278,6 +294,15 @@ public class RecipeProvider extends ContentProvider {
                 long _id = db.insert(RecipeContract.RestaurantImageEntry.TABLE_NAME, null, contentValues);
                 if (_id > 0) {
                     insertedUri = RecipeContract.RestaurantImageEntry.buildRestaurantImageUri(_id);
+                } else {
+                    throw new SQLException("Failed to insert row into " + uri);
+                }
+                break;
+            }
+            case TOWNSHIPS: {
+                long _id = db.insert(RecipeContract.TownshipEntry.TABLE_NAME, null, contentValues);
+                if (_id > 0) {
+                    insertedUri = RecipeContract.TownshipEntry.buildTownshipUri(_id);
                 } else {
                     throw new SQLException("Failed to insert row into " + uri);
                 }
@@ -365,6 +390,7 @@ public class RecipeProvider extends ContentProvider {
 
         uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_RESTAURANTS, RESTAURANTS);
         uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_RESTAURANT_IMAGES, RESTAURANTS_IMAGES);
+        uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_TOWNSHIP, TOWNSHIPS);
 
         return uriMatcher;
     }
@@ -389,6 +415,8 @@ public class RecipeProvider extends ContentProvider {
                 return RecipeContract.RestaurantEntry.TABLE_NAME;
             case RESTAURANTS_IMAGES:
                 return RecipeContract.RestaurantImageEntry.TABLE_NAME;
+            case TOWNSHIPS:
+                return RecipeContract.TownshipEntry.TABLE_NAME;
 
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);

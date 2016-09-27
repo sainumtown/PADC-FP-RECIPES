@@ -99,7 +99,7 @@ public class RestaurantVO {
         this.photos = photos;
     }
 
-    public static void saveAttractions(List<RestaurantVO> restaurantList) {
+    public static void saveRestaurants(List<RestaurantVO> restaurantList) {
         Context context = RecipesApp.getContext();
         ContentValues[] restaurantCVs = new ContentValues[restaurantList.size()];
         for (int index = 0; index < restaurantList.size(); index++) {

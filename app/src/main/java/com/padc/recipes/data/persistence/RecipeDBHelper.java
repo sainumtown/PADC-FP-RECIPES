@@ -95,6 +95,7 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
             RestaurantEntry.COLUMN_BRANCH_NAME + " TEXT NOT NULL, " +
             RestaurantEntry.COLUMN_ADDRESS + " TEXT, " +
             RestaurantEntry.COLUMN_FACEBOOK + " TEXT, " +
+            RestaurantEntry.COLUMN_TOWNSHIP_ID + " TEXT, " +
 
             " UNIQUE (" + RestaurantEntry.COLUMN_RESTAURANT_ID + ") ON CONFLICT IGNORE" +
             " );";
@@ -106,6 +107,14 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
 
             " UNIQUE (" + RestaurantImageEntry.COLUMN_RESTAURANT_ID + ", " +
             RestaurantImageEntry.COLUMN_IMAGE + ") ON CONFLICT IGNORE" +
+            " );";
+
+    private static final String SQL_CREATE_TOWNSHIP_TABLE = "CREATE TABLE " + RecipeContract.TownshipEntry.TABLE_NAME + " (" +
+            RecipeContract.TownshipEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            RecipeContract.TownshipEntry.COLUMN_TOWNSHIP_ID + " TEXT NOT NULL, " +
+            RecipeContract.TownshipEntry.COLUMN_TOWNSHIP_NAME + " TEXT NOT NULL, " +
+
+            " UNIQUE (" + RecipeContract.TownshipEntry.COLUMN_TOWNSHIP_ID + ") ON CONFLICT REPLACE" +
             " );";
 
     public RecipeDBHelper(Context context) {
