@@ -171,11 +171,16 @@ public class RecipeListFragment extends BaseFragment implements LoaderManager.Lo
         if (data != null && data.moveToFirst()) {
             do {
                 RecipeVO recipe = RecipeVO.parseFromCursor(data);
+                // set photo
                 recipe.setPhotos(RecipeVO.loadRecipeImagesByTitle(recipe.getRecipe_title()));
+                // set category
                 recipe.setCategory(RecipeVO.loadCategoryByCategoryId(String.valueOf(recipe.getCategory().getCategory_id())));
+                // set presenter
                 if (recipe.getPresenter().getPresenter_id() != null) {
                     recipe.setPresenter(RecipeVO.loadPresenterByPresenterId(String.valueOf(recipe.getPresenter().getPresenter_id())));
                 }
+                // set ingredients
+                recipe.setIngredients(RecipeVO.loadRecipeIngredientsByRecipeId(String.valueOf(recipe.getRecipe_id())));
 
                 recipeList.add(recipe);
             } while (data.moveToNext());
