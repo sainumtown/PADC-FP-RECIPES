@@ -93,7 +93,7 @@ public class RestaurantListFragment extends BaseFragment  implements LoaderManag
         getActivity().setTitle(R.string.Resturants);
 
         // get restaurant data
-        // RestaurantModel.getInstance().loadRestaurants();
+         RestaurantModel.getInstance().loadRestaurants();
         List<RestaurantVO> restaurantList = new ArrayList<>();
 
         mRestaurantAdapter = new RestaurantAdapter(mControllerRestaurantItem,restaurantList);
@@ -158,7 +158,7 @@ public class RestaurantListFragment extends BaseFragment  implements LoaderManag
         if (data != null && data.moveToFirst()) {
             do {
                 RestaurantVO restaurant = RestaurantVO.parseFromCursor(data);
-                // attraction.setImages(AttractionVO.loadAttractionImagesByTitle(attraction.getTitle()));
+                restaurant.setPhotos(restaurant.loadRestaurantImagesByRestaurantId(restaurant.getRestaurant_id()));
                 restaurantList.add(restaurant);
             } while (data.moveToNext());
         }

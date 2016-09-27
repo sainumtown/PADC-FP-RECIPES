@@ -12,6 +12,7 @@ import com.padc.recipes.data.persistence.RecipeContract.PresenterEntry;
 import com.padc.recipes.data.persistence.RecipeContract.IngredientEntry;
 import com.padc.recipes.data.persistence.RecipeContract.InstructionEntry;
 import com.padc.recipes.data.persistence.RecipeContract.RestaurantEntry;
+import com.padc.recipes.data.persistence.RecipeContract.RestaurantImageEntry;
 import com.padc.recipes.data.responses.RestaurantListResponse;
 
 /**
@@ -98,6 +99,15 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
             " UNIQUE (" + RestaurantEntry.COLUMN_RESTAURANT_ID + ") ON CONFLICT IGNORE" +
             " );";
 
+    private static final String SQL_CREATE_RESTAURANT_IMAGE_TABLE = "CREATE TABLE " + RestaurantImageEntry.TABLE_NAME + " (" +
+            RestaurantImageEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            RestaurantImageEntry.COLUMN_RESTAURANT_ID + " TEXT NOT NULL, " +
+            RestaurantImageEntry.COLUMN_IMAGE + " TEXT NOT NULL, " +
+
+            " UNIQUE (" + RestaurantImageEntry.COLUMN_RESTAURANT_ID + ", " +
+            RestaurantImageEntry.COLUMN_IMAGE + ") ON CONFLICT IGNORE" +
+            " );";
+
     public RecipeDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -112,6 +122,7 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(SQL_CREATE_RECIPES_INGREDIENTS_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_RECIPES_INSTRUCTIONS_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_RESTAURANT_TABLE);
+        sqLiteDatabase.execSQL(SQL_CREATE_RESTAURANT_IMAGE_TABLE);
 
     }
 
@@ -124,6 +135,7 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + IngredientEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + InstructionEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RestaurantEntry.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RestaurantImageEntry.TABLE_NAME);
 
         onCreate(sqLiteDatabase);
     }
