@@ -22,6 +22,7 @@ public class RecipeContract {
     public static final String PATH_PRESENTERS = "presenters";
     public static final String PATH_INGREDIENTS = "ingredients";
     public static final String PATH_RECIPE_INSTRUCTIONS = "recipe_instructions";
+    public static final String PATH_RESTAURANTS = "restaurants";
 
 
     public static final class RecipeEntry implements BaseColumns {
@@ -249,6 +250,50 @@ public class RecipeContract {
         public static String getRecipeIdFromParam(Uri uri) {
             return uri.getQueryParameter(COLUMN_RECIPE_ID);
         }
+    }
 
+    //  Restaurants
+    public static final class RestaurantEntry implements BaseColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_RESTAURANTS).build();
+
+        // return type many
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_RESTAURANTS;
+
+        // return type one
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_RESTAURANTS;
+
+        // 2.  Table name and Column
+        // table name is restaurant
+        public static final String TABLE_NAME = "restaurants";
+
+        public static final String COLUMN_RESTAURANT_ID = "restaurant_id";                          // restaurant id
+        public static final String COLUMN_RESTAURANT_NAME = "restaurant_name";            // name
+        public static final String COLUMN_BRANCH_NAME = "branch_ame";                  // image url
+        public static final String COLUMN_ADDRESS= "address";                         // sort order
+        public static final String COLUMN_PHONE_NUMBER= "phone_number";
+        public static final String COLUMN_FACEBOOK= "facebook";
+
+        // 3 . build for parameter with content uri
+        // generate the contentUri plus table name
+        public static Uri buildRestaurantUri(long id) {
+            // content://com.padc.recipes/restaurants/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildRestaurantWithRestaurantId(String restaurantId) {
+            //content://com.padc.recipes/restaurant/?restaurant_id=2
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_RESTAURANT_ID, restaurantId)
+                    .build();
+        }
+
+        // content://com.padc.recipes/restaurant/?restaurant_id=2
+        // get the parameter from the uri ( parameter is 2)
+        public static String getRecipeIdFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_RESTAURANT_ID);
+        }
     }
 }
