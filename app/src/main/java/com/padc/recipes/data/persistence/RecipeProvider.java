@@ -26,6 +26,8 @@ public class RecipeProvider extends ContentProvider {
     public static final int RESTAURANTS = 106;
     public static final int RESTAURANTS_IMAGES =107;
     public static final int TOWNSHIPS =108;
+    public static final int RESTAURANTS_SERVICE_TIME =109;
+    public static final int RESTAURANTS_RECOMMENDED_FOODS =110;
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private RecipeDBHelper mRecipeDBHelper;
@@ -36,9 +38,12 @@ public class RecipeProvider extends ContentProvider {
     private static final String sPresenterSelectionWithID = RecipeContract.PresenterEntry.COLUMN_PRESENTER_ID + " = ?";
     private static final String sRecipeIngredientWithRecipeID = RecipeContract.IngredientEntry.COLUMN_RECIPE_ID + " = ?";
     private static final String sRecipeInstructionWithRecipeID = RecipeContract.InstructionEntry.COLUMN_RECIPE_ID + " = ?";
+
     private static final String sRestaurantWithRestaurantID = RecipeContract.RestaurantEntry.COLUMN_RESTAURANT_ID + " = ?";
     private static final String sRestaurantImageSelectionWithRestaurantID = RecipeContract.RestaurantImageEntry.COLUMN_RESTAURANT_ID + " = ?";
     private static final String sTownshipWithTownshipId = RecipeContract.TownshipEntry.COLUMN_TOWNSHIP_ID +" = ?";
+    private static final String sRestaurantServiceTimeWithRestaurantIDWithTownshipId = RecipeContract.RestaurantServiceTimeEntry.COLUMN_RESTAURANT_ID +" = ?";
+    private static final String sRestaurantRecommendedFoodsWithTownshipId = RecipeContract.RestaurantRecommendedFoodEntry.COLUMN_RESTAURANT_ID +" = ?";
 
     @Override
     public boolean onCreate() {
@@ -172,6 +177,34 @@ public class RecipeProvider extends ContentProvider {
                     selectionArgs = new String[]{townshipId};
                 }
                 queryCursor = mRecipeDBHelper.getReadableDatabase().query(RecipeContract.TownshipEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+                break;
+            case RESTAURANTS_SERVICE_TIME:
+                String restaurantIdServiceTime = RecipeContract.RestaurantServiceTimeEntry.getRestaurantIdFromParam(uri);
+                if (restaurantIdServiceTime != null) {
+                    selection = sRestaurantServiceTimeWithRestaurantIDWithTownshipId;
+                    selectionArgs = new String[]{restaurantIdServiceTime};
+                }
+                queryCursor = mRecipeDBHelper.getReadableDatabase().query(RecipeContract.RestaurantServiceTimeEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+                break;
+            case RESTAURANTS_RECOMMENDED_FOODS:
+                String townshipIdRecommendedFoods = RecipeContract.RestaurantRecommendedFoodEntry.getRestaurantRecommendedFoodIdFromParam(uri);
+                if (townshipIdRecommendedFoods != null) {
+                    selection = sRestaurantRecommendedFoodsWithTownshipId;
+                    selectionArgs = new String[]{townshipIdRecommendedFoods};
+                }
+                queryCursor = mRecipeDBHelper.getReadableDatabase().query(RecipeContract.RestaurantRecommendedFoodEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -391,6 +424,8 @@ public class RecipeProvider extends ContentProvider {
         uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_RESTAURANTS, RESTAURANTS);
         uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_RESTAURANT_IMAGES, RESTAURANTS_IMAGES);
         uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_TOWNSHIP, TOWNSHIPS);
+        uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_RESTAURANT_SERVICE_TIME, RESTAURANTS_SERVICE_TIME);
+        uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_RESTAURANT_RECOMMENDED_FOODS, RESTAURANTS_RECOMMENDED_FOODS);
 
         return uriMatcher;
     }
@@ -417,6 +452,10 @@ public class RecipeProvider extends ContentProvider {
                 return RecipeContract.RestaurantImageEntry.TABLE_NAME;
             case TOWNSHIPS:
                 return RecipeContract.TownshipEntry.TABLE_NAME;
+            case RESTAURANTS_SERVICE_TIME:
+                return RecipeContract.RestaurantServiceTimeEntry.TABLE_NAME;
+            case RESTAURANTS_RECOMMENDED_FOODS:
+                return RecipeContract.RestaurantRecommendedFoodEntry.TABLE_NAME;
 
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
