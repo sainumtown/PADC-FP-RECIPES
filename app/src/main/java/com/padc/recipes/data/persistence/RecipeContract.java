@@ -270,11 +270,10 @@ public class RecipeContract {
         public static final String TABLE_NAME = "restaurants";
 
         public static final String COLUMN_RESTAURANT_ID = "restaurant_id";                          // restaurant id
-        public static final String COLUMN_RESTAURANT_NAME = "restaurant_name";            // name
-        public static final String COLUMN_BRANCH_NAME = "branch_ame";                  // image url
-        public static final String COLUMN_ADDRESS= "address";                         // sort order
-        public static final String COLUMN_PHONE_NUMBER= "phone_number";
-        public static final String COLUMN_FACEBOOK= "facebook";
+        public static final String COLUMN_RESTAURANT_NAME = "restaurant_name";                      // name
+        public static final String COLUMN_BRANCH_NAME = "branch_ame";                               // branch name
+        public static final String COLUMN_ADDRESS= "address";                                       // address
+        public static final String COLUMN_FACEBOOK= "facebook";                                     // facebook
 
         // 3 . build for parameter with content uri
         // generate the contentUri plus table name
