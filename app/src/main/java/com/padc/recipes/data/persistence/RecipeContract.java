@@ -26,6 +26,8 @@ public class RecipeContract {
     public static final String PATH_RESTAURANTS = "restaurants";
     public static final String PATH_RESTAURANT_IMAGES = "restaurant_images";
     public static final String PATH_TOWNSHIP = "townships";
+    public static final String PATH_RESTAURANT_SERVICE_TIME = "restaurant_service_times";
+    public static final String PATH_RESTAURANT_RECOMMENDED_FOODS = "restaurant_recommended_foods";
 
 
     public static final class RecipeEntry implements BaseColumns {
@@ -332,7 +334,7 @@ public class RecipeContract {
         }
 
     }
-    
+
     public static final class TownshipEntry implements BaseColumns {
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_TOWNSHIP).build();
@@ -362,6 +364,76 @@ public class RecipeContract {
 
         public static String getTownshipIdFromParam(Uri uri) {
             return uri.getQueryParameter(COLUMN_TOWNSHIP_ID);
+        }
+
+    }
+
+    public static final class RestaurantServiceTimeEntry implements BaseColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_RESTAURANT_SERVICE_TIME).build();
+
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_RESTAURANT_SERVICE_TIME;
+
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_RESTAURANT_SERVICE_TIME;
+
+        public static final String TABLE_NAME = "restaurant_serviceTimes";
+
+        public static final String COLUMN_RESTAURANT_ID = "restaurant_id";
+        public static final String COLUMN_START = "start";
+        public static final String COLUMN_FINISH = "finish";
+        public static final String COLUMN_OFF_DAYS = "off_days";
+
+        public static Uri buildRestaurantServiceTimeUri(long id) {
+            // content://com.padc.recipes/restaurant_serviceTimes/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildRestaurantServiceTimesUriWithId(String restaurantId) {
+            //content://com.padc.recipes/restaurant_serviceTimes/?restaurantId=2
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_RESTAURANT_ID, restaurantId)
+                    .build();
+        }
+
+        public static String getRestaurantIdFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_RESTAURANT_ID);
+        }
+
+    }
+
+    public static final class RestaurantRecommendedFoodEntry implements BaseColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_RESTAURANT_RECOMMENDED_FOODS).build();
+
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_RESTAURANT_RECOMMENDED_FOODS;
+
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_RESTAURANT_RECOMMENDED_FOODS;
+
+        public static final String TABLE_NAME = "restaurant_recommended_foods";
+
+        public static final String COLUMN_RESTAURANT_ID = "restaurant_id";
+        public static final String COLUMN_RECIPE_ID = "recipe_id";
+        public static final String COLUMN_RECIPE_NAME = "recipe_name";
+        public static final String COLUMN_PHOTO = "photo";
+
+        public static Uri buildRestaurantRecommendedFoodUri(long id) {
+            // content://com.padc.recipes/restaurant_recommended_foods/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildRestaurantRecommendedFoodUriWithId(String restaurantId) {
+            //content://com.padc.recipes/restaurant_recommended_foods/?resaurantId=2
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_RESTAURANT_ID, restaurantId)
+                    .build();
+        }
+
+        public static String getRestaurantRecommendedFoodIdFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_RESTAURANT_ID);
         }
 
     }
