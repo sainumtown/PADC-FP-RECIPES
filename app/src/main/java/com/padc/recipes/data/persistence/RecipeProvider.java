@@ -22,6 +22,7 @@ public class RecipeProvider extends ContentProvider {
     public static final int PRESENTER = 103;
     public static final int RECIPES_INGREDIENTS = 104;
     public static final int RECIPES_INSTRUCTIONS = 105;
+    public static final int RECIPES_RESTAURANTS = 106;
 
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
@@ -33,6 +34,7 @@ public class RecipeProvider extends ContentProvider {
     private static final String sPresenterSelectionWithID = RecipeContract.PresenterEntry.COLUMN_PRESENTER_ID + " = ?";
     private static final String sRecipeIngredientWithRecipeID = RecipeContract.IngredientEntry.COLUMN_RECIPE_ID + " = ?";
     private static final String sRecipeInstructionWithRecipeID = RecipeContract.InstructionEntry.COLUMN_RECIPE_ID + " = ?";
+    private static final String sRestaurantWithRestaurantID = RecipeContract.RestaurantEntry.COLUMN_RESTAURANT_ID + " = ?";
 
     @Override
     public boolean onCreate() {
@@ -131,6 +133,20 @@ public class RecipeProvider extends ContentProvider {
                         null,
                         sortOrder);
                 break;
+            case RECIPES_RESTAURANTS:
+                String restaurantId = RecipeContract.RestaurantEntry.getRestaurantIdFromParam(uri);
+                if (restaurantId != null) {
+                    selection = sRestaurantWithRestaurantID;
+                    selectionArgs = new String[]{restaurantId};
+                }
+                queryCursor = mRecipeDBHelper.getReadableDatabase().query(RecipeContract.RestaurantEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+                break;
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -159,6 +175,8 @@ public class RecipeProvider extends ContentProvider {
                 return RecipeContract.IngredientEntry.DIR_TYPE;
             case RECIPES_INSTRUCTIONS:
                 return RecipeContract.InstructionEntry.DIR_TYPE;
+            case RECIPES_RESTAURANTS:
+                return RecipeContract.RestaurantEntry.DIR_TYPE;
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -227,9 +245,19 @@ public class RecipeProvider extends ContentProvider {
                 }
                 break;
             }
+            case RECIPES_RESTAURANTS: {
+                long _id = db.insert(RecipeContract.RestaurantEntry.TABLE_NAME, null, contentValues);
+                if (_id > 0) {
+                    insertedUri = RecipeContract.RestaurantEntry.buildRestaurantUri(_id);
+                } else {
+                    throw new SQLException("Failed to insert row into " + uri);
+                }
+                break;
+            }
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
+
 
         Context context = getContext();
         if (context != null) {
@@ -304,6 +332,7 @@ public class RecipeProvider extends ContentProvider {
         uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_PRESENTERS, PRESENTER);
         uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_INGREDIENTS, RECIPES_INGREDIENTS);
         uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_RECIPE_INSTRUCTIONS, RECIPES_INSTRUCTIONS);
+        uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_RESTAURANTS, RECIPES_RESTAURANTS);
 
         return uriMatcher;
     }
@@ -324,6 +353,8 @@ public class RecipeProvider extends ContentProvider {
                 return RecipeContract.IngredientEntry.TABLE_NAME;
             case RECIPES_INSTRUCTIONS:
                 return RecipeContract.InstructionEntry.TABLE_NAME;
+            case RECIPES_RESTAURANTS:
+                return RecipeContract.RestaurantEntry.TABLE_NAME;
 
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
