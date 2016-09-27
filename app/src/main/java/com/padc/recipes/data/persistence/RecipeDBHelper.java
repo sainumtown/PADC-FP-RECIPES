@@ -1,7 +1,6 @@
 package com.padc.recipes.data.persistence;
 
 import android.content.Context;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -13,7 +12,6 @@ import com.padc.recipes.data.persistence.RecipeContract.IngredientEntry;
 import com.padc.recipes.data.persistence.RecipeContract.InstructionEntry;
 import com.padc.recipes.data.persistence.RecipeContract.RestaurantEntry;
 import com.padc.recipes.data.persistence.RecipeContract.RestaurantImageEntry;
-import com.padc.recipes.data.responses.RestaurantListResponse;
 
 /**
  * Created by sainumtown on 9/36/16.
@@ -117,6 +115,28 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
             " UNIQUE (" + RecipeContract.TownshipEntry.COLUMN_TOWNSHIP_ID + ") ON CONFLICT REPLACE" +
             " );";
 
+    private static final String SQL_CREATE_RESTAURANT_SERVICE_TIME_TABLE = "CREATE TABLE " + RecipeContract.RestaurantServiceTimeEntry.TABLE_NAME + " (" +
+            RecipeContract.RestaurantServiceTimeEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            RecipeContract.RestaurantServiceTimeEntry.COLUMN_RESTAURANT_ID+ " TEXT NOT NULL, " +
+            RecipeContract.RestaurantServiceTimeEntry.COLUMN_START + " TEXT NOT NULL, " +
+            RecipeContract.RestaurantServiceTimeEntry.COLUMN_FINISH + " TEXT NOT NULL, " +
+            RecipeContract.RestaurantServiceTimeEntry.COLUMN_OFF_DAYS + " TEXT , " +
+
+            " UNIQUE (" + RecipeContract.RestaurantServiceTimeEntry.COLUMN_RESTAURANT_ID + ", " +
+            RestaurantImageEntry.COLUMN_IMAGE + ") ON CONFLICT IGNORE" +
+            " );";
+
+    private static final String SQL_CREATE_RESTAURANT_RECOMMENDED_FOODS_TABLE = "CREATE TABLE " + RecipeContract.RestaurantRecommendedFoodEntry.TABLE_NAME + " (" +
+            RecipeContract.RestaurantRecommendedFoodEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            RecipeContract.RestaurantRecommendedFoodEntry.COLUMN_RESTAURANT_ID + " TEXT NOT NULL, " +
+            RecipeContract.RestaurantRecommendedFoodEntry.COLUMN_RECIPE_ID + " TEXT NOT NULL, " +
+            RecipeContract.RestaurantRecommendedFoodEntry.COLUMN_RECIPE_NAME + " TEXT NOT NULL, " +
+            RecipeContract.RestaurantRecommendedFoodEntry.COLUMN_PHOTO + " TEXT , " +
+
+            " UNIQUE (" + RecipeContract.RestaurantRecommendedFoodEntry.COLUMN_RESTAURANT_ID + ", " +
+            RecipeContract.RestaurantRecommendedFoodEntry.COLUMN_RECIPE_ID + ") ON CONFLICT IGNORE" +
+            " );";
+
     public RecipeDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -133,6 +153,8 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(SQL_CREATE_RESTAURANT_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_RESTAURANT_IMAGE_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_TOWNSHIP_TABLE);
+        sqLiteDatabase.execSQL(SQL_CREATE_RESTAURANT_SERVICE_TIME_TABLE);
+        sqLiteDatabase.execSQL(SQL_CREATE_RESTAURANT_RECOMMENDED_FOODS_TABLE);
 
     }
 
@@ -147,6 +169,8 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RestaurantEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RestaurantImageEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RecipeContract.TownshipEntry.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RecipeContract.RestaurantServiceTimeEntry.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RecipeContract.RestaurantRecommendedFoodEntry.TABLE_NAME);
 
         onCreate(sqLiteDatabase);
     }
