@@ -182,6 +182,9 @@ public class RecipeListFragment extends BaseFragment implements LoaderManager.Lo
                 // set ingredients
                 recipe.setIngredients(RecipeVO.loadRecipeIngredientsByRecipeId(String.valueOf(recipe.getRecipe_id())));
 
+                // set instructions
+                recipe.setInstructions(RecipeVO.loadRecipeInstructionsByRecipeId(String.valueOf(recipe.getRecipe_id())));
+
                 recipeList.add(recipe);
             } while (data.moveToNext());
         }

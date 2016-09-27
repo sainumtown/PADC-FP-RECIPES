@@ -127,6 +127,10 @@ public class RecipeVO {
         this.ingredients = ingredients;
     }
 
+    public void setInstructions(List<InstructionVO> instructions) {
+        this.instructions = instructions;
+    }
+
     public static void saveRecipes(List<RecipeVO> recipeList) {
         Context context = RecipesApp.getContext();
         ContentValues[] recipeCVs = new ContentValues[recipeList.size()];
@@ -149,6 +153,10 @@ public class RecipeVO {
             // insert into ingredients
             //Bulk insert into recipes_ingredients.
             RecipeVO.saveRecipeIngredients(recipe.recipe_id, recipe.getIngredients());
+
+            // insert into instructions
+            //Bulk insert into recipes_instructions.
+            RecipeVO.saveRecipeInstructions(recipe.recipe_id, recipe.getInstructions());
 
         }
 
@@ -338,5 +346,46 @@ public class RecipeVO {
         }
 
         return ingredients;
+    }
+
+    private static void saveRecipeInstructions(int recipe_id, List<InstructionVO> instructions) {
+        ContentValues[] recipeInstructionCVs = new ContentValues[instructions.size()];
+        for (int index = 0; index < instructions.size(); index++) {
+            InstructionVO instruction = instructions.get(index);
+
+            ContentValues cv = new ContentValues();
+            cv.put(RecipeContract.InstructionEntry.COLUMN_RECIPE_ID, recipe_id);
+            cv.put(RecipeContract.InstructionEntry.COLUMN_INSTRUCTION_DESC, instruction.getInstruction_desc());
+            cv.put(RecipeContract.InstructionEntry.COLUMN_SORT_ORDER, instruction.getSort_order());
+            cv.put(RecipeContract.InstructionEntry.COLUMN_INSTRUCTION_IMAGE, instruction.getInstruction_image());
+
+            recipeInstructionCVs[index] = cv;
+        }
+
+        Context context = RecipesApp.getContext();
+        int insertedCount = context.getContentResolver().bulkInsert(RecipeContract.InstructionEntry.CONTENT_URI, recipeInstructionCVs);
+        Log.d(RecipesApp.TAG, "Bulk inserted into recipes_instructions table : " + insertedCount);
+    }
+
+    public static List<InstructionVO> loadRecipeInstructionsByRecipeId(String recipe_id) {
+        Context context = RecipesApp.getContext();
+        ArrayList<InstructionVO> instructions = new ArrayList<>();
+
+        Cursor cursor = context.getContentResolver().query(RecipeContract.InstructionEntry.buildInstructionWithRecipeId(recipe_id),
+                null, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                InstructionVO instruction = new InstructionVO();
+                instruction.setInstruction_desc(cursor.getString(cursor.getColumnIndex(RecipeContract.InstructionEntry.COLUMN_INSTRUCTION_DESC)));
+                instruction.setInstruction_image(cursor.getString(cursor.getColumnIndex(RecipeContract.InstructionEntry.COLUMN_INSTRUCTION_IMAGE)));
+                instruction.setSort_order(Integer.parseInt(cursor.getString(cursor.getColumnIndex(RecipeContract.InstructionEntry.COLUMN_SORT_ORDER))));
+
+                instructions.add(instruction);
+
+            } while (cursor.moveToNext());
+        }
+
+        return instructions;
     }
 }
