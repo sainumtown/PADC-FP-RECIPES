@@ -21,6 +21,7 @@ public class RecipeProvider extends ContentProvider {
     public static final int CATEGORY = 102;
     public static final int PRESENTER = 103;
     public static final int RECIPES_INGREDIENTS = 104;
+    public static final int RECIPES_INSTRUCTIONS = 105;
 
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
@@ -31,6 +32,7 @@ public class RecipeProvider extends ContentProvider {
     private static final String sCategorySelectionWithID = RecipeContract.CategoryEntry.COLUMN_CATEGORY_ID + " = ?";
     private static final String sPresenterSelectionWithID = RecipeContract.PresenterEntry.COLUMN_PRESENTER_ID + " = ?";
     private static final String sRecipeIngredientWithRecipeID = RecipeContract.IngredientEntry.COLUMN_RECIPE_ID + " = ?";
+    private static final String sRecipeInstructionWithRecipeID = RecipeContract.InstructionEntry.COLUMN_RECIPE_ID + " = ?";
 
     @Override
     public boolean onCreate() {
@@ -115,6 +117,20 @@ public class RecipeProvider extends ContentProvider {
                         null,
                         sortOrder);
                 break;
+            case RECIPES_INSTRUCTIONS:
+                String recipeIdInstruction = RecipeContract.InstructionEntry.getRecipeIdFromParam(uri);
+                if (recipeIdInstruction != null) {
+                    selection = sRecipeInstructionWithRecipeID;
+                    selectionArgs = new String[]{recipeIdInstruction};
+                }
+                queryCursor = mRecipeDBHelper.getReadableDatabase().query(RecipeContract.InstructionEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+                break;
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -141,6 +157,8 @@ public class RecipeProvider extends ContentProvider {
                 return RecipeContract.PresenterEntry.ITEM_TYPE;
             case RECIPES_INGREDIENTS:
                 return RecipeContract.IngredientEntry.DIR_TYPE;
+            case RECIPES_INSTRUCTIONS:
+                return RecipeContract.InstructionEntry.DIR_TYPE;
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -195,6 +213,15 @@ public class RecipeProvider extends ContentProvider {
                 long _id = db.insert(RecipeContract.IngredientEntry.TABLE_NAME, null, contentValues);
                 if (_id > 0) {
                     insertedUri = RecipeContract.IngredientEntry.buildIngredientUri(_id);
+                } else {
+                    throw new SQLException("Failed to insert row into " + uri);
+                }
+                break;
+            }
+            case RECIPES_INSTRUCTIONS: {
+                long _id = db.insert(RecipeContract.InstructionEntry.TABLE_NAME, null, contentValues);
+                if (_id > 0) {
+                    insertedUri = RecipeContract.InstructionEntry.buildInstructionUri(_id);
                 } else {
                     throw new SQLException("Failed to insert row into " + uri);
                 }
@@ -276,6 +303,7 @@ public class RecipeProvider extends ContentProvider {
         uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_CATEGORIES, CATEGORY);
         uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_PRESENTERS, PRESENTER);
         uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_INGREDIENTS, RECIPES_INGREDIENTS);
+        uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_RECIPE_INSTRUCTIONS, RECIPES_INSTRUCTIONS);
 
         return uriMatcher;
     }
@@ -294,6 +322,8 @@ public class RecipeProvider extends ContentProvider {
                 return RecipeContract.PresenterEntry.TABLE_NAME;
             case RECIPES_INGREDIENTS:
                 return RecipeContract.IngredientEntry.TABLE_NAME;
+            case RECIPES_INSTRUCTIONS:
+                return RecipeContract.InstructionEntry.TABLE_NAME;
 
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
