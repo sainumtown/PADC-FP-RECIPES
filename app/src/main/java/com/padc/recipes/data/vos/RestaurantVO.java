@@ -3,6 +3,8 @@ package com.padc.recipes.data.vos;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.gson.annotations.SerializedName;
@@ -99,6 +101,18 @@ public class RestaurantVO {
         this.photos = photos;
     }
 
+    public void setTownship(TownshipVO township) {
+        this.township = township;
+    }
+
+    public void setService_time(ServiceTimeVO service_time) {
+        this.service_time = service_time;
+    }
+
+    public void setMost_popular_recipes(List<MostPopularRecipeVO> most_popular_recipes) {
+        this.most_popular_recipes = most_popular_recipes;
+    }
+
     public static void saveRestaurants(List<RestaurantVO> restaurantList) {
         Context context = RecipesApp.getContext();
         ContentValues[] restaurantCVs = new ContentValues[restaurantList.size()];
@@ -108,6 +122,11 @@ public class RestaurantVO {
 
             //Bulk insert into restaurant_images.
             RestaurantVO.saveRestaurantImages(restaurant.getRestaurant_id(), restaurant.getPhotos());
+
+            // insert into township
+            if (restaurant.getTownship() != null) {
+                restaurant.saveTownship(restaurant.township);
+            }
         }
 
         //Bulk insert into restaurants.
@@ -125,6 +144,7 @@ public class RestaurantVO {
         cv.put(RecipeContract.RestaurantEntry.COLUMN_BRANCH_NAME, branch_name);
         cv.put(RecipeContract.RestaurantEntry.COLUMN_ADDRESS, address);
         cv.put(RecipeContract.RestaurantEntry.COLUMN_FACEBOOK, facebook);
+        cv.put(RecipeContract.RestaurantEntry.COLUMN_TOWNSHIP_ID, getTownship().getTownship_id());
 
         return cv;
     }
@@ -176,5 +196,37 @@ public class RestaurantVO {
         String[] imageArray = new String[images.size()];
         images.toArray(imageArray);
         return imageArray;
+    }
+
+    private void saveTownship(TownshipVO township) {
+        ContentValues categoryCV = new ContentValues();
+
+        categoryCV.put(RecipeContract.TownshipEntry.COLUMN_TOWNSHIP_ID, township.getTownship_id());
+        categoryCV.put(RecipeContract.TownshipEntry.COLUMN_TOWNSHIP_NAME, township.getTownship_name());
+
+        Context context = RecipesApp.getContext();
+        Uri insertedUri = context.getContentResolver().insert(RecipeContract.TownshipEntry.CONTENT_URI, categoryCV);
+
+        Log.d(RecipesApp.TAG, "Township Inserted Uri : " + insertedUri);
+
+    }
+
+    public TownshipVO loadTownshipByTownshipId(String townshipId) {
+        Context context = RecipesApp.getContext();
+        TownshipVO township = new TownshipVO();
+
+        Cursor cursor = context.getContentResolver().query(RecipeContract.TownshipEntry.buildTownshipUriWithId(townshipId),
+                null, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+
+                township.setTownship_id(Integer.parseInt(cursor.getString(cursor.getColumnIndex(RecipeContract.TownshipEntry.COLUMN_TOWNSHIP_ID))));
+                township.setTownship_name(cursor.getString(cursor.getColumnIndex(RecipeContract.TownshipEntry.COLUMN_TOWNSHIP_NAME)));
+
+            } while (cursor.moveToNext());
+        }
+
+        return township;
     }
 }

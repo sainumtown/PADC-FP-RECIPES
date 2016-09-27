@@ -278,7 +278,6 @@ public class RecipeVO {
             } while (cursor.moveToNext());
         }
 
-
         return category;
     }
 

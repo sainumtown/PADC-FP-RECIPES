@@ -159,6 +159,10 @@ public class RestaurantListFragment extends BaseFragment  implements LoaderManag
             do {
                 RestaurantVO restaurant = RestaurantVO.parseFromCursor(data);
                 restaurant.setPhotos(restaurant.loadRestaurantImagesByRestaurantId(restaurant.getRestaurant_id()));
+                // set township
+                if (restaurant.getTownship() != null) {
+                    restaurant.setTownship(restaurant.loadTownshipByTownshipId(String.valueOf(restaurant.getTownship().getTownship_id())));
+                }
                 restaurantList.add(restaurant);
             } while (data.moveToNext());
         }
