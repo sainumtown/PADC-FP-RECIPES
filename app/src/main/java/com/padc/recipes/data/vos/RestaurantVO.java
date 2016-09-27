@@ -158,6 +158,11 @@ public class RestaurantVO {
         restaurant.address =data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_ADDRESS));
         restaurant.facebook = data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_FACEBOOK));
 
+        int townshipId = Integer.parseInt(data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_TOWNSHIP_ID)));
+        TownshipVO township = new TownshipVO();
+        township.setTownship_id(townshipId);
+        restaurant.township = township;
+
         return restaurant;
     }
 
@@ -199,13 +204,13 @@ public class RestaurantVO {
     }
 
     private void saveTownship(TownshipVO township) {
-        ContentValues categoryCV = new ContentValues();
+        ContentValues townshipCV = new ContentValues();
 
-        categoryCV.put(RecipeContract.TownshipEntry.COLUMN_TOWNSHIP_ID, township.getTownship_id());
-        categoryCV.put(RecipeContract.TownshipEntry.COLUMN_TOWNSHIP_NAME, township.getTownship_name());
+        townshipCV.put(RecipeContract.TownshipEntry.COLUMN_TOWNSHIP_ID, township.getTownship_id());
+        townshipCV.put(RecipeContract.TownshipEntry.COLUMN_TOWNSHIP_NAME, township.getTownship_name());
 
         Context context = RecipesApp.getContext();
-        Uri insertedUri = context.getContentResolver().insert(RecipeContract.TownshipEntry.CONTENT_URI, categoryCV);
+        Uri insertedUri = context.getContentResolver().insert(RecipeContract.TownshipEntry.CONTENT_URI, townshipCV);
 
         Log.d(RecipesApp.TAG, "Township Inserted Uri : " + insertedUri);
 
