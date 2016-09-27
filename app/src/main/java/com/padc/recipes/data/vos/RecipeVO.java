@@ -123,6 +123,10 @@ public class RecipeVO {
         this.tags = tags;
     }
 
+    public void setIngredients(List<IngredientVO> ingredients) {
+        this.ingredients = ingredients;
+    }
+
     public static void saveRecipes(List<RecipeVO> recipeList) {
         Context context = RecipesApp.getContext();
         ContentValues[] recipeCVs = new ContentValues[recipeList.size()];
@@ -137,8 +141,8 @@ public class RecipeVO {
             RecipeVO.saveCategory(recipe.category);
 
             // insert into presenter
-            if(recipe.getPresenter().getPresenter_id() != null &&
-                    !TextUtils.isEmpty(recipe.getPresenter().getPresenter_id())){
+            if (recipe.getPresenter().getPresenter_id() != null &&
+                    !TextUtils.isEmpty(recipe.getPresenter().getPresenter_id())) {
                 RecipeVO.savePresenter(recipe.presenter);
             }
 
@@ -311,5 +315,28 @@ public class RecipeVO {
         int insertedCount = context.getContentResolver().bulkInsert(RecipeContract.IngredientEntry.CONTENT_URI, recipeIngredientCVs);
         Log.d(RecipesApp.TAG, "Bulk inserted into recipes_ingredients table : " + insertedCount);
 
+    }
+
+    public static List<IngredientVO> loadRecipeIngredientsByRecipeId(String recipe_id) {
+        Context context = RecipesApp.getContext();
+        ArrayList<IngredientVO> ingredients = new ArrayList<>();
+
+        Cursor cursor = context.getContentResolver().query(RecipeContract.IngredientEntry.buildIngredientWithRecipeId(recipe_id),
+                null, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                IngredientVO ingredient = null;
+                ingredient.setIngredient_id(cursor.getColumnIndex(RecipeContract.IngredientEntry.COLUMN_INGREDIENT_ID));
+                ingredient.setIngredient_name(cursor.getString(cursor.getColumnIndex(RecipeContract.IngredientEntry.COLUMN_INGREDIENT_NAME)));
+                ingredient.setNote(cursor.getString(cursor.getColumnIndex(RecipeContract.IngredientEntry.COLUMN_NOTE)));
+                ingredient.setMeasurement(cursor.getString(cursor.getColumnIndex(RecipeContract.IngredientEntry.COLUMN_MEASUREMENT)));
+                ingredient.setImage(cursor.getString(cursor.getColumnIndex(RecipeContract.IngredientEntry.COLUMN_IMAGE_URL)));
+                ingredients.add(ingredient);
+
+            } while (cursor.moveToNext());
+        }
+
+        return ingredients;
     }
 }
