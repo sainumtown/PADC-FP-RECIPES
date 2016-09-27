@@ -21,6 +21,7 @@ public class RecipeContract {
     public static final String PATH_RECIPE_IMAGES = "recipe_images";
     public static final String PATH_CATEGORIES = "categories";
     public static final String PATH_PRESENTERS = "presenters";
+    public static final String PATH_INGREDIENTS = "ingredients";
 
 
     public static final class RecipeEntry implements BaseColumns {
@@ -127,9 +128,7 @@ public class RecipeContract {
         }
 
     }
-
-
-
+    // Presenter
     public static final class PresenterEntry implements BaseColumns{
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_PRESENTERS).build();
@@ -160,6 +159,18 @@ public class RecipeContract {
         public static String getPresenterIDFromParam(Uri uri) {
             return uri.getQueryParameter(COLUMN_PRESENTER_ID);
         }
+    }
+    // ingredients
+    public  static final class IngredientEntry implements BaseColumns{
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_INGREDIENTS).build();
 
+        public static  final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE+ "/" + CONTENT_AUTHORITY+"/" + PATH_INGREDIENTS;
+
+        public static  final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE+ "/" + CONTENT_AUTHORITY+"/" + PATH_INGREDIENTS;
+
+        
     }
 }
