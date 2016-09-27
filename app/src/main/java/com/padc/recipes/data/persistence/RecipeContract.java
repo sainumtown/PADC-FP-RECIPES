@@ -181,7 +181,7 @@ public class RecipeContract {
         public static final String COLUMN_RECIPE_ID = "recipe_id";                      // recipe id
         public static final String COLUMN_INGREDIENT_ID = "ingredient_id";              // id
         public static final String COLUMN_INGREDIENT_NAME = "ingredient_name";          // name
-        public static final String COLUMN_MEASUREMENT = "ingredient_name";              // measurement
+        public static final String COLUMN_MEASUREMENT = "measurement";                  // measurement
         public static final String COLUMN_NOTE = "note";                                // note
         public static final String COLUMN_IMAGE_URL = "image_url";                      // image url
 
