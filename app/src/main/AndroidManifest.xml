@@ -22,13 +22,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.RecipesDetailScreenActivity">
+        <activity android:name=".activities.RecipesDetailScreenActivity"
+                  android:parentActivityName=".activities.HomeActivity"
+                  android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".activities.ResturantDetailScreenActivity">
+        <activity android:name=".activities.ResturantDetailScreenActivity"
+                  android:parentActivityName=".activities.HomeActivity"
+                  android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity android:name=".activities.SearchActivity"></activity>
     </application>
+
 
 </manifest>
