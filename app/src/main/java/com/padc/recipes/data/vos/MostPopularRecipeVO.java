@@ -27,4 +27,16 @@ public class MostPopularRecipeVO {
     public String[] getPhotos() {
         return photos;
     }
+
+    public void setRecipe_id(int recipe_id) {
+        this.recipe_id = recipe_id;
+    }
+
+    public void setRecipe_name(String recipe_name) {
+        this.recipe_name = recipe_name;
+    }
+
+    public void setPhotos(String[] photos) {
+        this.photos = photos;
+    }
 }

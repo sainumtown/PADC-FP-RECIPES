@@ -127,6 +127,12 @@ public class RestaurantVO {
             if (restaurant.getTownship() != null) {
                 restaurant.saveTownship(restaurant.township);
             }
+
+            // insert into service times
+            RestaurantVO.saveRestaurantServiceTime(restaurant);
+
+            // insert into recommended foods
+            RestaurantVO.saveRestaurantRecommendedFoods(restaurant);
         }
 
         //Bulk insert into restaurants.
@@ -134,6 +140,39 @@ public class RestaurantVO {
 
         Log.d(RecipesApp.TAG, "Bulk inserted into restaurant table : " + insertedCount);
 
+    }
+
+    private static void saveRestaurantRecommendedFoods(RestaurantVO restaurant) {
+        ContentValues[] restaurantReommendedFoodsCVs = new ContentValues[restaurant.getMost_popular_recipes().size()];
+        for (int index = 0; index < restaurant.getMost_popular_recipes().size(); index++) {
+            MostPopularRecipeVO recipe = restaurant.getMost_popular_recipes().get(index);
+
+            ContentValues cv = new ContentValues();
+            cv.put(RecipeContract.RestaurantRecommendedFoodEntry.COLUMN_RESTAURANT_ID, restaurant.getRestaurant_id());
+            cv.put(RecipeContract.RestaurantRecommendedFoodEntry.COLUMN_RECIPE_NAME, recipe.getRecipe_name());
+            cv.put(RecipeContract.RestaurantRecommendedFoodEntry.COLUMN_RECIPE_ID, recipe.getRecipe_id());
+            cv.put(RecipeContract.RestaurantRecommendedFoodEntry.COLUMN_PHOTO, recipe.getPhotos()[0]);
+
+            restaurantReommendedFoodsCVs[index] = cv;
+        }
+
+        Context context = RecipesApp.getContext();
+        int insertedCount = context.getContentResolver().bulkInsert(RecipeContract.RestaurantRecommendedFoodEntry.CONTENT_URI, restaurantReommendedFoodsCVs);
+        Log.d(RecipesApp.TAG, "Bulk inserted into restaurants_recommended_foods table : " + insertedCount);
+    }
+
+    private static void saveRestaurantServiceTime(RestaurantVO restaurant) {
+        ContentValues restaurantServiceTimeCV = new ContentValues();
+
+
+        restaurantServiceTimeCV.put(RecipeContract.RestaurantServiceTimeEntry.COLUMN_RESTAURANT_ID, restaurant.getRestaurant_id());
+        restaurantServiceTimeCV.put(RecipeContract.RestaurantServiceTimeEntry.COLUMN_START, restaurant.getService_time().getStart());
+        restaurantServiceTimeCV.put(RecipeContract.RestaurantServiceTimeEntry.COLUMN_FINISH, restaurant.getService_time().getFinish());
+
+        Context context = RecipesApp.getContext();
+        Uri insertedUri = context.getContentResolver().insert(RecipeContract.RestaurantServiceTimeEntry.CONTENT_URI, restaurantServiceTimeCV);
+
+        Log.d(RecipesApp.TAG, "Township Inserted Uri : " + insertedUri);
     }
 
     private ContentValues parseToContentValues() {
@@ -155,7 +194,7 @@ public class RestaurantVO {
         restaurant.restaurant_id = Integer.parseInt(data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_RESTAURANT_ID)));
         restaurant.restaurant_name = data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_RESTAURANT_NAME));
         restaurant.branch_name = data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_BRANCH_NAME));
-        restaurant.address =data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_ADDRESS));
+        restaurant.address = data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_ADDRESS));
         restaurant.facebook = data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_FACEBOOK));
 
         int townshipId = Integer.parseInt(data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_TOWNSHIP_ID)));
@@ -233,5 +272,50 @@ public class RestaurantVO {
         }
 
         return township;
+    }
+
+    public ServiceTimeVO loadRestaurantServiceTimeByRestaurantId(int restaurant_id) {
+
+        Context context = RecipesApp.getContext();
+        ServiceTimeVO serviceTime = new ServiceTimeVO();
+
+        Cursor cursor = context.getContentResolver().query(RecipeContract.RestaurantServiceTimeEntry.buildRestaurantServiceTimesUriWithId(String.valueOf(restaurant_id)),
+                null, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+
+                serviceTime.setStart(cursor.getString(cursor.getColumnIndex(RecipeContract.RestaurantServiceTimeEntry.COLUMN_START)));
+                serviceTime.setFinish(cursor.getString(cursor.getColumnIndex(RecipeContract.RestaurantServiceTimeEntry.COLUMN_START)));
+
+            } while (cursor.moveToNext());
+        }
+
+        return serviceTime;
+    }
+
+    public List<MostPopularRecipeVO> loadRestaurantRecommendedFoodByRestaurantId(int restaurant_id) {
+        Context context = RecipesApp.getContext();
+        ArrayList<MostPopularRecipeVO> mostPopularRecipes = new ArrayList<>();
+
+        Cursor cursor = context.getContentResolver().query(RecipeContract.RestaurantRecommendedFoodEntry.buildRestaurantRecommendedFoodUriWithId(String.valueOf(restaurant_id)),
+                null, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                MostPopularRecipeVO mostPopularRecipe = new MostPopularRecipeVO();
+                mostPopularRecipe.setRecipe_id(Integer.parseInt(cursor.getString(cursor.getColumnIndex(RecipeContract.RestaurantRecommendedFoodEntry.COLUMN_RECIPE_ID))));
+                mostPopularRecipe.setRecipe_name(cursor.getString(cursor.getColumnIndex(RecipeContract.RestaurantRecommendedFoodEntry.COLUMN_RECIPE_NAME)));
+
+                String photo = cursor.getString(cursor.getColumnIndex(RecipeContract.RestaurantRecommendedFoodEntry.COLUMN_PHOTO));
+                String[] photos = {photo};
+                mostPopularRecipe.setPhotos(photos);
+
+                mostPopularRecipes.add(mostPopularRecipe);
+
+            } while (cursor.moveToNext());
+        }
+
+        return mostPopularRecipes;
     }
 }
