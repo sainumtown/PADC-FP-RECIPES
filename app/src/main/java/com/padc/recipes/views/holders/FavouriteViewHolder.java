@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.padc.recipes.R;
+import com.padc.recipes.data.vos.RecipeVO;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,9 +20,10 @@ public class FavouriteViewHolder  extends RecyclerView.ViewHolder implements Vie
     TextView tvFavouriteTitle;
 
     @BindView(R.id.iv_favourite_photo)
-    ImageView ivRestaurnatPhoto;
+    ImageView ivFavouritePhoto;
 
     private ControllerFavouriteItem mController;
+    private RecipeVO mRecipe;
 
     public FavouriteViewHolder(View itemView, ControllerFavouriteItem mControllerItem) {
         super(itemView);
@@ -33,6 +35,11 @@ public class FavouriteViewHolder  extends RecyclerView.ViewHolder implements Vie
     @Override
     public void onClick(View view) {
         mController.onTapFavourite();
+    }
+
+    public void bindData(RecipeVO recipe) {
+        mRecipe = recipe;
+        tvFavouriteTitle.setText(recipe.getRecipe_title());
     }
 
     public interface ControllerFavouriteItem {
