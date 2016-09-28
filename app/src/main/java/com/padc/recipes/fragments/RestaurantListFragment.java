@@ -179,7 +179,6 @@ public class RestaurantListFragment extends BaseFragment implements LoaderManage
 
         RestaurantModel.getInstance().setStoredData(restaurantList);
 
-
     }
 
     @Override

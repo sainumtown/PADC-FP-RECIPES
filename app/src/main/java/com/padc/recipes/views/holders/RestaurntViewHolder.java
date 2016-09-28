@@ -9,6 +9,8 @@ import com.padc.recipes.R;
 import com.padc.recipes.RecipesApp;
 import com.padc.recipes.data.vos.RestaurantVO;
 
+import java.util.Arrays;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -53,13 +55,15 @@ public class RestaurntViewHolder extends RecyclerView.ViewHolder implements View
 
     public void bindData(RestaurantVO restaurantVO) {
         mRestaurant = restaurantVO;
+
         tvRestaurantTitle.setText(mRestaurant.getRestaurant_name());
         tvAddress.setText(mRestaurant.getAddress());
+        String phoneNumber = Arrays.toString(mRestaurant.getPhone_number()).substring(1,Arrays.toString(mRestaurant.getPhone_number()).length()-1);
+        tvPhone.setText(phoneNumber);
 
         if (mRestaurant.getService_time() != null) {
-            String serviceTime = RecipesApp.getContext().getString(R.string.lbl_morning) + " " + mRestaurant.getService_time().getStart()
-                    + RecipesApp.getContext().getString(R.string.lbl_from) + " " + RecipesApp.getContext().getString(R.string.lbl_end)
-                    + " " + mRestaurant.getService_time().getFinish();
+            String serviceTime = mRestaurant.getService_time().getStart() + " "
+                    + RecipesApp.getContext().getString(R.string.lbl_from) + " " +  mRestaurant.getService_time().getFinish();
             tvOpenCloseTime.setText(serviceTime);
         }
 
