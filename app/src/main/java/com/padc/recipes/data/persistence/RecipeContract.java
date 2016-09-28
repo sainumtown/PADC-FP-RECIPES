@@ -62,6 +62,17 @@ public class RecipeContract {
                     .build();
         }
 
+        public static Uri buildRecipeUriWithId(String recipeId) {
+            //content://com.padc.recipes/recipes?recipe_id="1"
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_ID, recipeId)
+                    .build();
+        }
+
+        public static String getIdFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_ID);
+        }
+
         public static String getTitleFromParam(Uri uri) {
             return uri.getQueryParameter(COLUMN_TITLE);
         }
@@ -282,6 +293,7 @@ public class RecipeContract {
         public static final String COLUMN_ADDRESS= "address";                                       // address
         public static final String COLUMN_FACEBOOK= "facebook";                                     // facebook
         public static final String COLUMN_TOWNSHIP_ID= "township_id";                               // townshipId
+        public static final String COLUMN_DESCRIPTION = "description";
 
         // 3 . build for parameter with content uri
         // generate the contentUri plus table name

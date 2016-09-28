@@ -53,7 +53,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
 
     @Override
     public void onClick(View view) {
-        mController.onTapRecipe();
+        mController.onTapRecipe(String.valueOf(mRecipe.getRecipe_id()));
     }
 
     public void bindData(RecipeVO recipe) {
@@ -67,7 +67,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
     }
 
     public interface ControllerRecipeItem{
-        void onTapRecipe();
+        void onTapRecipe(String recipeId);
         void onTapFavourite(String recipeId);
     }
 

@@ -96,6 +96,7 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
             RestaurantEntry.COLUMN_ADDRESS + " TEXT, " +
             RestaurantEntry.COLUMN_FACEBOOK + " TEXT, " +
             RestaurantEntry.COLUMN_TOWNSHIP_ID + " TEXT, " +
+            RestaurantEntry.COLUMN_DESCRIPTION + " TEXT, " +
 
             " UNIQUE (" + RestaurantEntry.COLUMN_RESTAURANT_ID + ") ON CONFLICT IGNORE" +
             " );";
