@@ -51,7 +51,7 @@ import de.greenrobot.event.EventBus;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RestaurantListFragment extends BaseFragment  implements LoaderManager.LoaderCallbacks<Cursor> {
+public class RestaurantListFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     @BindView(R.id.rv_restaurants)
     RecyclerView rvRestaurant;
@@ -93,10 +93,10 @@ public class RestaurantListFragment extends BaseFragment  implements LoaderManag
         getActivity().setTitle(R.string.Resturants);
 
         // get restaurant data
-         RestaurantModel.getInstance().loadRestaurants();
+        RestaurantModel.getInstance().loadRestaurants();
         List<RestaurantVO> restaurantList = new ArrayList<>();
 
-        mRestaurantAdapter = new RestaurantAdapter(mControllerRestaurantItem,restaurantList);
+        mRestaurantAdapter = new RestaurantAdapter(mControllerRestaurantItem, restaurantList);
         rvRestaurant.setAdapter(mRestaurantAdapter);
 
         int gridColumnSpanCount = 1;
@@ -125,6 +125,7 @@ public class RestaurantListFragment extends BaseFragment  implements LoaderManag
         super.onActivityCreated(savedInstanceState);
         getActivity().getSupportLoaderManager().initLoader(RecipeAppConstants.RESTAURANT_LIST_LOADER, null, this);
     }
+
     @Override
     public void onStop() {
         super.onStop();
@@ -164,14 +165,10 @@ public class RestaurantListFragment extends BaseFragment  implements LoaderManag
                     restaurant.setTownship(restaurant.loadTownshipByTownshipId(String.valueOf(restaurant.getTownship().getTownship_id())));
                 }
                 // set servicetime
-                if(restaurant.getService_time() !=null){
-                    restaurant.setService_time(restaurant.loadRestaurantServiceTimeByRestaurantId(restaurant.getRestaurant_id()));
-                }
+                restaurant.setService_time(restaurant.loadRestaurantServiceTimeByRestaurantId(restaurant.getRestaurant_id()));
 
                 // set Recommended foods
-                if(restaurant.getMost_popular_recipes() !=null){
-                    restaurant.setMost_popular_recipes(restaurant.loadRestaurantRecommendedFoodByRestaurantId(restaurant.getRestaurant_id()));
-                }
+                restaurant.setMost_popular_recipes(restaurant.loadRestaurantRecommendedFoodByRestaurantId(restaurant.getRestaurant_id()));
 
                 restaurantList.add(restaurant);
             } while (data.moveToNext());

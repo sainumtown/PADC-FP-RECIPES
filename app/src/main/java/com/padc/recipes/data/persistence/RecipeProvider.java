@@ -246,6 +246,10 @@ public class RecipeProvider extends ContentProvider {
                 return RecipeContract.RecipeImageEntry.DIR_TYPE;
             case TOWNSHIPS:
                 return RecipeContract.RecipeImageEntry.ITEM_TYPE;
+            case RESTAURANTS_SERVICE_TIME:
+                return RecipeContract.RecipeImageEntry.DIR_TYPE;
+            case RESTAURANTS_RECOMMENDED_FOODS:
+                return RecipeContract.RecipeImageEntry.DIR_TYPE;
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -336,6 +340,24 @@ public class RecipeProvider extends ContentProvider {
                 long _id = db.insert(RecipeContract.TownshipEntry.TABLE_NAME, null, contentValues);
                 if (_id > 0) {
                     insertedUri = RecipeContract.TownshipEntry.buildTownshipUri(_id);
+                } else {
+                    throw new SQLException("Failed to insert row into " + uri);
+                }
+                break;
+            }
+            case RESTAURANTS_SERVICE_TIME: {
+                long _id = db.insert(RecipeContract.RestaurantServiceTimeEntry.TABLE_NAME, null, contentValues);
+                if (_id > 0) {
+                    insertedUri = RecipeContract.RestaurantServiceTimeEntry.buildRestaurantServiceTimeUri(_id);
+                } else {
+                    throw new SQLException("Failed to insert row into " + uri);
+                }
+                break;
+            }
+            case RESTAURANTS_RECOMMENDED_FOODS: {
+                long _id = db.insert(RecipeContract.RestaurantRecommendedFoodEntry.TABLE_NAME, null, contentValues);
+                if (_id > 0) {
+                    insertedUri = RecipeContract.RestaurantRecommendedFoodEntry.buildRestaurantRecommendedFoodUri(_id);
                 } else {
                     throw new SQLException("Failed to insert row into " + uri);
                 }
