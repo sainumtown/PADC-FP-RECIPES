@@ -239,9 +239,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Toast.makeText(getApplicationContext(), "Will go to detail page", Toast.LENGTH_SHORT).show();
     }
 
-
     @Override
     public void onTapFavourite() {
-
+        //TODO to get the real id.
+        String dummyRecipeId ="1";
+        Intent intent = RecipesDetailScreenActivity.newIntent(dummyRecipeId);
+        startActivity(intent);
     }
 }
