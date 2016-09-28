@@ -12,7 +12,9 @@ import com.padc.recipes.RecipesApp;
 import com.padc.recipes.data.persistence.RecipeContract;
 import com.padc.recipes.utils.RecipeAppConstants;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -180,6 +182,8 @@ public class RestaurantVO {
         ContentValues cv = new ContentValues();
         cv.put(RecipeContract.RestaurantEntry.COLUMN_RESTAURANT_ID, restaurant_id);
         cv.put(RecipeContract.RestaurantEntry.COLUMN_RESTAURANT_NAME, restaurant_name);
+        String phoneNumber = Arrays.toString(phone_number).substring(1,Arrays.toString(phone_number).length()-1);
+        cv.put(RecipeContract.RestaurantEntry.COLUMN_PHONES, phoneNumber);
         cv.put(RecipeContract.RestaurantEntry.COLUMN_BRANCH_NAME, branch_name);
         cv.put(RecipeContract.RestaurantEntry.COLUMN_ADDRESS, address);
         cv.put(RecipeContract.RestaurantEntry.COLUMN_FACEBOOK, facebook);
@@ -193,6 +197,15 @@ public class RestaurantVO {
         RestaurantVO restaurant = new RestaurantVO();
         restaurant.restaurant_id = Integer.parseInt(data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_RESTAURANT_ID)));
         restaurant.restaurant_name = data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_RESTAURANT_NAME));
+        String phone_numbers =(data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_PHONES)));
+        if(phone_numbers.contains(",")){
+            restaurant.phone_number = phone_numbers.split(",");
+        }
+        else {
+            restaurant.phone_number =new String[1];
+            restaurant.phone_number[0] = phone_numbers;
+        }
+
         restaurant.branch_name = data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_BRANCH_NAME));
         restaurant.address = data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_ADDRESS));
         restaurant.facebook = data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_FACEBOOK));
@@ -286,7 +299,7 @@ public class RestaurantVO {
             do {
 
                 serviceTime.setStart(cursor.getString(cursor.getColumnIndex(RecipeContract.RestaurantServiceTimeEntry.COLUMN_START)));
-                serviceTime.setFinish(cursor.getString(cursor.getColumnIndex(RecipeContract.RestaurantServiceTimeEntry.COLUMN_START)));
+                serviceTime.setFinish(cursor.getString(cursor.getColumnIndex(RecipeContract.RestaurantServiceTimeEntry.COLUMN_FINISH)));
 
             } while (cursor.moveToNext());
         }

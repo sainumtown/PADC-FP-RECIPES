@@ -276,6 +276,7 @@ public class RecipeContract {
 
         public static final String COLUMN_RESTAURANT_ID = "restaurant_id";                          // restaurant id
         public static final String COLUMN_RESTAURANT_NAME = "restaurant_name";                      // name
+        public static final String COLUMN_PHONES = "phones";                                        // phones
         public static final String COLUMN_BRANCH_NAME = "branch_ame";                               // branch name
         public static final String COLUMN_ADDRESS= "address";                                       // address
         public static final String COLUMN_FACEBOOK= "facebook";                                     // facebook

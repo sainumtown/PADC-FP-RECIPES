@@ -90,6 +90,7 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
             RestaurantEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             RestaurantEntry.COLUMN_RESTAURANT_ID + " TEXT NOT NULL, " +
             RestaurantEntry.COLUMN_RESTAURANT_NAME + " TEXT NOT NULL, " +
+            RestaurantEntry.COLUMN_PHONES + " TEXT, " +
             RestaurantEntry.COLUMN_BRANCH_NAME + " TEXT NOT NULL, " +
             RestaurantEntry.COLUMN_ADDRESS + " TEXT, " +
             RestaurantEntry.COLUMN_FACEBOOK + " TEXT, " +
