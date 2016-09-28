@@ -1,11 +1,13 @@
 package com.padc.recipes.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -21,6 +23,7 @@ import android.widget.Toast;
 
 import com.padc.recipes.R;
 import com.padc.recipes.adapters.RecipeCategoryListAdapter;
+import com.padc.recipes.data.models.RecipeModel;
 import com.padc.recipes.fragments.FavouriteFragment;
 import com.padc.recipes.fragments.RecipeListFragment;
 import com.padc.recipes.fragments.RestaurantListFragment;
@@ -57,6 +60,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     FloatingActionButton fabSearch;
 
     Spinner spinnerRecipeCategoryFilter;
+
+    View.OnClickListener mFavouriteOnClickListener;
 
     private RecipeCategoryListAdapter mRecipeCategoryListAdapter;
 
@@ -211,13 +216,32 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    public void onTapFavourite(String recipeId) {
+        // TODO add favourite recipe ID
+
+        RecipeModel.getInstance().AddToFavourite(recipeId);
+
+        Snackbar.make(findViewById(android.R.id.content), "Check Favourite List", Snackbar.LENGTH_LONG)
+                .setAction("View", mFavouriteOnClickListener)
+                .setActionTextColor(Color.WHITE)
+                .show();
+
+        mFavouriteOnClickListener =new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToRestaurants();
+            }
+        };
+    }
+
+    @Override
     public void onTapVideo() {
         Toast.makeText(getApplicationContext(), "Will go to detail page", Toast.LENGTH_SHORT).show();
     }
 
+
     @Override
     public void onTapFavourite() {
-        Toast.makeText(getApplicationContext(), "Will go to detail page", Toast.LENGTH_SHORT).show();
-    }
 
+    }
 }

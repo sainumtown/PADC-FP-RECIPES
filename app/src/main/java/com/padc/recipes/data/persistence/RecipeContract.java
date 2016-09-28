@@ -48,6 +48,7 @@ public class RecipeContract {
         public static final String COLUMN_VIDEO = "video";
         public static final String COLUMN_CATEGORY_ID = "category_id";
         public static final String COLUMN_PRESENTER_ID = "presenter_id";
+        public static final String COLUMN_IS_FAVOURITE = "is_favourite";
 
         public static Uri buildRecipeUri(long id) {
             //content://com.padc.recipes/recipes/1

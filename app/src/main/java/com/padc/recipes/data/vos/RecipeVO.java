@@ -57,6 +57,7 @@ public class RecipeVO {
     @SerializedName("available-restaurants")
     private List<AvailableRestaurantVO> available_restaurants;
 
+    private boolean notFavourite;
 
     public int getRecipe_id() {
         return recipe_id;
@@ -106,6 +107,13 @@ public class RecipeVO {
         return available_restaurants;
     }
 
+    public boolean isNotFavourite() {
+        return notFavourite;
+    }
+
+    public void setNotFavourite(boolean notFavourite) {
+        this.notFavourite = notFavourite;
+    }
 
     public void setPhotos(String[] photos) {
         this.photos = photos;
@@ -227,6 +235,7 @@ public class RecipeVO {
         recipe.recipe_title = data.getString(data.getColumnIndex(RecipeContract.RecipeEntry.COLUMN_TITLE));
         recipe.note = data.getString(data.getColumnIndex(RecipeContract.RecipeEntry.COLUMN_NOTE));
         recipe.video = data.getString(data.getColumnIndex(RecipeContract.RecipeEntry.COLUMN_VIDEO));
+        recipe.notFavourite = (data.getInt(data.getColumnIndex(RecipeContract.RecipeEntry.COLUMN_IS_FAVOURITE)) == 1);
 
         String category_id = data.getString(data.getColumnIndex(RecipeContract.RecipeEntry.COLUMN_CATEGORY_ID));
         CategoryVO category = new CategoryVO();
@@ -386,5 +395,20 @@ public class RecipeVO {
         }
 
         return instructions;
+    }
+
+    public static void saveFavourite(String recipeId) {
+        ContentValues presenterCV = new ContentValues();
+        presenterCV.put(RecipeContract.RecipeEntry.COLUMN_IS_FAVOURITE, 1);
+
+        String selection =RecipeContract.RecipeEntry.COLUMN_ID+"=?";
+        String[] selectionArgs =new String[] {recipeId};
+
+        Context context = RecipesApp.getContext();
+        int updated = context.getContentResolver().update(RecipeContract.RecipeEntry.CONTENT_URI, presenterCV,selection,selectionArgs);
+
+        Log.d(RecipesApp.TAG, "Favourite recipe updated status : " + updated);
+
+
     }
 }

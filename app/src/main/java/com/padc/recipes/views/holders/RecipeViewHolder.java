@@ -1,13 +1,17 @@
 package com.padc.recipes.views.holders;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.padc.recipes.R;
+import com.padc.recipes.RecipesApp;
 import com.padc.recipes.data.vos.RecipeVO;
+import com.padc.recipes.utils.RecipeAppConstants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,6 +24,9 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
     @BindView(R.id.iv_recipe)
     ImageView ivRecipe;
 
+    @BindView(R.id.overflow)
+    ImageView ivOverflow;
+
     private ControllerRecipeItem mController;
     private RecipeVO mRecipe;
 
@@ -28,6 +35,20 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
         ButterKnife.bind(this, itemView);
         itemView.setOnClickListener(this);
         mController = controllerRecipeItem;
+
+        ivOverflow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO add to favourite list
+                if(!mRecipe.isNotFavourite()) {
+                    ivOverflow.setColorFilter(RecipesApp.getContext().getResources().getColor(R.color.primary_dark));
+                }else {
+                    ivOverflow.setImageResource(R.drawable.ic_favorite_border_24dp);
+                }
+                mController.onTapFavourite(String.valueOf(mRecipe.getRecipe_id()));
+
+            }
+        });
     }
 
     @Override
@@ -38,9 +59,17 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
     public void bindData(RecipeVO recipe) {
         mRecipe = recipe;
         tvRecipeTitle.setText(recipe.getRecipe_title());
+        if(mRecipe.isNotFavourite()) {
+            ivOverflow.setColorFilter(RecipesApp.getContext().getResources().getColor(R.color.primary_dark));
+        }else {
+            ivOverflow.setImageResource(R.drawable.ic_favorite_border_24dp);
+        }
     }
 
     public interface ControllerRecipeItem{
         void onTapRecipe();
+        void onTapFavourite(String recipeId);
     }
+
+
 }
