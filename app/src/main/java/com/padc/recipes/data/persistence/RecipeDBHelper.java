@@ -122,8 +122,7 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
             RecipeContract.RestaurantServiceTimeEntry.COLUMN_FINISH + " TEXT NOT NULL, " +
             RecipeContract.RestaurantServiceTimeEntry.COLUMN_OFF_DAYS + " TEXT , " +
 
-            " UNIQUE (" + RecipeContract.RestaurantServiceTimeEntry.COLUMN_RESTAURANT_ID + ", " +
-            RestaurantImageEntry.COLUMN_IMAGE + ") ON CONFLICT IGNORE" +
+            " UNIQUE (" + RecipeContract.RestaurantServiceTimeEntry.COLUMN_RESTAURANT_ID + ") ON CONFLICT REPLACE" +
             " );";
 
     private static final String SQL_CREATE_RESTAURANT_RECOMMENDED_FOODS_TABLE = "CREATE TABLE " + RecipeContract.RestaurantRecommendedFoodEntry.TABLE_NAME + " (" +
