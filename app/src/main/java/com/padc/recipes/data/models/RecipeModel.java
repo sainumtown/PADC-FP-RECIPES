@@ -57,6 +57,17 @@ public class RecipeModel extends BaseModel {
     }
 
     public void setStoredData(List<RecipeVO> recipeList) {
-        mRecipeList =recipeList;
+        mRecipeList = recipeList;
+    }
+
+    public List<RecipeVO> filterByCategory(String filterCategory) {
+        List<RecipeVO> filterRecipes = new ArrayList<>();
+        for (int i = 0; i < mRecipeList.size(); i++) {
+            RecipeVO recipe = mRecipeList.get(i);
+            if (recipe.getCategory().getCategory_name().equals(filterCategory)) {
+                filterRecipes.add(recipe);
+            }
+        }
+        return filterRecipes;
     }
 }
