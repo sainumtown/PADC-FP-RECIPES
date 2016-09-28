@@ -41,7 +41,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
             public void onClick(View v) {
                 // TODO add to favourite list
                 if(!mRecipe.isNotFavourite()) {
-                    ivOverflow.setColorFilter(RecipesApp.getContext().getResources().getColor(R.color.primary_dark));
+                    ivOverflow.setImageResource(R.drawable.ic_favorite_border_24dp_enable);
                 }else {
                     ivOverflow.setImageResource(R.drawable.ic_favorite_border_24dp);
                 }
@@ -60,7 +60,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
         mRecipe = recipe;
         tvRecipeTitle.setText(recipe.getRecipe_title());
         if(mRecipe.isNotFavourite()) {
-            ivOverflow.setColorFilter(RecipesApp.getContext().getResources().getColor(R.color.primary_dark));
+            ivOverflow.setImageResource(R.drawable.ic_favorite_border_24dp_enable);
         }else {
             ivOverflow.setImageResource(R.drawable.ic_favorite_border_24dp);
         }
