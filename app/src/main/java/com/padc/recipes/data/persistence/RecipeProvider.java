@@ -33,7 +33,7 @@ public class RecipeProvider extends ContentProvider {
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private RecipeDBHelper mRecipeDBHelper;
 
-    private static final String sRecipetitleSelection = RecipeContract.RecipeEntry.COLUMN_TITLE + " = ?";
+    private static final String sRecipeIdSelection = RecipeContract.RecipeEntry.COLUMN_ID + " = ?";
     private static final String sRecipeImageSelectionWithTitle = RecipeContract.RecipeImageEntry.COLUMN_RECIPE_TITLE + " = ?";
     private static final String sCategorySelectionWithID = RecipeContract.CategoryEntry.COLUMN_CATEGORY_ID + " = ?";
     private static final String sPresenterSelectionWithID = RecipeContract.PresenterEntry.COLUMN_PRESENTER_ID + " = ?";
@@ -62,10 +62,10 @@ public class RecipeProvider extends ContentProvider {
 
         switch (matchUri) {
             case RECIPE:
-                String recipeTitle = RecipeContract.RecipeEntry.getTitleFromParam(uri);
-                if (!TextUtils.isEmpty(recipeTitle)) {
-                    selection = sRecipetitleSelection;
-                    selectionArgs = new String[]{recipeTitle};
+                String recipeId = RecipeContract.RecipeEntry.getIdFromParam(uri);
+                if (!TextUtils.isEmpty(recipeId)) {
+                    selection = sRecipeIdSelection;
+                    selectionArgs = new String[]{recipeId};
                 }
                 queryCursor = mRecipeDBHelper.getReadableDatabase().query(RecipeContract.RecipeEntry.TABLE_NAME,
                         projection,
@@ -118,10 +118,10 @@ public class RecipeProvider extends ContentProvider {
                         sortOrder);
                 break;
             case RECIPES_INGREDIENTS:
-                String recipeId = RecipeContract.IngredientEntry.getRecipeIdFromParam(uri);
-                if (recipeId != null) {
+                String recipeId2 = RecipeContract.IngredientEntry.getRecipeIdFromParam(uri);
+                if (recipeId2 != null) {
                     selection = sRecipeIngredientWithRecipeID;
-                    selectionArgs = new String[]{recipeId};
+                    selectionArgs = new String[]{recipeId2};
                 }
                 queryCursor = mRecipeDBHelper.getReadableDatabase().query(RecipeContract.IngredientEntry.TABLE_NAME,
                         projection,

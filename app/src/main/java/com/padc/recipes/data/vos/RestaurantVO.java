@@ -43,6 +43,9 @@ public class RestaurantVO {
     @SerializedName("photos")
     private String[] photos;
 
+    @SerializedName("description")
+    private String description;
+
     @SerializedName("township")
     private TownshipVO township;
 
@@ -113,6 +116,14 @@ public class RestaurantVO {
 
     public void setMost_popular_recipes(List<MostPopularRecipeVO> most_popular_recipes) {
         this.most_popular_recipes = most_popular_recipes;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public static void saveRestaurants(List<RestaurantVO> restaurantList) {
@@ -188,6 +199,7 @@ public class RestaurantVO {
         cv.put(RecipeContract.RestaurantEntry.COLUMN_ADDRESS, address);
         cv.put(RecipeContract.RestaurantEntry.COLUMN_FACEBOOK, facebook);
         cv.put(RecipeContract.RestaurantEntry.COLUMN_TOWNSHIP_ID, getTownship().getTownship_id());
+        cv.put(RecipeContract.RestaurantEntry.COLUMN_DESCRIPTION, description);
 
         return cv;
     }
@@ -214,6 +226,8 @@ public class RestaurantVO {
         TownshipVO township = new TownshipVO();
         township.setTownship_id(townshipId);
         restaurant.township = township;
+
+        restaurant.description = data.getString(data.getColumnIndex(RecipeContract.RestaurantEntry.COLUMN_DESCRIPTION));;
 
         return restaurant;
     }

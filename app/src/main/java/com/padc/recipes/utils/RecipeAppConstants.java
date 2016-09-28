@@ -18,4 +18,6 @@ public class RecipeAppConstants {
     public static final int RECIPE_LIST_LOADER = 1;
     public static final int RESTAURANT_LIST_LOADER = 2;
     public static final int FAVOURITE_LIST_LOADER = 3;
+    public static final int RECIPE_DETAIL_LOADER = 4;
+    public static final int RESTAURANT_DETAIL_LOADER = 5;
 }

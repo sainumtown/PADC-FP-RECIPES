@@ -62,16 +62,6 @@
         android:orientation="vertical">
 
         <com.padc.recipes.components.MMTextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_medium_2"
-            android:layout_marginRight="@dimen/margin_medium_2"
-            android:layout_marginTop="@dimen/margin_medium_2"
-            android:textSize="@dimen/text_heading_2x"
-            android:text="YKKO(Hledan)"/>
-
-        <com.padc.recipes.components.MMTextView
             android:id="@+id/tv_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

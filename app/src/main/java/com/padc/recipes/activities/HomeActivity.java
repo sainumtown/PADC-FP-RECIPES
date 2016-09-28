@@ -200,18 +200,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void onTapRestaurant() {
-        //TODO to get the real id.
-        String dummyRestaurantId ="1";
-        Intent intent = ResturantDetailScreenActivity.newIntent(dummyRestaurantId);
+    public void onTapRestaurant(String restaurantId) {
+        Intent intent = ResturantDetailScreenActivity.newIntent(restaurantId);
         startActivity(intent);
     }
 
     @Override
-    public void onTapRecipe() {
-        //TODO to get the real id.
-        String dummyRecipeId ="1";
-        Intent intent = RecipesDetailScreenActivity.newIntent(dummyRecipeId);
+    public void onTapRecipe(String recipeId) {
+        Intent intent = RecipesDetailScreenActivity.newIntent(recipeId);
         startActivity(intent);
     }
 

@@ -50,7 +50,7 @@ public class RestaurntViewHolder extends RecyclerView.ViewHolder implements View
 
     @Override
     public void onClick(View view) {
-        mController.onTapRestaurant();
+        mController.onTapRestaurant(String.valueOf(mRestaurant.getRestaurant_id()));
     }
 
     public void bindData(RestaurantVO restaurantVO) {
@@ -77,6 +77,6 @@ public class RestaurntViewHolder extends RecyclerView.ViewHolder implements View
     }
 
     public interface ControllerRestaurantItem {
-        void onTapRestaurant();
+        void onTapRestaurant(String restaurantId);
     }
 }

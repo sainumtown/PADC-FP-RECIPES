@@ -69,5 +69,9 @@
 
     <string name="content_authority">com.padc.recipes</string>
     <string name="reset">Reset</string>
+    <string name="add_shopping_list">ေစ်း၀ယ္စာရင္းသို႕ ထည့္ရန္</string>
+    <string name="remove_from_shoppingList">ေစ်း၀ယ္စာရင္းမွ ပယ္ဖ်က္ရန္္</string>
+    <string name="ingrediets">ပါ၀င္ေသာပစၥည္းမ်ား</string>
+    <string name="step_by_step">ျပဳလုပ္နည္း</string>
 
 </resources>
