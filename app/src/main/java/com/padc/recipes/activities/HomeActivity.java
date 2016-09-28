@@ -221,17 +221,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         RecipeModel.getInstance().AddToFavourite(recipeId);
 
+        mFavouriteOnClickListener =new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToFavourite();
+            }
+        };
+
         Snackbar.make(findViewById(android.R.id.content), "Check Favourite List", Snackbar.LENGTH_LONG)
                 .setAction("View", mFavouriteOnClickListener)
                 .setActionTextColor(Color.WHITE)
                 .show();
-
-        mFavouriteOnClickListener =new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigateToRestaurants();
-            }
-        };
     }
 
     @Override

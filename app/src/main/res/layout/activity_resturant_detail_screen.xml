@@ -109,7 +109,7 @@
             android:layout_marginRight="@dimen/margin_medium_2"
             android:layout_marginBottom="@dimen/margin_medium_2"
             android:textSize="@dimen/text_regular_2x"
-            android:text="Phone    : +951 401192, +951 401179"/>
+                android:text="Phone    : +951 401192, +951 401179"/>
 
         <com.padc.recipes.components.MMTextView
             android:id="@+id/tv_address"
@@ -119,9 +119,9 @@
             android:layout_marginRight="@dimen/margin_medium_2"
             android:layout_marginBottom="@dimen/margin_medium_2"
             android:textSize="@dimen/text_regular_2x"
-            android:text="Address : No.(24/26), 6th Floor, South Race Course Street,
-Race Course Condominium, Tamwe Township,
-Yangon, Myanmar"/>
+                android:text="Address : No.(24/26), 6th Floor, South Race Course Street,
+    Race Course Condominium, Tamwe Township,
+    Yangon, Myanmar"/>
 
         <HorizontalScrollView
             android:layout_width="match_parent"
