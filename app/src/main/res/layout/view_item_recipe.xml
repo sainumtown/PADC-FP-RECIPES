@@ -33,6 +33,7 @@
                 android:layout_below="@id/iv_recipe"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
+                android:clickable="true"
                 android:layout_marginLeft="@dimen/margin_medium"
                 android:layout_marginBottom="@dimen/margin_medium"
                 android:src="@drawable/ic_favorite_border_24dp" />

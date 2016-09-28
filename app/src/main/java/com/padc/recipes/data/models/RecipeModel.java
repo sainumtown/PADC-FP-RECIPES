@@ -70,4 +70,14 @@ public class RecipeModel extends BaseModel {
         }
         return filterRecipes;
     }
+
+    public void AddToFavourite(String recipeId) {
+        for (int i = 0; i < mRecipeList.size(); i++) {
+            RecipeVO recipe = mRecipeList.get(i);
+            if (recipe.getRecipe_id() == Integer.parseInt(recipeId)) {
+                recipe.setNotFavourite(true);
+                RecipeVO.saveFavourite(recipeId);
+            }
+        }
+    }
 }

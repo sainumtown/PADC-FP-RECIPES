@@ -29,6 +29,7 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
             RecipeEntry.COLUMN_VIDEO + " TEXT, " +
             RecipeEntry.COLUMN_CATEGORY_ID + " TEXT, " +
             RecipeEntry.COLUMN_PRESENTER_ID + " TEXT, " +
+            RecipeEntry.COLUMN_IS_FAVOURITE + " INTEGER DEFAULT 0 , " +
 
             " UNIQUE (" + RecipeEntry.COLUMN_TITLE + ") ON CONFLICT IGNORE" +
             " );";
