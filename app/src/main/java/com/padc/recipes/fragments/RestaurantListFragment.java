@@ -163,6 +163,16 @@ public class RestaurantListFragment extends BaseFragment  implements LoaderManag
                 if (restaurant.getTownship() != null) {
                     restaurant.setTownship(restaurant.loadTownshipByTownshipId(String.valueOf(restaurant.getTownship().getTownship_id())));
                 }
+                // set servicetime
+                if(restaurant.getService_time() !=null){
+                    restaurant.setService_time(restaurant.loadRestaurantServiceTimeByRestaurantId(restaurant.getRestaurant_id()));
+                }
+
+                // set Recommended foods
+                if(restaurant.getMost_popular_recipes() !=null){
+                    restaurant.setMost_popular_recipes(restaurant.loadRestaurantRecommendedFoodByRestaurantId(restaurant.getRestaurant_id()));
+                }
+
                 restaurantList.add(restaurant);
             } while (data.moveToNext());
         }

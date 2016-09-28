@@ -26,6 +26,14 @@ public class ServiceTimeVO {
     public String[] getOff_days() {
         return off_days;
     }
+
+    public void setStart(String start) {
+        this.start = start;
+    }
+
+    public void setFinish(String finish) {
+        this.finish = finish;
+    }
 }
 
 
