@@ -11,10 +11,10 @@
         android:id="@+id/spn_filter_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_medium_2"
-        android:layout_marginTop="@dimen/margin_medium"
         android:layout_marginBottom="@dimen/margin_medium"
-        android:layout_marginRight="@dimen/margin_medium_2">
+        android:layout_marginLeft="@dimen/margin_medium_2"
+        android:layout_marginRight="@dimen/margin_medium_2"
+        android:layout_marginTop="@dimen/margin_medium">
 
     </android.support.v7.widget.AppCompatSpinner>
 
@@ -28,4 +28,13 @@
         android:paddingLeft="@dimen/margin_medium"
         android:paddingRight="@dimen/margin_medium"
         android:scrollbarStyle="outsideOverlay" />
+
+    <com.padc.recipes.components.MMButton
+        android:id="@+id/btn_reset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:visibility="visible"
+        android:text="@string/reset" />
 </RelativeLayout>

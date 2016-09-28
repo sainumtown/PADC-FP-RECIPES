@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ import com.padc.recipes.data.vos.RecipeVO;
 import com.padc.recipes.events.DataEvent;
 import com.padc.recipes.utils.RecipeAppConstants;
 import com.padc.recipes.views.holders.RecipeViewHolder;
+import com.padc.recipes.views.holders.VideoViewHolder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,6 +53,9 @@ public class RecipeListFragment extends BaseFragment implements LoaderManager.Lo
 
     @BindView(R.id.spn_filter_category)
     Spinner spinnerRecipeCategoryFilter;
+
+    @BindView(R.id.btn_reset)
+    Button btnReset;
 
     private RecipeCategoryListAdapter mRecipeCategoryListAdapter;
 
@@ -106,6 +112,32 @@ public class RecipeListFragment extends BaseFragment implements LoaderManager.Lo
         mRecipeCategoryListAdapter = new RecipeCategoryListAdapter(recipesCategoryList);
         spinnerRecipeCategoryFilter.setAdapter(mRecipeCategoryListAdapter);
         spinnerRecipeCategoryFilter.setSelection(mRecipeCategoryListAdapter.getCount());
+
+        spinnerRecipeCategoryFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position != mRecipeCategoryListAdapter.getCount()) {
+                    String filterCategory = parent.getItemAtPosition(position).toString();
+                    List<RecipeVO> filterRecipeList = RecipeModel.getInstance().filterByCategory(filterCategory);
+                    mRecipeAdapter.setNewData(filterRecipeList);
+                    btnReset.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mRecipeAdapter.setNewData(RecipeModel.getInstance().getRecipeList());
+                spinnerRecipeCategoryFilter.setSelection(mRecipeCategoryListAdapter.getCount());
+                btnReset.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override
