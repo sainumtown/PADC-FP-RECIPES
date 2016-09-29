@@ -92,8 +92,6 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
     @BindView(R.id.btn_add_to_shopping_list)
     Button btnAddToShoppingList;
 
-    @BindView(R.id.btn_remove_from_shopping_list)
-    Button btnRemoveFromShoppingList;
 
     private String mRecipeId;
     RecipeVO mRecipe;
