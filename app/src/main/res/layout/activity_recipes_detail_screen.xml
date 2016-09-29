@@ -124,13 +124,6 @@
                     android:layout_marginTop="@dimen/margin_medium"
                     android:text="@string/add_shopping_list" />
 
-                <com.padc.recipes.components.MMButton
-                    android:id="@+id/btn_remove_from_shopping_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_medium"
-                    android:layout_marginLeft="@dimen/margin_medium"
-                    android:text="@string/remove_from_shoppingList" />
             </LinearLayout>
 
             <LinearLayout

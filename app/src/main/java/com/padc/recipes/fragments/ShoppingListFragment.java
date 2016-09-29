@@ -111,8 +111,6 @@ public class ShoppingListFragment extends BaseFragment implements LoaderManager.
 
         Log.d(RecipesApp.TAG, "Retrieved shopping list recipes ingredients  : " + recipeList.size());
         mShoppingListAdapter.setNewData(recipeList);
-
-
     }
 
     @Override
