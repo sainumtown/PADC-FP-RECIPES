@@ -18,28 +18,21 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.padc.recipes.R;
 import com.padc.recipes.RecipesApp;
-import com.padc.recipes.components.MMCheckBox;
 import com.padc.recipes.components.MMTextView;
 import com.padc.recipes.data.models.RecipeModel;
 import com.padc.recipes.data.persistence.RecipeContract;
 import com.padc.recipes.data.vos.IngredientVO;
 import com.padc.recipes.data.vos.InstructionVO;
 import com.padc.recipes.data.vos.RecipeVO;
-import com.padc.recipes.fragments.FavouriteFragment;
-import com.padc.recipes.utils.MMFontUtils;
 import com.padc.recipes.utils.RecipeAppConstants;
-
-import org.w3c.dom.Text;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -96,9 +89,15 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    @BindView(R.id.btn_add_to_shopping_list)
+    Button btnAddToShoppingList;
+
+    @BindView(R.id.btn_remove_from_shopping_list)
+    Button btnRemoveFromShoppingList;
+
     private String mRecipeId;
     RecipeVO mRecipe;
-    private View.OnClickListener mFavouriteOnClickListener;
+    private View.OnClickListener mClickListner;
 
     ColorStateList cslBeforeCheck = new ColorStateList(
             new int[][]{{android.R.attr.state_checkable}, {}},
@@ -150,8 +149,65 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
                 .centerCrop()
                 .into(ivYangon1);
 
+
+        // Favourite click process
+        favourite();
+        addToShoppingList();
+        removeFromShoppingList();
+
         mRecipeId = getIntent().getStringExtra(IE_RECIPE_ID);
         getSupportLoaderManager().initLoader(RecipeAppConstants.RECIPE_DETAIL_LOADER, null, this);
+    }
+
+    private void removeFromShoppingList() {
+
+    }
+
+    private void addToShoppingList() {
+        mClickListner = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = HomeActivity.newIntent(HomeActivity.FRAGMENT_SHOPPING_LIST);
+                startActivity(intent);
+            }
+        };
+
+        btnAddToShoppingList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RecipeVO.SaveToShoppingList(mRecipe);
+
+                Snackbar.make(findViewById(android.R.id.content), "Check Shopping List", Snackbar.LENGTH_LONG)
+                        .setAction("View", mClickListner)
+                        .setActionTextColor(Color.WHITE)
+                        .show();
+            }
+        });
+
+    }
+
+    private void favourite() {
+
+        mClickListner = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = HomeActivity.newIntent(HomeActivity.FRAGMENT_FAVOURITE);
+                startActivity(intent);
+            }
+        };
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RecipeModel.getInstance().AddToFavourite(mRecipeId);
+                fab.setBackgroundTintList(cslBeforeCheck);
+
+                Snackbar.make(findViewById(android.R.id.content), "Check Favourite List", Snackbar.LENGTH_LONG)
+                        .setAction("View", mClickListner)
+                        .setActionTextColor(Color.WHITE)
+                        .show();
+            }
+        });
     }
 
     private void materailSetting() {
@@ -170,27 +226,6 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
 
             llIngredients.addView(tvIngredients);
         }
-
-        mFavouriteOnClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = HomeActivity.newIntent(HomeActivity.FRAGMENT_FAVOURITE);
-                startActivity(intent);
-            }
-        };
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RecipeModel.getInstance().AddToFavourite(mRecipeId);
-                fab.setBackgroundTintList(cslBeforeCheck);
-
-                Snackbar.make(findViewById(android.R.id.content), "Check Favourite List", Snackbar.LENGTH_LONG)
-                        .setAction("View", mFavouriteOnClickListener)
-                        .setActionTextColor(Color.WHITE)
-                        .show();
-            }
-        });
     }
 
     @Override

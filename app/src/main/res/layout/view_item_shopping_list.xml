@@ -38,11 +38,9 @@
             </LinearLayout>
             <com.padc.recipes.components.MMButton
                 android:id="@+id/tv_cook_time"
-                android:layout_gravity="right"
-                android:layout_marginTop="-40dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/remove" />
+                android:text="@string/remove_from_shoppingList" />
 
         </LinearLayout>
 
