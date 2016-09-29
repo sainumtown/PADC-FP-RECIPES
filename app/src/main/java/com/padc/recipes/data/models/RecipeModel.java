@@ -71,13 +71,9 @@ public class RecipeModel extends BaseModel {
         return filterRecipes;
     }
 
-    public void AddToFavourite(String recipeId) {
-        for (int i = 0; i < mRecipeList.size(); i++) {
-            RecipeVO recipe = mRecipeList.get(i);
-            if (recipe.getRecipe_id() == Integer.parseInt(recipeId)) {
-                RecipeVO.saveOrRemoveFavourite(recipe);
-            }
-        }
+    public void AddToFavourite(RecipeVO recipeVO) {
+
+        RecipeVO.saveOrRemoveFavourite(recipeVO);
     }
 
 }

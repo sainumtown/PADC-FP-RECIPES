@@ -1,6 +1,7 @@
 package com.padc.recipes.fragments;
 
 
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.padc.recipes.R;
 import com.padc.recipes.RecipesApp;
@@ -21,6 +23,7 @@ import com.padc.recipes.adapters.ShoppingListAdapter;
 import com.padc.recipes.data.persistence.RecipeContract;
 import com.padc.recipes.data.vos.RecipeVO;
 import com.padc.recipes.utils.RecipeAppConstants;
+import com.padc.recipes.views.holders.ShoppingListViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +39,7 @@ public class ShoppingListFragment extends BaseFragment implements LoaderManager.
     @BindView(R.id.rv_shopping_list)
     RecyclerView rvShoppingList;
 
+    ShoppingListViewHolder.ControllerShoppingListItem mControllerItem;
 
     private ShoppingListAdapter mShoppingListAdapter;
 
@@ -64,12 +68,11 @@ public class ShoppingListFragment extends BaseFragment implements LoaderManager.
 
         List<RecipeVO> recipeList = new ArrayList<RecipeVO>();
 
-        mShoppingListAdapter = new ShoppingListAdapter(recipeList);
+        mShoppingListAdapter = new ShoppingListAdapter(recipeList, mControllerItem);
         rvShoppingList.setAdapter(mShoppingListAdapter);
 
         int gridColumnSpanCount = 1;
         rvShoppingList.setLayoutManager(new GridLayoutManager(getContext(), gridColumnSpanCount));
-
         return view;
     }
 
@@ -87,7 +90,7 @@ public class ShoppingListFragment extends BaseFragment implements LoaderManager.
     @Override
     public Loader onCreateLoader(int id, Bundle args) {
         String[] distinct = {"DISTINCT " + RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_RECIPE_ID
-            ,RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_RECIPE_TITLE};
+                , RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_RECIPE_TITLE};
         return new CursorLoader(getContext(),
                 RecipeContract.ShoppingRecipeIngredientEntry.CONTENT_URI,
                 distinct,
@@ -115,6 +118,13 @@ public class ShoppingListFragment extends BaseFragment implements LoaderManager.
 
     @Override
     public void onLoaderReset(Loader loader) {
+
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mControllerItem = (ShoppingListViewHolder.ControllerShoppingListItem) context;
 
     }
 }

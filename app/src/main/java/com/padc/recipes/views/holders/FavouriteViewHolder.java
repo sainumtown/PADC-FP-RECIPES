@@ -34,7 +34,7 @@ public class FavouriteViewHolder  extends RecyclerView.ViewHolder implements Vie
 
     @Override
     public void onClick(View view) {
-        mController.onTapFavourite();
+        mController.onTapFavouriteItem(String.valueOf(mRecipe.getRecipe_id()));
     }
 
     public void bindData(RecipeVO recipe) {
@@ -43,6 +43,6 @@ public class FavouriteViewHolder  extends RecyclerView.ViewHolder implements Vie
     }
 
     public interface ControllerFavouriteItem {
-        void onTapFavourite();
+        void onTapFavouriteItem(String recipeId);
     }
 }

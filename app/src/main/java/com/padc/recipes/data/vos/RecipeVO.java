@@ -466,4 +466,31 @@ public class RecipeVO {
         return ingredients;
     }
 
+    public static void UpdateBoughtIngredient(String recipeId, String ingredientId, boolean bought) {
+        ContentValues recipeCV = new ContentValues();
+        if(bought) {
+            recipeCV.put(RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_BOUGHT, 0);
+        }else{
+            recipeCV.put(RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_BOUGHT, 1);
+        }
+
+        String selection =RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_RECIPE_ID+"=? AND "+
+                RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_INGREDIENT_ID +"=?";
+        String[] selectionArgs =new String[] {recipeId,ingredientId};
+
+        Context context = RecipesApp.getContext();
+        int updated = context.getContentResolver().update(RecipeContract.ShoppingRecipeIngredientEntry.CONTENT_URI, recipeCV,selection,selectionArgs);
+
+        Log.d(RecipesApp.TAG, "Favourite recipe updated status : " + updated);
+    }
+
+    public static void removeAllIngredientsShoppingListByRecipeId(String recipeId) {
+
+        String selection =RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_RECIPE_ID+"=?";
+        String[] selectionArgs =new String[] {recipeId};
+
+        Context context = RecipesApp.getContext();
+        int deleted = context.getContentResolver().delete(RecipeContract.ShoppingRecipeIngredientEntry.CONTENT_URI,selection,selectionArgs);
+        Log.d(RecipesApp.TAG, "Shopping List recipe ingreidents deleted status : " + deleted);
+    }
 }

@@ -97,13 +97,7 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
     RecipeVO mRecipe;
     private View.OnClickListener mClickListner;
 
-    ColorStateList cslBeforeCheck = new ColorStateList(
-            new int[][]{{android.R.attr.state_checkable}, {}},
-            new int[]{Color.GREEN, Color.RED});
-
-    ColorStateList cslAfterCheck = new ColorStateList(
-            new int[][]{{android.R.attr.state_checkable}, {}},
-            new int[]{Color.RED, Color.GREEN});
+    private View.OnClickListener mFavouriteListner;
 
 
     public static Intent newIntent(String attractionName) {
@@ -111,6 +105,14 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
         intent.putExtra(IE_RECIPE_ID, attractionName);
         return intent;
     }
+
+    ColorStateList cslBeforeCheck = new ColorStateList(
+            new int[][]{{android.R.attr.state_checkable}, {}},
+            new int[]{Color.GREEN, Color.RED});
+
+    ColorStateList cslAfterCheck = new ColorStateList(
+            new int[][]{{android.R.attr.state_checkable}, {}},
+            new int[]{Color.RED, Color.GREEN});
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,7 +179,7 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
 
                 Snackbar.make(findViewById(android.R.id.content), "Check Shopping List", Snackbar.LENGTH_LONG)
                         .setAction("View", mClickListner)
-                        .setActionTextColor(Color.WHITE)
+                        .setActionTextColor(RecipesApp.getContext().getResources().getColor(R.color.primary))
                         .show();
             }
         });
@@ -186,7 +188,7 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
 
     private void favourite() {
 
-        mClickListner = new View.OnClickListener() {
+        mFavouriteListner = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = HomeActivity.newIntent(HomeActivity.FRAGMENT_FAVOURITE);
@@ -197,12 +199,10 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RecipeModel.getInstance().AddToFavourite(mRecipeId);
-                fab.setBackgroundTintList(cslBeforeCheck);
-
+                RecipeModel.getInstance().AddToFavourite(mRecipe);
                 Snackbar.make(findViewById(android.R.id.content), "Check Favourite List", Snackbar.LENGTH_LONG)
-                        .setAction("View", mClickListner)
-                        .setActionTextColor(Color.WHITE)
+                        .setAction("View", mFavouriteListner)
+                        .setActionTextColor(RecipesApp.getContext().getResources().getColor(R.color.primary))
                         .show();
             }
         });

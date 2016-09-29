@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.padc.recipes.R;
 import com.padc.recipes.RecipesApp;
 import com.padc.recipes.components.MMCheckBox;
+import com.padc.recipes.data.persistence.RecipeContract;
 import com.padc.recipes.data.vos.RecipeVO;
 import com.padc.recipes.views.holders.ShoppingListViewHolder;
 
@@ -21,20 +22,21 @@ import java.util.List;
 public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListViewHolder> {
 
     private LayoutInflater mInflater;
+    private ShoppingListViewHolder.ControllerShoppingListItem mController;
+    List<RecipeVO> mRecipeList = new ArrayList<>();
 
-
-
-    public ShoppingListAdapter(List<RecipeVO> recipeList) {
+    public ShoppingListAdapter(List<RecipeVO> recipeList, ShoppingListViewHolder.ControllerShoppingListItem controller) {
         mInflater = LayoutInflater.from(RecipesApp.getContext());
         mRecipeList = recipeList;
+        mController = controller;
     }
 
-    List<RecipeVO> mRecipeList = new ArrayList<>();
+
     @Override
     public ShoppingListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.view_item_shopping_list, parent, false);
 
-        return new ShoppingListViewHolder(itemView);
+        return new ShoppingListViewHolder(itemView,mController);
     }
 
     @Override
