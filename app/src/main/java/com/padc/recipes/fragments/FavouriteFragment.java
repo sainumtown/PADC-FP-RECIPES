@@ -68,6 +68,9 @@ public class FavouriteFragment extends BaseFragment implements LoaderManager.Loa
         View view = inflater.inflate(R.layout.fragment_favourite, container, false);
         ButterKnife.bind(this, view);
 
+        // title
+        getActivity().setTitle(R.string.Favourites);
+
         // get recipe data
         RecipeModel.getInstance().loadRecipes();
         List<RecipeVO> recipeList = new ArrayList<RecipeVO>();

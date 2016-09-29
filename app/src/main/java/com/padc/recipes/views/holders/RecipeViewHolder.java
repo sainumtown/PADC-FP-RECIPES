@@ -45,7 +45,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
                 }else {
                     ivOverflow.setImageResource(R.drawable.ic_favorite_border_24dp);
                 }
-                mController.onTapFavourite(String.valueOf(mRecipe.getRecipe_id()));
+                mController.onTapFavourite(mRecipe);
 
             }
         });
@@ -68,7 +68,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
 
     public interface ControllerRecipeItem{
         void onTapRecipe(String recipeId);
-        void onTapFavourite(String recipeId);
+        void onTapFavourite(RecipeVO recipeVO);
     }
 
 
