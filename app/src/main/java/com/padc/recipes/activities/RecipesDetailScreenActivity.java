@@ -1,11 +1,14 @@
 package com.padc.recipes.activities;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -27,10 +30,12 @@ import com.padc.recipes.R;
 import com.padc.recipes.RecipesApp;
 import com.padc.recipes.components.MMCheckBox;
 import com.padc.recipes.components.MMTextView;
+import com.padc.recipes.data.models.RecipeModel;
 import com.padc.recipes.data.persistence.RecipeContract;
 import com.padc.recipes.data.vos.IngredientVO;
 import com.padc.recipes.data.vos.InstructionVO;
 import com.padc.recipes.data.vos.RecipeVO;
+import com.padc.recipes.fragments.FavouriteFragment;
 import com.padc.recipes.utils.MMFontUtils;
 import com.padc.recipes.utils.RecipeAppConstants;
 
@@ -40,7 +45,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RecipesDetailScreenActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>
-        ,AppBarLayout.OnOffsetChangedListener {
+        , AppBarLayout.OnOffsetChangedListener {
 
     private static final String IE_RECIPE_ID = "recipe_id";
     @BindView(R.id.iv_recipe)
@@ -93,6 +98,15 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
 
     private String mRecipeId;
     RecipeVO mRecipe;
+    private View.OnClickListener mFavouriteOnClickListener;
+
+    ColorStateList cslBeforeCheck = new ColorStateList(
+            new int[][]{{android.R.attr.state_checkable}, {}},
+            new int[]{Color.GREEN, Color.RED});
+
+    ColorStateList cslAfterCheck = new ColorStateList(
+            new int[][]{{android.R.attr.state_checkable}, {}},
+            new int[]{Color.RED, Color.GREEN});
 
 
     public static Intent newIntent(String attractionName) {
@@ -113,7 +127,6 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
 
 
         Glide.with(ivYKKO.getContext())
@@ -149,17 +162,36 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
         for (int i = 0; i < mRecipe.getIngredients().size(); i++) {
             IngredientVO ingredient = mRecipe.getIngredients().get(i);
             MMTextView tvIngredients = (MMTextView) new MMTextView(RecipesApp.getContext());
-            tvIngredients.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
+            tvIngredients.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
             tvIngredients.setTextColor(getResources().getColor(R.color.text_black_ish));
 
             tvIngredients.setPadding(40, 10, 0, 10);
-            tvIngredients.setText("- "+ingredient.getIngredient_name()+" "+ingredient.getMeasurement());
+            tvIngredients.setText("- " + ingredient.getIngredient_name() + " " + ingredient.getMeasurement());
 
             llIngredients.addView(tvIngredients);
         }
+
+        mFavouriteOnClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = HomeActivity.newIntent(HomeActivity.FRAGMENT_FAVOURITE);
+                startActivity(intent);
+            }
+        };
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RecipeModel.getInstance().AddToFavourite(mRecipeId);
+                fab.setBackgroundTintList(cslBeforeCheck);
+
+                Snackbar.make(findViewById(android.R.id.content), "Check Favourite List", Snackbar.LENGTH_LONG)
+                        .setAction("View", mFavouriteOnClickListener)
+                        .setActionTextColor(Color.WHITE)
+                        .show();
+            }
+        });
     }
-
-
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -213,6 +245,12 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
 
         // step by step
         stepByStepSetting();
+
+        if(mRecipe.isNotFavourite()){
+            fab.setBackgroundTintList(cslBeforeCheck);
+        }else {
+            fab.setBackgroundTintList(cslAfterCheck);
+        }
     }
 
     private void stepByStepSetting() {
@@ -222,8 +260,8 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
         for (int i = 0; i < mRecipe.getInstructions().size(); i++) {
             InstructionVO instruction = mRecipe.getInstructions().get(i);
             MMTextView tvInstruction = (MMTextView) new MMTextView(RecipesApp.getContext());
-            tvInstruction.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
-            tvInstruction.setLineSpacing(1f,1.2f);
+            tvInstruction.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+            tvInstruction.setLineSpacing(1f, 1.2f);
             tvInstruction.setTextColor(getResources().getColor(R.color.text_black_ish));
             tvIngredients.setPadding(40, 0, 0, 10);
             tvInstruction.setText("\n" + instruction.getInstruction_desc());

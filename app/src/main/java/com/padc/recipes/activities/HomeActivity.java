@@ -22,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.padc.recipes.R;
+import com.padc.recipes.RecipesApp;
 import com.padc.recipes.adapters.RecipeCategoryListAdapter;
 import com.padc.recipes.data.models.RecipeModel;
 import com.padc.recipes.fragments.FavouriteFragment;
@@ -47,6 +48,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         , VideoViewHolder.ControllerVideoItem
         , FavouriteViewHolder.ControllerFavouriteItem {
 
+    private static final String IE_FRAGMENT = "IE_FRAGMENT";
+    public static final String FRAGMENT_FAVOURITE = "1";
+
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
@@ -64,6 +68,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     View.OnClickListener mFavouriteOnClickListener;
 
     private RecipeCategoryListAdapter mRecipeCategoryListAdapter;
+    private String mScreenID;
+
+    public static Intent newIntent(String attractionName) {
+        Intent intent = new Intent(RecipesApp.getContext(), HomeActivity.class);
+        intent.putExtra(IE_FRAGMENT, attractionName);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +109,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 navigateToSearch();
             }
         });
+
+        mScreenID = getIntent().getStringExtra(IE_FRAGMENT);
+        if (mScreenID != null) {
+            switch (mScreenID) {
+                case FRAGMENT_FAVOURITE:
+                    navigateToFavourite();
+                    break;
+            }
+        }
     }
 
     private void navigateToSearch() {
@@ -162,7 +182,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         return false;
     }
 
-    private void navigateToFavourite() {
+    public void navigateToFavourite() {
         fabSearch.hide();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, FavouriteFragment.newInstance())
@@ -217,7 +237,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         RecipeModel.getInstance().AddToFavourite(recipeId);
 
-        mFavouriteOnClickListener =new View.OnClickListener() {
+        mFavouriteOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navigateToFavourite();
@@ -238,7 +258,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onTapFavourite() {
         //TODO to get the real id.
-        String dummyRecipeId ="1";
+        String dummyRecipeId = "1";
         Intent intent = RecipesDetailScreenActivity.newIntent(dummyRecipeId);
         startActivity(intent);
     }
