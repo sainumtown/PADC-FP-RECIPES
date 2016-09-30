@@ -5,8 +5,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.padc.recipes.R;
 import com.padc.recipes.data.vos.RecipeVO;
+import com.padc.recipes.utils.RecipeAppConstants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +42,13 @@ public class FavouriteViewHolder  extends RecyclerView.ViewHolder implements Vie
     public void bindData(RecipeVO recipe) {
         mRecipe = recipe;
         tvFavouriteTitle.setText(recipe.getRecipe_title());
+        String imageUrl =  RecipeAppConstants.IMAGE_ROOT_DIR +mRecipe.getPhotos()[0];
+        Glide.with(ivFavouritePhoto.getContext())
+                .load(imageUrl)
+                .centerCrop()
+                .placeholder(R.drawable.stock_photo_placeholder)
+                .error(R.drawable.stock_photo_placeholder)
+                .into(ivFavouritePhoto);
     }
 
     public interface ControllerFavouriteItem {

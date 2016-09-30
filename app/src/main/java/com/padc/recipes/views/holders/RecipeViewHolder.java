@@ -46,7 +46,6 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
                     ivOverflow.setImageResource(R.drawable.ic_favorite_border_24dp);
                 }
                 mController.onTapFavourite(mRecipe);
-
             }
         });
     }
@@ -64,6 +63,14 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
         }else {
             ivOverflow.setImageResource(R.drawable.ic_favorite_border_24dp);
         }
+
+        String imageUrl =  RecipeAppConstants.IMAGE_ROOT_DIR +mRecipe.getPhotos()[0];
+        Glide.with(ivRecipe.getContext())
+                .load(imageUrl)
+                .centerCrop()
+                .placeholder(R.drawable.stock_photo_placeholder)
+                .error(R.drawable.stock_photo_placeholder)
+                .into(ivRecipe);
     }
 
     public interface ControllerRecipeItem{

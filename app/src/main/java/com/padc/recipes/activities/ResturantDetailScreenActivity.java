@@ -33,8 +33,8 @@ public class ResturantDetailScreenActivity extends AppCompatActivity implements 
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbar;
 
-    @BindView(R.id.iv_attraction)
-    ImageView ivAttraction;
+    @BindView(R.id.iv_restaurant_image)
+    ImageView ivRestarurnatImage;
 
 
     @BindView(R.id.iv_ykko1)
@@ -102,10 +102,7 @@ public class ResturantDetailScreenActivity extends AppCompatActivity implements 
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         
-        Glide.with(ivAttraction.getContext())
-                .load(R.drawable.ykko_resturant)
-                .centerCrop()
-                .into(ivAttraction);
+
         Glide.with(ivYKKO1.getContext())
                 .load(R.drawable.pork_kyay_oh_sichet)
                 .centerCrop()
@@ -173,12 +170,13 @@ public class ResturantDetailScreenActivity extends AppCompatActivity implements 
         tvSubTilte.setText(mRestaurant.getTownship().getTownship_name());
         tvAddress.setText(mRestaurant.getAddress());
 
-        Glide.with(ivAttraction.getContext())
-                .load(mRestaurant.getPhotos()[0])
+        String imageUrl =  RecipeAppConstants.IMAGE_ROOT_DIR +mRestaurant.getPhotos()[0];
+        Glide.with(ivRestarurnatImage.getContext())
+                .load(imageUrl)
                 .centerCrop()
-                .placeholder(R.drawable.drawable_background)
-                .error(R.drawable.drawable_background)
-                .into(ivAttraction);
+                .placeholder(R.drawable.stock_photo_placeholder)
+                .error(R.drawable.stock_photo_placeholder)
+                .into(ivRestarurnatImage);
 
         if (mRestaurant.getService_time() != null) {
             String serviceTime = mRestaurant.getService_time().getStart() + " "

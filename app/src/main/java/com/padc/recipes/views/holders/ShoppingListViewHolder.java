@@ -53,7 +53,7 @@ public class ShoppingListViewHolder extends RecyclerView.ViewHolder implements V
         final List<IngredientVO> ingredients = mRecipe.getIngredients();
 
         for (int i = 0; i < ingredients.size(); i++) {
-            MMCheckBox cbMaterial = new MMCheckBox(RecipesApp.getContext());
+            final MMCheckBox cbMaterial = new MMCheckBox(RecipesApp.getContext());
             cbMaterial.setTextColor(view.getResources().getColor(R.color.text_black_ish));
             cbMaterial.setButtonDrawable(R.drawable.checkbox);
 
@@ -74,6 +74,7 @@ public class ShoppingListViewHolder extends RecyclerView.ViewHolder implements V
             cbMaterial.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    cbMaterial.setPaintFlags(1);
                     mController.onCheckShoppingListIngredient(String.valueOf(mRecipe.getRecipe_id())
                             , String.valueOf(ingredients.get(finalI).getIngredient_id())
                             ,ingredients.get(finalI).isBought());

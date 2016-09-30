@@ -18,7 +18,7 @@ public abstract class BaseModel {
     protected RecipeDataAgent dataAgent;
 
     public BaseModel() {
-        initDataAgent(INIT_DATA_AGENT_OFFLINE);
+        initDataAgent(INIT_DATA_AGENT_RETROFIT);
 
        /* EventBus eventBus = EventBus.getDefault();
         if (!eventBus.isRegistered(this)) {

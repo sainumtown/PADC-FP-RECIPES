@@ -131,7 +131,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private void navigateToSearch() {
         Intent intent = SearchActivity.newIntent();
         startActivity(intent);
-       /* fabSearch.hide();*/
+        fabSearch.hide();
     }
 
     @Override
@@ -220,7 +220,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void navigateToRestaurants() {
-        fabSearch.show();
+        fabSearch.hide();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, RestaurantListFragment.newInstance())
                 .commit();

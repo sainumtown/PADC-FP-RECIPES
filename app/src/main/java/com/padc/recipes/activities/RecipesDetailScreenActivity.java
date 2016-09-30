@@ -54,7 +54,7 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
     FloatingActionButton fab;
 
     @BindView(R.id.tv_ingredients)
-    TextView tvIngredients;
+    TextView tvIngredientTitle;
 
     @BindView(R.id.tv_instructions)
     TextView tvInstructions;
@@ -108,11 +108,11 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
 
     ColorStateList cslBeforeCheck = new ColorStateList(
             new int[][]{{android.R.attr.state_checkable}, {}},
-            new int[]{Color.GREEN, Color.RED});
+            new int[]{Color.GRAY, Color.RED});
 
     ColorStateList cslAfterCheck = new ColorStateList(
             new int[][]{{android.R.attr.state_checkable}, {}},
-            new int[]{Color.RED, Color.GREEN});
+            new int[]{Color.RED, Color.GRAY});
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -216,11 +216,11 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
         for (int i = 0; i < mRecipe.getIngredients().size(); i++) {
             IngredientVO ingredient = mRecipe.getIngredients().get(i);
             MMTextView tvIngredients = (MMTextView) new MMTextView(RecipesApp.getContext());
-            tvIngredients.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+            tvIngredients.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
             tvIngredients.setTextColor(getResources().getColor(R.color.text_black_ish));
 
-            tvIngredients.setPadding(40, 10, 0, 10);
-            tvIngredients.setText("- " + ingredient.getIngredient_name() + " " + ingredient.getMeasurement());
+            tvIngredients.setPadding(8, 5, 5, 8);
+            tvIngredients.setText(ingredient.getIngredient_name() + " " + ingredient.getMeasurement());
 
             llIngredients.addView(tvIngredients);
         }
@@ -284,6 +284,14 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
         }else {
             fab.setBackgroundTintList(cslAfterCheck);
         }
+
+        String imageUrl =  RecipeAppConstants.IMAGE_ROOT_DIR +mRecipe.getPhotos()[0];
+        Glide.with(ivRecipe.getContext())
+                .load(imageUrl)
+                .centerCrop()
+                .placeholder(R.drawable.stock_photo_placeholder)
+                .error(R.drawable.stock_photo_placeholder)
+                .into(ivRecipe);
     }
 
     private void stepByStepSetting() {
@@ -296,8 +304,8 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
             tvInstruction.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
             tvInstruction.setLineSpacing(1f, 1.2f);
             tvInstruction.setTextColor(getResources().getColor(R.color.text_black_ish));
-            tvIngredients.setPadding(40, 0, 0, 10);
-            tvInstruction.setText("\n" + instruction.getInstruction_desc());
+            tvInstruction.setPadding(40, 5, 5, 40);
+            tvInstruction.setText( instruction.getInstruction_desc());
 
             llStepByStep.addView(tvInstruction);
         }
