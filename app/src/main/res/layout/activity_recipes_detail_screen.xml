@@ -24,8 +24,7 @@
             app:expandedTitleMarginEnd="@dimen/margin_medium_2"
             app:expandedTitleMarginStart="@dimen/margin_medium_2"
             app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            >
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
             <ImageView
@@ -42,16 +41,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
-            <com.padc.recipes.components.MMTextView
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="8dp"
-                android:gravity="center_vertical"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <com.padc.recipes.components.MMTextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
             </android.support.v7.widget.Toolbar>
 
 
@@ -72,10 +71,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_medium"
-                android:layout_marginLeft="@dimen/margin_medium"
-                android:layout_marginRight="@dimen/margin_medium"
-                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_margin="@dimen/margin_medium"
                 android:background="#ffffff"
                 android:orientation="vertical">
 
@@ -83,34 +79,25 @@
                     android:id="@+id/tv_ingredients"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_medium_2"
-                    android:layout_marginLeft="@dimen/margin_medium_2"
-                    android:layout_marginRight="@dimen/margin_medium_2"
-                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:layout_margin="@dimen/margin_medium_2"
                     android:text="@string/ingrediets"
-                    android:textColor="@color/text_black_ish"
-                    android:textSize="@dimen/text_regular_3x" />
-
-                <View
-                    android:id="@+id/separator"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dip"
-                    android:layout_marginLeft="@dimen/margin_medium"
-                    android:layout_marginRight="@dimen/margin_medium"
-                    android:background="#949292" />
+                    android:textColor="@color/accent"
+                    android:textSize="@dimen/text_regular_2x" />
 
                 <View
                     android:id="@+id/separator1"
                     android:layout_width="fill_parent"
                     android:layout_height="1dip"
                     android:layout_marginBottom="@dimen/margin_medium"
-                    android:layout_marginLeft="@dimen/margin_medium"
-                    android:layout_marginRight="@dimen/margin_medium"
+                    android:layout_marginLeft="@dimen/margin_medium_2"
+                    android:layout_marginRight="@dimen/margin_medium_2"
                     android:background="#949292" />
 
                 <LinearLayout
                     android:id="@+id/ll_ingredietns"
                     android:layout_width="match_parent"
+                    android:layout_marginLeft="@dimen/margin_medium_2"
+                    android:layout_marginRight="@dimen/margin_medium_2"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
@@ -120,8 +107,10 @@
                     android:id="@+id/btn_add_to_shopping_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_medium"
-                    android:layout_marginTop="@dimen/margin_medium"
+                    android:clickable="true"
+                    android:background="@color/cardview_dark_background"
+                    android:textColor="@color/text_white_ish"
+                    android:layout_margin="@dimen/margin_medium_2"
                     android:text="@string/add_shopping_list" />
 
             </LinearLayout>
@@ -130,9 +119,7 @@
                 android:id="@+id/ll_step_by_step"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_medium"
-                android:layout_marginLeft="@dimen/margin_medium_2"
-                android:layout_marginRight="@dimen/margin_medium_2"
+                android:layout_margin="@dimen/margin_medium"
                 android:background="#ffffff"
                 android:orientation="vertical">
 
@@ -140,30 +127,25 @@
                     android:id="@+id/tv_instructions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_medium_2"
-                    android:layout_marginLeft="@dimen/margin_medium_2"
-                    android:layout_marginRight="@dimen/margin_medium_2"
-                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:layout_margin="@dimen/margin_medium_2"
                     android:text="@string/step_by_step"
-                    android:textColor="@color/text_black_ish"
-                    android:textSize="@dimen/text_regular_3x" />
+                    android:textColor="@color/accent"
+                    android:textSize="@dimen/text_regular_2x" />
 
                 <View
                     android:id="@+id/separator2"
                     android:layout_width="fill_parent"
                     android:layout_height="1dip"
-                    android:layout_marginLeft="@dimen/margin_medium"
-                    android:layout_marginRight="@dimen/margin_medium"
+                    android:layout_marginLeft="@dimen/margin_medium_2"
+                    android:layout_marginRight="@dimen/margin_medium_2"
+                    android:layout_marginBottom="@dimen/margin_medium_2"
                     android:background="#949292" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_medium"
-                android:layout_marginLeft="@dimen/margin_medium"
-                android:layout_marginRight="@dimen/margin_medium"
-                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_margin="@dimen/margin_medium"
                 android:background="#ffffff"
                 android:orientation="vertical">
 
@@ -176,14 +158,15 @@
                     android:layout_marginRight="@dimen/margin_medium_2"
                     android:layout_marginTop="@dimen/margin_medium_2"
                     android:text="ရရွိႏိုင္ေသာဆိုင္မ်ား"
-                    android:textSize="@dimen/text_regular_3x" />
+                    android:textColor="@color/accent"
+                    android:textSize="@dimen/text_regular_2x" />
 
                 <View
                     android:id="@+id/separator3"
                     android:layout_width="fill_parent"
                     android:layout_height="1dip"
-                    android:layout_marginLeft="@dimen/margin_medium"
-                    android:layout_marginRight="@dimen/margin_medium"
+                    android:layout_marginLeft="@dimen/margin_medium_2"
+                    android:layout_marginRight="@dimen/margin_medium_2"
                     android:background="#949292" />
 
                 <HorizontalScrollView

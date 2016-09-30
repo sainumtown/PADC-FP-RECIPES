@@ -5,9 +5,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.padc.recipes.R;
 import com.padc.recipes.RecipesApp;
 import com.padc.recipes.data.vos.RestaurantVO;
+import com.padc.recipes.utils.RecipeAppConstants;
 
 import java.util.Arrays;
 
@@ -74,6 +76,14 @@ public class RestaurntViewHolder extends RecyclerView.ViewHolder implements View
         if (mRestaurant.getMost_popular_recipes() != null) {
             tvRecommendedFood.setText(mRestaurant.getMost_popular_recipes().get(0).getRecipe_name());
         }
+
+        String imageUrl =  RecipeAppConstants.IMAGE_ROOT_DIR +mRestaurant.getPhotos()[0];
+        Glide.with(ivRestaurnatPhoto.getContext())
+                .load(imageUrl)
+                .centerCrop()
+                .placeholder(R.drawable.stock_photo_placeholder)
+                .error(R.drawable.stock_photo_placeholder)
+                .into(ivRestaurnatPhoto);
     }
 
     public interface ControllerRestaurantItem {
