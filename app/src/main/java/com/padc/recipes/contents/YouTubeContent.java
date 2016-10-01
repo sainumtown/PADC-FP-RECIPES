@@ -47,16 +47,16 @@ public class YouTubeContent {
     public static Map<String, YouTubeVideo> ITEM_MAP = new HashMap<>();
 
     static {
-        addItem(new YouTubeVideo("L8lwlj9D7oQ", "Pork Pone Yae Gyi Curry"));
-        addItem(new YouTubeVideo("x-g75uUkKwN-c", "A Chin Hnin"));
-        addItem(new YouTubeVideo("3T-YmcusL7Q", "Chicken Potato Curry"));
-        addItem(new YouTubeVideo("wdlU4Ct7TWI", "Cucumber Salad"));
-        addItem(new YouTubeVideo("ysBBD6pm14U", "Chili Htaung"));
-        addItem(new YouTubeVideo("gvwNN6A1LTc", "Tomato Curry"));
-        addItem(new YouTubeVideo("NMXpEKaMfDc", "Hta Min Toke "));
-        addItem(new YouTubeVideo("I5JbaUjanto", "Hta Min Paung"));
-        addItem(new YouTubeVideo("kZl5WpdHtMw", "Si Hta Min"));
-        addItem(new YouTubeVideo("8NfFhR_SXyc", "Shan Noodle"));
+        addItem(new YouTubeVideo("L8lwlj9D7oQ", "၀က္သားပုန္းရည္ၾကီးဟင္း"));
+        addItem(new YouTubeVideo("x-g75uUkKwN-c", "အခ်ဥ္ဟင္း"));
+        addItem(new YouTubeVideo("3T-YmcusL7Q", "ၾကက္သားအာလူးဟင္း"));
+        addItem(new YouTubeVideo("wdlU4Ct7TWI", "သခြားသီးသုပ္"));
+        addItem(new YouTubeVideo("ysBBD6pm14U", "ငရုတ္သီးေထာင္း"));
+        addItem(new YouTubeVideo("gvwNN6A1LTc", "ခရမ္းခ်ဥ္သီးခ်က္"));
+        addItem(new YouTubeVideo("NMXpEKaMfDc", "ထမင္းသုတ္ "));
+        addItem(new YouTubeVideo("I5JbaUjanto", "ထမင္းေပါင္း"));
+        addItem(new YouTubeVideo("kZl5WpdHtMw", "ဆီထမင္း"));
+        addItem(new YouTubeVideo("8NfFhR_SXyc", "ရွမ္းေခါက္ဆြဲ"));
     }
 
     private static void addItem(final YouTubeVideo item) {
