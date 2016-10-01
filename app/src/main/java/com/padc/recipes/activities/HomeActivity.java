@@ -50,6 +50,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private static final String IE_FRAGMENT = "IE_FRAGMENT";
     public static final String FRAGMENT_FAVOURITE = "1";
+    public static final String FRAGMENT_SHOPPING_LIST = "2";
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -115,6 +116,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             switch (mScreenID) {
                 case FRAGMENT_FAVOURITE:
                     navigateToFavourite();
+                    break;
+                case FRAGMENT_SHOPPING_LIST:
+                    navigateToShoppingList();
                     break;
             }
         }

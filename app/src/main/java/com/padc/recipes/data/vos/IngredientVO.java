@@ -22,6 +22,8 @@ public class IngredientVO {
     @SerializedName("image")
     private String image;
 
+    private boolean bought;
+
     public int getIngredient_id() {
         return ingredient_id;
     }
@@ -60,5 +62,13 @@ public class IngredientVO {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public boolean isBought() {
+        return bought;
+    }
+
+    public void setBought(boolean bought) {
+        this.bought = bought;
     }
 }

@@ -250,6 +250,13 @@ public class RecipeVO {
         return recipe;
     }
 
+    public static RecipeVO parseRecipeIdAndTitleFromCursor(Cursor data){
+        RecipeVO recipe = new RecipeVO();
+        recipe.recipe_id = Integer.parseInt(data.getString(data.getColumnIndex(RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_RECIPE_ID)));
+        recipe.recipe_title =data.getString(data.getColumnIndex(RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_RECIPE_TITLE));
+        return recipe;
+    }
+
     public static String[] loadRecipeImagesByTitle(String title) {
 
         Context context = RecipesApp.getContext();
@@ -415,4 +422,48 @@ public class RecipeVO {
 
 
     }
+
+    public static void SaveToShoppingList(RecipeVO mRecipe) {
+        ContentValues[] shoppingListRecipeIngredientCVs = new ContentValues[mRecipe.getIngredients().size()];
+        for (int index = 0; index < mRecipe.getIngredients().size(); index++) {
+            IngredientVO ingredient = mRecipe.getIngredients().get(index);
+
+            ContentValues cv = new ContentValues();
+            cv.put(RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_RECIPE_ID, mRecipe.getRecipe_id());
+            cv.put(RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_RECIPE_TITLE, mRecipe.getRecipe_title());
+            cv.put(RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_INGREDIENT_ID, ingredient.getIngredient_id());
+            cv.put(RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_INGREDIENT_NAME, ingredient.getIngredient_name());
+            cv.put(RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_MEASUREMENT, ingredient.getMeasurement());
+
+            shoppingListRecipeIngredientCVs[index] = cv;
+        }
+
+        Context context = RecipesApp.getContext();
+        int insertedCount = context.getContentResolver().bulkInsert(RecipeContract.ShoppingRecipeIngredientEntry.CONTENT_URI, shoppingListRecipeIngredientCVs);
+        Log.d(RecipesApp.TAG, "Bulk inserted into shopping_list_recipes_ingredients table : " + insertedCount);
+
+    }
+
+    public static List<IngredientVO> loadShoppingListRecipeIngredientsByRecipeId(String recipe_id) {
+        Context context = RecipesApp.getContext();
+        ArrayList<IngredientVO> ingredients = new ArrayList<>();
+
+        Cursor cursor = context.getContentResolver().query(RecipeContract.ShoppingRecipeIngredientEntry.buildShoppingUriWithRecipeId(recipe_id),
+                null, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                IngredientVO ingredient = new IngredientVO();
+                ingredient.setIngredient_id(Integer.parseInt(cursor.getString(cursor.getColumnIndex(RecipeContract.IngredientEntry.COLUMN_INGREDIENT_ID))));
+                ingredient.setIngredient_name(cursor.getString(cursor.getColumnIndex(RecipeContract.IngredientEntry.COLUMN_INGREDIENT_NAME)));
+                ingredient.setMeasurement(cursor.getString(cursor.getColumnIndex(RecipeContract.IngredientEntry.COLUMN_MEASUREMENT)));
+                ingredient.setBought((cursor.getInt(cursor
+                        .getColumnIndex(RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_BOUGHT)) == 1));
+                ingredients.add(ingredient);
+
+            } while (cursor.moveToNext());
+        }
+        return ingredients;
+    }
+
 }
