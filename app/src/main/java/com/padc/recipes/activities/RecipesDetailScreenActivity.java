@@ -15,6 +15,8 @@ import android.support.v4.content.Loader;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
@@ -26,13 +28,19 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.padc.recipes.R;
 import com.padc.recipes.RecipesApp;
+import com.padc.recipes.adapters.RestaurantAdapter;
 import com.padc.recipes.components.MMTextView;
 import com.padc.recipes.data.models.RecipeModel;
 import com.padc.recipes.data.persistence.RecipeContract;
 import com.padc.recipes.data.vos.IngredientVO;
 import com.padc.recipes.data.vos.InstructionVO;
 import com.padc.recipes.data.vos.RecipeVO;
+import com.padc.recipes.data.vos.RestaurantVO;
 import com.padc.recipes.utils.RecipeAppConstants;
+import com.padc.recipes.views.holders.RestaurntViewHolder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,29 +70,6 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
     @BindView(R.id.tv_availableshop)
     TextView tvAvailableShop;
 
-    @BindView(R.id.iv_ykko)
-    ImageView ivYKKO;
-
-    @BindView(R.id.iv_yangon)
-    ImageView ivYangon;
-
-    @BindView(R.id.iv_yangon1)
-    ImageView ivYangon1;
-
-    @BindView(R.id.iv_taipot)
-    ImageView ivTaipot;
-
-    @BindView(R.id.tv_ykko)
-    TextView tvYkko;
-
-    @BindView(R.id.tv_taipot)
-    TextView tvTaipot;
-
-    @BindView(R.id.tv_yangongrill)
-    TextView tvYangon;
-
-    @BindView(R.id.tv_yangongrill1)
-    TextView tvYangon1;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -92,7 +77,13 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
     @BindView(R.id.btn_add_to_shopping_list)
     Button btnAddToShoppingList;
 
+    @BindView(R.id.rv_restaurants)
+    RecyclerView rvRestaurant;
 
+
+
+    private RestaurantAdapter mRestaurantAdapter;
+    RestaurntViewHolder.ControllerRestaurantItem mControllerRestaurantItem;
     private String mRecipeId;
     RecipeVO mRecipe;
     private View.OnClickListener mClickListner;
@@ -127,28 +118,13 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        // restaurant list
+        List<RestaurantVO> restaurantList = new ArrayList<>();
+        mRestaurantAdapter = new RestaurantAdapter(mControllerRestaurantItem, restaurantList);
+        rvRestaurant.setAdapter(mRestaurantAdapter);
 
-        Glide.with(ivYKKO.getContext())
-                .load(R.drawable.ykko)
-                .centerCrop()
-                .into(ivYKKO);
-
-        Glide.with(ivTaipot.getContext())
-                .load(R.drawable.taipot)
-                .centerCrop()
-                .into(ivTaipot);
-
-
-        Glide.with(ivYangon.getContext())
-                .load(R.drawable.yangon)
-                .centerCrop()
-                .into(ivYangon);
-
-        Glide.with(ivYangon1.getContext())
-                .load(R.drawable.yangon)
-                .centerCrop()
-                .into(ivYangon1);
-
+        int gridColumnSpanCount = 1;
+        rvRestaurant.setLayoutManager(new GridLayoutManager(this, gridColumnSpanCount));
 
         // Favourite click process
         favourite();
@@ -254,6 +230,9 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
 
             // set instructions
             mRecipe.setInstructions(RecipeVO.loadRecipeInstructionsByRecipeId(String.valueOf(mRecipe.getRecipe_id())));
+
+            // set instructions ( dummy data )
+            mRecipe.setAvailable_restaurants(RecipeVO.loadRestaurantsByRecipeId(String.valueOf(mRecipe.getRecipe_id())));
 
             bindData(mRecipe);
         }

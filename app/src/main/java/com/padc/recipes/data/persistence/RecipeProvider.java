@@ -25,12 +25,14 @@ public class RecipeProvider extends ContentProvider {
     public static final int RECIPES_INSTRUCTIONS = 105;
 
     public static final int RESTAURANTS = 106;
-    public static final int RESTAURANTS_IMAGES =107;
-    public static final int TOWNSHIPS =108;
-    public static final int RESTAURANTS_SERVICE_TIME =109;
-    public static final int RESTAURANTS_RECOMMENDED_FOODS =110;
+    public static final int RESTAURANTS_IMAGES = 107;
+    public static final int TOWNSHIPS = 108;
+    public static final int RESTAURANTS_SERVICE_TIME = 109;
+    public static final int RESTAURANTS_RECOMMENDED_FOODS = 110;
 
-    public static final int SHOPPING_LIST_RECIPE_INGREDIENTS =111;
+    public static final int SHOPPING_LIST_RECIPE_INGREDIENTS = 111;
+    public static final int RECIPES_AVIALABLE_RESTAURANTS = 112;
+
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private RecipeDBHelper mRecipeDBHelper;
@@ -41,14 +43,15 @@ public class RecipeProvider extends ContentProvider {
     private static final String sPresenterSelectionWithID = RecipeContract.PresenterEntry.COLUMN_PRESENTER_ID + " = ?";
     private static final String sRecipeIngredientWithRecipeID = RecipeContract.IngredientEntry.COLUMN_RECIPE_ID + " = ?";
     private static final String sRecipeInstructionWithRecipeID = RecipeContract.InstructionEntry.COLUMN_RECIPE_ID + " = ?";
+    private static final String sRecipeAvialableRestaurantWithRecipeID = RecipeContract.AvailableRestaurants.COLUMN_RECIPE_ID + " = ?";
 
     private static final String sRestaurantWithRestaurantID = RecipeContract.RestaurantEntry.COLUMN_RESTAURANT_ID + " = ?";
     private static final String sRestaurantImageSelectionWithRestaurantID = RecipeContract.RestaurantImageEntry.COLUMN_RESTAURANT_ID + " = ?";
-    private static final String sTownshipWithTownshipId = RecipeContract.TownshipEntry.COLUMN_TOWNSHIP_ID +" = ?";
-    private static final String sRestaurantServiceTimeWithRestaurantIDWithTownshipId = RecipeContract.RestaurantServiceTimeEntry.COLUMN_RESTAURANT_ID +" = ?";
-    private static final String sRestaurantRecommendedFoodsWithTownshipId = RecipeContract.RestaurantRecommendedFoodEntry.COLUMN_RESTAURANT_ID +" = ?";
+    private static final String sTownshipWithTownshipId = RecipeContract.TownshipEntry.COLUMN_TOWNSHIP_ID + " = ?";
+    private static final String sRestaurantServiceTimeWithRestaurantIDWithTownshipId = RecipeContract.RestaurantServiceTimeEntry.COLUMN_RESTAURANT_ID + " = ?";
+    private static final String sRestaurantRecommendedFoodsWithTownshipId = RecipeContract.RestaurantRecommendedFoodEntry.COLUMN_RESTAURANT_ID + " = ?";
 
-    private static final String sShoppingListRecipeIngredientWithRecipeId = RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_RECIPE_ID +" = ?";
+    private static final String sShoppingListRecipeIngredientWithRecipeId = RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_RECIPE_ID + " = ?";
 
     @Override
     public boolean onCreate() {
@@ -233,6 +236,20 @@ public class RecipeProvider extends ContentProvider {
                         null,
                         sortOrder);
                 break;
+            case RECIPES_AVIALABLE_RESTAURANTS:
+                String recipeIdAvailableRestaurants = RecipeContract.AvailableRestaurants.getRecipeIdFromParam(uri);
+                if (recipeIdAvailableRestaurants != null) {
+                    selection = sRecipeAvialableRestaurantWithRecipeID;
+                    selectionArgs = new String[]{recipeIdAvailableRestaurants};
+                }
+                queryCursor = mRecipeDBHelper.getReadableDatabase().query(RecipeContract.AvailableRestaurants.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+                break;
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -275,6 +292,8 @@ public class RecipeProvider extends ContentProvider {
                 return RecipeContract.RecipeImageEntry.DIR_TYPE;
             case SHOPPING_LIST_RECIPE_INGREDIENTS:
                 return RecipeContract.ShoppingRecipeIngredientEntry.DIR_TYPE;
+            case RECIPES_AVIALABLE_RESTAURANTS:
+                return RecipeContract.AvailableRestaurants.DIR_TYPE;
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -399,6 +418,15 @@ public class RecipeProvider extends ContentProvider {
                 }
                 break;
             }
+            case RECIPES_AVIALABLE_RESTAURANTS: {
+                long _id = db.insert(RecipeContract.AvailableRestaurants.TABLE_NAME, null, contentValues);
+                if (_id > 0) {
+                    insertedUri = RecipeContract.AvailableRestaurants.buildAvailableRestaurantsUri(_id);
+                } else {
+                    throw new SQLException("Failed to insert row into " + uri);
+                }
+                break;
+            }
             default:
 
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
@@ -488,6 +516,7 @@ public class RecipeProvider extends ContentProvider {
         uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_RESTAURANT_RECOMMENDED_FOODS, RESTAURANTS_RECOMMENDED_FOODS);
 
         uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_SHOPPING_LIST_RECIPE_INGREDIENT, SHOPPING_LIST_RECIPE_INGREDIENTS);
+        uriMatcher.addURI(RecipeContract.CONTENT_AUTHORITY, RecipeContract.PATH_AVAILABLE_RESTAURANTS, RECIPES_AVIALABLE_RESTAURANTS);
 
         return uriMatcher;
     }
@@ -520,8 +549,8 @@ public class RecipeProvider extends ContentProvider {
                 return RecipeContract.RestaurantRecommendedFoodEntry.TABLE_NAME;
             case SHOPPING_LIST_RECIPE_INGREDIENTS:
                 return RecipeContract.ShoppingRecipeIngredientEntry.TABLE_NAME;
-
-
+            case RECIPES_AVIALABLE_RESTAURANTS:
+                return RecipeContract.AvailableRestaurants.TABLE_NAME;
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
