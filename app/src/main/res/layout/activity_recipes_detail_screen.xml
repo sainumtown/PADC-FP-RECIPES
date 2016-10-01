@@ -61,6 +61,7 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -168,21 +169,13 @@
                     android:layout_marginLeft="@dimen/margin_medium_2"
                     android:layout_marginRight="@dimen/margin_medium_2"
                     android:background="#949292" />
-
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_restaurants"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clipToPadding="false"
-                    android:orientation="horizontal"
-                    android:paddingBottom="@dimen/padding_bottom_for_fab"
-                    android:paddingLeft="@dimen/margin_medium"
-                    android:paddingRight="@dimen/margin_medium"
-                    android:scrollbarStyle="outsideOverlay" />
-
-
             </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_restaurants"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/> />
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

@@ -157,6 +157,9 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
             RecipeContract.AvailableRestaurants._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             RecipeContract.AvailableRestaurants.COLUMN_RECIPE_ID + " TEXT NOT NULL, " +
             RecipeContract.AvailableRestaurants.COLUMN_RESTAURANT_ID + " TEXT NOT NULL, " +
+            RecipeContract.AvailableRestaurants.COLUMN_RESTAURANT_NAME + " TEXT , " +
+            RecipeContract.AvailableRestaurants.COLUMN_IMAGE + " TEXT , " +
+
 
             " UNIQUE (" + RecipeContract.AvailableRestaurants.COLUMN_RECIPE_ID + ", " +
             RecipeContract.AvailableRestaurants.COLUMN_RESTAURANT_ID + ") ON CONFLICT IGNORE" +

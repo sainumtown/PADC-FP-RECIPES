@@ -522,6 +522,8 @@ public class RecipeContract {
 
         public static final String COLUMN_RECIPE_ID = "recipe_id";
         public static final String COLUMN_RESTAURANT_ID = "restaurant_id";
+        public static final String COLUMN_IMAGE = "image";
+        public static final String COLUMN_RESTAURANT_NAME = "restaurant_name";
 
         public static Uri buildAvailableRestaurantsUri(long id) {
             // content://com.padc.recipes/available_restaurants/1

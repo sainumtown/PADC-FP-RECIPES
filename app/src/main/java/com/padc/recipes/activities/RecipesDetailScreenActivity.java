@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
@@ -28,15 +29,18 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.padc.recipes.R;
 import com.padc.recipes.RecipesApp;
+import com.padc.recipes.adapters.AvailableRestaurantAdapter;
 import com.padc.recipes.adapters.RestaurantAdapter;
 import com.padc.recipes.components.MMTextView;
 import com.padc.recipes.data.models.RecipeModel;
 import com.padc.recipes.data.persistence.RecipeContract;
+import com.padc.recipes.data.vos.AvailableRestaurantVO;
 import com.padc.recipes.data.vos.IngredientVO;
 import com.padc.recipes.data.vos.InstructionVO;
 import com.padc.recipes.data.vos.RecipeVO;
 import com.padc.recipes.data.vos.RestaurantVO;
 import com.padc.recipes.utils.RecipeAppConstants;
+import com.padc.recipes.views.holders.AvailableRestaurantsViewHolder;
 import com.padc.recipes.views.holders.RestaurntViewHolder;
 
 import java.util.ArrayList;
@@ -46,7 +50,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RecipesDetailScreenActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>
-        , AppBarLayout.OnOffsetChangedListener {
+        , AppBarLayout.OnOffsetChangedListener, AvailableRestaurantsViewHolder.ControllerAvailableRestaurantItem {
 
     private static final String IE_RECIPE_ID = "recipe_id";
     @BindView(R.id.iv_recipe)
@@ -82,10 +86,11 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
 
 
 
-    private RestaurantAdapter mRestaurantAdapter;
-    RestaurntViewHolder.ControllerRestaurantItem mControllerRestaurantItem;
+    private AvailableRestaurantAdapter mAvailableRestaurantAdapter;
+    AvailableRestaurantsViewHolder.ControllerAvailableRestaurantItem mControllerAvailableRestaurantItem;
     private String mRecipeId;
     RecipeVO mRecipe;
+
     private View.OnClickListener mClickListner;
 
     private View.OnClickListener mFavouriteListner;
@@ -105,6 +110,7 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
             new int[][]{{android.R.attr.state_checkable}, {}},
             new int[]{Color.RED, Color.GRAY});
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,12 +125,11 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
         }
 
         // restaurant list
-        List<RestaurantVO> restaurantList = new ArrayList<>();
-        mRestaurantAdapter = new RestaurantAdapter(mControllerRestaurantItem, restaurantList);
-        rvRestaurant.setAdapter(mRestaurantAdapter);
+        List<AvailableRestaurantVO> availableRestaurantList = new ArrayList<>();
+        mAvailableRestaurantAdapter = new AvailableRestaurantAdapter(this, availableRestaurantList);
+        rvRestaurant.setAdapter(mAvailableRestaurantAdapter);
 
-        int gridColumnSpanCount = 1;
-        rvRestaurant.setLayoutManager(new GridLayoutManager(this, gridColumnSpanCount));
+        rvRestaurant.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
 
         // Favourite click process
         favourite();
@@ -271,6 +276,12 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
                 .placeholder(R.drawable.stock_photo_placeholder)
                 .error(R.drawable.stock_photo_placeholder)
                 .into(ivRecipe);
+
+        // available restaurants
+
+        mAvailableRestaurantAdapter.setNewData(mRecipe.getAvailable_restaurants());
+
+
     }
 
     private void stepByStepSetting() {
@@ -298,5 +309,12 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
 
+    }
+
+    @Override
+    public void onTapAvailableRestaurant(AvailableRestaurantVO availableRestaurant) {
+        //TODO to get the real id.
+        Intent intent = ResturantDetailScreenActivity.newIntent(String.valueOf(availableRestaurant.getRestaurants_id()));
+        startActivity(intent);
     }
 }
