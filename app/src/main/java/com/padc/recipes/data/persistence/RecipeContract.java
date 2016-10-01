@@ -7,7 +7,6 @@ import android.provider.BaseColumns;
 
 import com.padc.recipes.RecipesApp;
 
-
 /**
  * Created by aung on 7/9/16.
  */
@@ -29,7 +28,6 @@ public class RecipeContract {
     public static final String PATH_RESTAURANT_SERVICE_TIME = "restaurant_service_times";
     public static final String PATH_RESTAURANT_RECOMMENDED_FOODS = "restaurant_recommended_foods";
 
-
     public static final class RecipeEntry implements BaseColumns {
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_RECIPES).build();
@@ -41,7 +39,6 @@ public class RecipeContract {
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_RECIPES;
 
         public static final String TABLE_NAME = "recipes";
-
         public static final String COLUMN_ID = "recipe_id";
         public static final String COLUMN_TITLE = "recipe_title";
         public static final String COLUMN_NOTE = "note";
@@ -439,4 +436,5 @@ public class RecipeContract {
         }
 
     }
+
 }

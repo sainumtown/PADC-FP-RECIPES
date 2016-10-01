@@ -16,6 +16,7 @@ import android.text.TextUtils;
  */
 public class RecipeProvider extends ContentProvider {
 
+
     public static final int RECIPE = 100;
     public static final int RECIPE_IMAGES = 101;
     public static final int CATEGORY = 102;
@@ -49,11 +50,13 @@ public class RecipeProvider extends ContentProvider {
     public boolean onCreate() {
         mRecipeDBHelper = new RecipeDBHelper(getContext());
         return true;
+
     }
 
     @Nullable
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+
         Cursor queryCursor;
         int matchUri = sUriMatcher.match(uri);
 
@@ -226,6 +229,7 @@ public class RecipeProvider extends ContentProvider {
     @Nullable
     @Override
     public String getType(Uri uri) {
+
         final int matchUri = sUriMatcher.match(uri);
         switch (matchUri) {
             case RECIPE:
@@ -253,10 +257,12 @@ public class RecipeProvider extends ContentProvider {
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
+
     }
 
     @Nullable
     @Override
+
     public Uri insert(Uri uri, ContentValues contentValues) {
         final SQLiteDatabase db = mRecipeDBHelper.getWritableDatabase();
         final int matchUri = sUriMatcher.match(uri);
@@ -403,10 +409,12 @@ public class RecipeProvider extends ContentProvider {
         }
 
         return insertedCount;
+
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
+
         final SQLiteDatabase db = mRecipeDBHelper.getWritableDatabase();
         int rowDeleted;
         String tableName = getTableName(uri);
