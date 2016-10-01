@@ -27,4 +27,16 @@ public class AvailableRestaurantVO {
     public String getImage() {
         return image;
     }
+
+    public void setRestaurants_id(int restaurants_id) {
+        this.restaurants_id = restaurants_id;
+    }
+
+    public void setRestaurants_name(String restaurants_name) {
+        this.restaurants_name = restaurants_name;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

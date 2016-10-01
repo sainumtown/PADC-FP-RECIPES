@@ -22,6 +22,7 @@ public class RecipeContract {
     public static final String PATH_PRESENTERS = "presenters";
     public static final String PATH_INGREDIENTS = "ingredients";
     public static final String PATH_RECIPE_INSTRUCTIONS = "recipe_instructions";
+    public static final String PATH_AVAILABLE_RESTAURANTS = "available_restaurants";
 
     public static final String PATH_RESTAURANTS = "restaurants";
     public static final String PATH_RESTAURANT_IMAGES = "restaurant_images";
@@ -506,4 +507,38 @@ public class RecipeContract {
 
         }
     }
+
+    public static final class AvailableRestaurants implements BaseColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_AVAILABLE_RESTAURANTS).build();
+
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_AVAILABLE_RESTAURANTS;
+
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_AVAILABLE_RESTAURANTS;
+
+        public static final String TABLE_NAME = "available_restaurants";
+
+        public static final String COLUMN_RECIPE_ID = "recipe_id";
+        public static final String COLUMN_RESTAURANT_ID = "restaurant_id";
+
+        public static Uri buildAvailableRestaurantsUri(long id) {
+            // content://com.padc.recipes/available_restaurants/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildAvailableRestaurantUriWithRecipeId(String recipeId) {
+            //content://com.padc.recipes/available_restaurants/?recipe_Id=something
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_RECIPE_ID, recipeId)
+                    .build();
+        }
+
+        public static String getRecipeIdFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_RECIPE_ID);
+        }
+
+    }
+
 }

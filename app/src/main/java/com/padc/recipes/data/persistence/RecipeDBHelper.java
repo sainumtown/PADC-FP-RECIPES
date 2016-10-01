@@ -153,6 +153,15 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
             RecipeContract.ShoppingRecipeIngredientEntry.COLUMN_INGREDIENT_ID + ") ON CONFLICT REPLACE" +
             " );";
 
+    private static final String SQL_CREATE_AVAILABLE_RESTAURANT_TABLE = "CREATE TABLE " + RecipeContract.AvailableRestaurants.TABLE_NAME + " (" +
+            RecipeContract.AvailableRestaurants._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            RecipeContract.AvailableRestaurants.COLUMN_RECIPE_ID + " TEXT NOT NULL, " +
+            RecipeContract.AvailableRestaurants.COLUMN_RESTAURANT_ID + " TEXT NOT NULL, " +
+
+            " UNIQUE (" + RecipeContract.AvailableRestaurants.COLUMN_RECIPE_ID + ", " +
+            RecipeContract.AvailableRestaurants.COLUMN_RESTAURANT_ID + ") ON CONFLICT IGNORE" +
+            " );";
+
     public RecipeDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -172,6 +181,7 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(SQL_CREATE_RESTAURANT_SERVICE_TIME_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_RESTAURANT_RECOMMENDED_FOODS_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_SHOPPING_LIST_RECIPE_INGREDIENTS);
+        sqLiteDatabase.execSQL(SQL_CREATE_AVAILABLE_RESTAURANT_TABLE);
 
     }
 
@@ -189,6 +199,7 @@ public class RecipeDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RecipeContract.RestaurantServiceTimeEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RecipeContract.RestaurantRecommendedFoodEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RecipeContract.ShoppingRecipeIngredientEntry.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RecipeContract.AvailableRestaurants.TABLE_NAME);
 
         onCreate(sqLiteDatabase);
     }

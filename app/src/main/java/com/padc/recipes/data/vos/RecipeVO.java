@@ -139,6 +139,14 @@ public class RecipeVO {
         this.instructions = instructions;
     }
 
+    public void setMeasurement_units(List<MeasurementUnitVO> measurement_units) {
+        this.measurement_units = measurement_units;
+    }
+
+    public void setAvailable_restaurants(List<AvailableRestaurantVO> available_restaurants) {
+        this.available_restaurants = available_restaurants;
+    }
+
     public static void saveRecipes(List<RecipeVO> recipeList) {
         Context context = RecipesApp.getContext();
         ContentValues[] recipeCVs = new ContentValues[recipeList.size()];
@@ -166,12 +174,33 @@ public class RecipeVO {
             //Bulk insert into recipes_instructions.
             RecipeVO.saveRecipeInstructions(recipe.recipe_id, recipe.getInstructions());
 
+            // insert into available restaurants
+            //Bulk insert into available restaurants
+            RecipeVO.saveAvailableRestaurants(recipe.recipe_id, recipe.getAvailable_restaurants());
+
         }
 
         //Bulk insert into attractions.
         int insertedCount = context.getContentResolver().bulkInsert(RecipeContract.RecipeEntry.CONTENT_URI, recipeCVs);
 
         Log.d(RecipesApp.TAG, "Bulk inserted into recipe table : " + insertedCount);
+    }
+
+    private static void saveAvailableRestaurants(int recipe_id, List<AvailableRestaurantVO> available_restaurants) {
+        ContentValues[] recipeAvailableRestaurnatVOs = new ContentValues[available_restaurants.size()];
+        for (int index = 0; index < available_restaurants.size(); index++) {
+            AvailableRestaurantVO availableRestaurant = available_restaurants.get(index);
+
+            ContentValues cv = new ContentValues();
+            cv.put(RecipeContract.AvailableRestaurants.COLUMN_RECIPE_ID, recipe_id);
+            cv.put(RecipeContract.AvailableRestaurants.COLUMN_RESTAURANT_ID, availableRestaurant.getRestaurants_id());
+
+            recipeAvailableRestaurnatVOs[index] = cv;
+        }
+
+        Context context = RecipesApp.getContext();
+        int insertedCount = context.getContentResolver().bulkInsert(RecipeContract.AvailableRestaurants.CONTENT_URI, recipeAvailableRestaurnatVOs);
+        Log.d(RecipesApp.TAG, "Bulk inserted into recipes_restaurants table : " + insertedCount);
     }
 
     private static void savePresenter(PresenterVO presenter) {
@@ -492,5 +521,23 @@ public class RecipeVO {
         Context context = RecipesApp.getContext();
         int deleted = context.getContentResolver().delete(RecipeContract.ShoppingRecipeIngredientEntry.CONTENT_URI,selection,selectionArgs);
         Log.d(RecipesApp.TAG, "Shopping List recipe ingreidents deleted status : " + deleted);
+    }
+
+
+    public static List<AvailableRestaurantVO> loadRestaurantsByRecipeId(String recipeId) {
+        Context context = RecipesApp.getContext();
+        ArrayList<AvailableRestaurantVO> availabeRestaurants = new ArrayList<>();
+
+        Cursor cursor = context.getContentResolver().query(RecipeContract.AvailableRestaurants.buildAvailableRestaurantUriWithRecipeId(recipeId),
+                null, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                AvailableRestaurantVO availableRestaurant = new AvailableRestaurantVO();
+                availableRestaurant.setRestaurants_id(Integer.parseInt(cursor.getString(cursor.getColumnIndex(RecipeContract.AvailableRestaurants.COLUMN_RESTAURANT_ID))));
+                availabeRestaurants.add(availableRestaurant);
+            } while (cursor.moveToNext());
+        }
+        return availabeRestaurants;
     }
 }

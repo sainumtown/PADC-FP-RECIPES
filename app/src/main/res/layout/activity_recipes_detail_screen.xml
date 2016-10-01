@@ -96,9 +96,9 @@
                 <LinearLayout
                     android:id="@+id/ll_ingredietns"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/margin_medium_2"
                     android:layout_marginRight="@dimen/margin_medium_2"
-                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                 </LinearLayout>
@@ -107,11 +107,11 @@
                     android:id="@+id/btn_add_to_shopping_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:background="@color/cardview_dark_background"
-                    android:textColor="@color/text_white_ish"
                     android:layout_margin="@dimen/margin_medium_2"
-                    android:text="@string/add_shopping_list" />
+                    android:background="@color/cardview_dark_background"
+                    android:clickable="true"
+                    android:text="@string/add_shopping_list"
+                    android:textColor="@color/text_white_ish" />
 
             </LinearLayout>
 
@@ -136,9 +136,9 @@
                     android:id="@+id/separator2"
                     android:layout_width="fill_parent"
                     android:layout_height="1dip"
+                    android:layout_marginBottom="@dimen/margin_medium_2"
                     android:layout_marginLeft="@dimen/margin_medium_2"
                     android:layout_marginRight="@dimen/margin_medium_2"
-                    android:layout_marginBottom="@dimen/margin_medium_2"
                     android:background="#949292" />
             </LinearLayout>
 
@@ -169,102 +169,19 @@
                     android:layout_marginRight="@dimen/margin_medium_2"
                     android:background="#949292" />
 
-                <HorizontalScrollView
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_restaurants"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/padding_bottom_for_fab"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:paddingRight="@dimen/margin_medium"
+                    android:scrollbarStyle="outsideOverlay" />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/margin_medium_2"
-                        android:layout_marginTop="@dimen/margin_medium_2"
-                        android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:id="@+id/iv_ykko"
-                                android:layout_width="@dimen/image_width"
-                                android:layout_height="@dimen/image_height"
-                                android:layout_marginRight="@dimen/margin_medium"
-                                android:scaleType="centerCrop"
-                                tools:src="@drawable/ykko" />
-
-                            <com.padc.recipes.components.MMTextView
-                                android:id="@+id/tv_ykko"
-                                android:layout_width="@dimen/image_width"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="@dimen/margin_medium"
-                                android:text="YKKO" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:id="@+id/iv_taipot"
-                                android:layout_width="@dimen/image_width"
-                                android:layout_height="@dimen/image_height"
-                                android:layout_marginRight="@dimen/margin_medium"
-                                android:scaleType="centerCrop"
-                                tools:src="@drawable/taipot" />
-
-                            <com.padc.recipes.components.MMTextView
-                                android:id="@+id/tv_taipot"
-                                android:layout_width="@dimen/image_width"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="@dimen/margin_medium"
-                                android:text="Tai Pot" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:id="@+id/iv_yangon"
-                                android:layout_width="@dimen/image_width"
-                                android:layout_height="@dimen/image_height"
-                                android:layout_marginRight="@dimen/margin_medium"
-                                android:scaleType="centerCrop"
-                                tools:src="@drawable/yangon" />
-
-                            <com.padc.recipes.components.MMTextView
-                                android:id="@+id/tv_yangongrill"
-                                android:layout_width="@dimen/image_width"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="@dimen/margin_medium"
-                                android:text="Yangon Grill and Chill" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:id="@+id/iv_yangon1"
-                                android:layout_width="@dimen/image_width"
-                                android:layout_height="@dimen/image_height"
-                                android:layout_marginRight="@dimen/margin_medium"
-                                android:scaleType="centerCrop"
-                                tools:src="@drawable/yangon" />
-
-                            <com.padc.recipes.components.MMTextView
-                                android:id="@+id/tv_yangongrill1"
-                                android:layout_width="@dimen/image_width"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="@dimen/margin_medium"
-                                android:text="Yangon Grill and Chill" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </HorizontalScrollView>
             </LinearLayout>
         </LinearLayout>
 
