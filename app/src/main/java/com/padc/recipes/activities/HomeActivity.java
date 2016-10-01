@@ -25,6 +25,7 @@ import com.padc.recipes.R;
 import com.padc.recipes.RecipesApp;
 import com.padc.recipes.adapters.RecipeCategoryListAdapter;
 import com.padc.recipes.data.models.RecipeModel;
+import com.padc.recipes.data.vos.AvailableRestaurantVO;
 import com.padc.recipes.data.vos.IngredientVO;
 import com.padc.recipes.data.vos.RecipeVO;
 import com.padc.recipes.fragments.FavouriteFragment;
@@ -32,6 +33,7 @@ import com.padc.recipes.fragments.RecipeListFragment;
 import com.padc.recipes.fragments.RestaurantListFragment;
 import com.padc.recipes.fragments.ShoppingListFragment;
 import com.padc.recipes.fragments.VideoFragment;
+import com.padc.recipes.views.holders.AvailableRestaurantsViewHolder;
 import com.padc.recipes.views.holders.FavouriteViewHolder;
 import com.padc.recipes.views.holders.RecipeViewHolder;
 import com.padc.recipes.views.holders.RestaurntViewHolder;
@@ -243,7 +245,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public void onTapFavourite(RecipeVO recipeVO) {
         // TODO add favourite recipe ID
 
-            RecipeModel.getInstance().AddToFavourite(recipeVO);
+        RecipeModel.getInstance().AddToFavourite(recipeVO);
 
         mFavouriteOnClickListener = new View.OnClickListener() {
             @Override
@@ -273,12 +275,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onCheckShoppingListIngredient(String recipeId, String ingredientId, Boolean flagBought) {
-        RecipeVO.UpdateBoughtIngredient(recipeId,ingredientId,flagBought);
+        RecipeVO.UpdateBoughtIngredient(recipeId, ingredientId, flagBought);
     }
 
     @Override
     public void onClickRemoveAllIngredientsShoppingListByRecipeId(String recipeId) {
         RecipeVO.removeAllIngredientsShoppingListByRecipeId(recipeId);
     }
+
 }
 

@@ -194,6 +194,8 @@ public class RecipeVO {
             ContentValues cv = new ContentValues();
             cv.put(RecipeContract.AvailableRestaurants.COLUMN_RECIPE_ID, recipe_id);
             cv.put(RecipeContract.AvailableRestaurants.COLUMN_RESTAURANT_ID, availableRestaurant.getRestaurants_id());
+            cv.put(RecipeContract.AvailableRestaurants.COLUMN_IMAGE, availableRestaurant.getImage());
+            cv.put(RecipeContract.AvailableRestaurants.COLUMN_RESTAURANT_NAME, availableRestaurant.getRestaurants_name());
 
             recipeAvailableRestaurnatVOs[index] = cv;
         }
@@ -535,6 +537,8 @@ public class RecipeVO {
             do {
                 AvailableRestaurantVO availableRestaurant = new AvailableRestaurantVO();
                 availableRestaurant.setRestaurants_id(Integer.parseInt(cursor.getString(cursor.getColumnIndex(RecipeContract.AvailableRestaurants.COLUMN_RESTAURANT_ID))));
+                availableRestaurant.setImage(cursor.getString(cursor.getColumnIndex(RecipeContract.AvailableRestaurants.COLUMN_IMAGE)));
+                availableRestaurant.setRestaurants_name(cursor.getString(cursor.getColumnIndex(RecipeContract.AvailableRestaurants.COLUMN_RESTAURANT_NAME)));
                 availabeRestaurants.add(availableRestaurant);
             } while (cursor.moveToNext());
         }

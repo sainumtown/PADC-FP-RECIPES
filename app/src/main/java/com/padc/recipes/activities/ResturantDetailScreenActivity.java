@@ -10,6 +10,8 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,16 +19,24 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.padc.recipes.R;
 import com.padc.recipes.RecipesApp;
+import com.padc.recipes.adapters.AvailableRestaurantAdapter;
+import com.padc.recipes.adapters.RecommendedFoodsAdapter;
 import com.padc.recipes.data.persistence.RecipeContract;
+import com.padc.recipes.data.vos.AvailableRestaurantVO;
+import com.padc.recipes.data.vos.MostPopularRecipeVO;
 import com.padc.recipes.data.vos.RestaurantVO;
 import com.padc.recipes.utils.RecipeAppConstants;
+import com.padc.recipes.views.holders.RecommendedFoodsViewHolder;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ResturantDetailScreenActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class ResturantDetailScreenActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>
+        ,RecommendedFoodsViewHolder.ControllerRecommendedFoods {
 
 
     private static final String IE_RESTAURANT_ID = "restaurant_id";
@@ -35,19 +45,6 @@ public class ResturantDetailScreenActivity extends AppCompatActivity implements 
 
     @BindView(R.id.iv_restaurant_image)
     ImageView ivRestarurnatImage;
-
-
-    @BindView(R.id.iv_ykko1)
-    ImageView ivYKKO1;
-
-    @BindView(R.id.iv_ykko2)
-    ImageView ivYKKO2;
-
-    @BindView(R.id.iv_ykko3)
-    ImageView ivYKKO3;
-
-    @BindView(R.id.iv_ykko4)
-    ImageView ivYKKO4;
 
     @BindView(R.id.tv_subtitle)
     TextView tvSubTilte;
@@ -64,24 +61,17 @@ public class ResturantDetailScreenActivity extends AppCompatActivity implements 
     @BindView(R.id.tv_service)
     TextView tvService;
 
-    @BindView(R.id.tv_ykko1)
-    TextView tvYKKO1;
-
-    @BindView(R.id.tv_ykko2)
-    TextView tvYKKO2;
-
-
-    @BindView(R.id.tv_ykko3)
-    TextView tvYKKO3;
-
-
-    @BindView(R.id.tv_ykko4)
-    TextView tvYKKO4;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.rv_recommended_foods)
+    RecyclerView  rvRecommendedFoods;
+
     private String mRestaurnatId;
     private RestaurantVO mRestaurant;
+
+    RecommendedFoodsAdapter mRecommendedFoodsAdapter;
 
     public static Intent newIntent(String attractionName) {
         Intent intent = new Intent(RecipesApp.getContext(), ResturantDetailScreenActivity.class);
@@ -101,27 +91,13 @@ public class ResturantDetailScreenActivity extends AppCompatActivity implements 
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        
 
-        Glide.with(ivYKKO1.getContext())
-                .load(R.drawable.pork_kyay_oh_sichet)
-                .centerCrop()
-                .into(ivYKKO1);
-        Glide.with(ivYKKO2.getContext())
-                .load(R.drawable.grill_chicken)
-                .centerCrop()
-                .into(ivYKKO2);
+        // food list
+        List<MostPopularRecipeVO> mostPopularRecipes = new ArrayList<>();
+        mRecommendedFoodsAdapter = new RecommendedFoodsAdapter(this, mostPopularRecipes);
+        rvRecommendedFoods.setAdapter(mRecommendedFoodsAdapter);
 
-        Glide.with(ivYKKO3.getContext())
-                .load(R.drawable.pork_rib_kyay_oh)
-                .centerCrop()
-                .into(ivYKKO3);
-
-        Glide.with(ivYKKO4.getContext())
-                .load(R.drawable.grill_chicken_sausage)
-                .centerCrop()
-                .into(ivYKKO4);
-
+        rvRecommendedFoods.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
 
         mRestaurnatId = getIntent().getStringExtra(IE_RESTAURANT_ID);
         getSupportLoaderManager().initLoader(RecipeAppConstants.RESTAURANT_DETAIL_LOADER, null, this);
@@ -190,10 +166,19 @@ public class ResturantDetailScreenActivity extends AppCompatActivity implements 
         }
 
         tvService.setText(mRestaurant.getDescription());
+
+        mRecommendedFoodsAdapter.setNewData(mRestaurant.getMost_popular_recipes());
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
+    }
+
+    @Override
+    public void onTapRecommendedFoods(MostPopularRecipeVO mostPopularRecipe) {
+        //TODO to get the real id.
+        Intent intent = RecipesDetailScreenActivity.newIntent(String.valueOf(mostPopularRecipe.getRecipe_id()));
+        startActivity(intent);
     }
 }
