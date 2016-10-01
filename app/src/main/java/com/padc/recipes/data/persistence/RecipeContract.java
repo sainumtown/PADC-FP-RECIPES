@@ -22,11 +22,18 @@ public class RecipeContract {
     public static final String PATH_INGREDIENTS = "ingredients";
     public static final String PATH_RECIPE_INSTRUCTIONS = "recipe_instructions";
 
+    public static final String PATH_AVAILABLE_RESTAURANTS = "available_restaurants";
+
     public static final String PATH_RESTAURANTS = "restaurants";
     public static final String PATH_RESTAURANT_IMAGES = "restaurant_images";
     public static final String PATH_TOWNSHIP = "townships";
     public static final String PATH_RESTAURANT_SERVICE_TIME = "restaurant_service_times";
     public static final String PATH_RESTAURANT_RECOMMENDED_FOODS = "restaurant_recommended_foods";
+
+
+    public static final String PATH_SHOPPING_LIST_RECIPE_INGREDIENT = "shopping_list_recipe_ingredient";
+
+
 
     public static final class RecipeEntry implements BaseColumns {
         public static final Uri CONTENT_URI =
@@ -39,6 +46,7 @@ public class RecipeContract {
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_RECIPES;
 
         public static final String TABLE_NAME = "recipes";
+
         public static final String COLUMN_ID = "recipe_id";
         public static final String COLUMN_TITLE = "recipe_title";
         public static final String COLUMN_NOTE = "note";
@@ -245,6 +253,7 @@ public class RecipeContract {
         public static final String COLUMN_INSTRUCTION_IMAGE = "image_url";                  // image url
         public static final String COLUMN_SORT_ORDER= "sort_order";                         // sort order
 
+
         // 3 . build for parameter with content uri
         // generate the contentUri plus table name
         public static Uri buildInstructionUri(long id) {
@@ -287,9 +296,11 @@ public class RecipeContract {
         public static final String COLUMN_RESTAURANT_NAME = "restaurant_name";                      // name
         public static final String COLUMN_PHONES = "phones";                                        // phones
         public static final String COLUMN_BRANCH_NAME = "branch_ame";                               // branch name
+
         public static final String COLUMN_ADDRESS= "address";                                       // address
         public static final String COLUMN_FACEBOOK= "facebook";                                     // facebook
         public static final String COLUMN_TOWNSHIP_ID= "township_id";                               // townshipId
+
         public static final String COLUMN_DESCRIPTION = "description";
 
         // 3 . build for parameter with content uri
@@ -446,6 +457,95 @@ public class RecipeContract {
         public static String getRestaurantRecommendedFoodIdFromParam(Uri uri) {
             return uri.getQueryParameter(COLUMN_RESTAURANT_ID);
         }
+
+
+    }
+
+    public static final class ShoppingRecipeIngredientEntry implements BaseColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_SHOPPING_LIST_RECIPE_INGREDIENT).build();
+
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SHOPPING_LIST_RECIPE_INGREDIENT;
+
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SHOPPING_LIST_RECIPE_INGREDIENT;
+
+        public static final String TABLE_NAME = "shopping_list_recipe_ingredients";
+
+        public static final String COLUMN_RECIPE_ID = "recipe_id";
+        public static final String COLUMN_INGREDIENT_ID = "ingredient_id";              // id
+        public static final String COLUMN_INGREDIENT_NAME = "ingredient_name";          // name
+        public static final String COLUMN_MEASUREMENT = "measurement";
+        public static final String COLUMN_BOUGHT = "bought";
+        public static final String COLUMN_RECIPE_TITLE = "recipe_title";
+
+        public static Uri buildShoppingUri(long id) {
+            // content://com.padc.recipes/shopping_list_recipe_ingredient/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildShoppingUriWithRecipeIdAndIngredientId(String recipeId, String ingredientId) {
+            //content://com.padc.recipes/shopping_list_recipe_ingredient/?recipId=2&ingredient=3
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_RECIPE_ID, recipeId)
+                    .appendQueryParameter(COLUMN_INGREDIENT_ID, ingredientId)
+                    .build();
+        }
+
+        public static String[] getIdsFromParam(Uri uri) {
+            String[] params = new String[2];
+            params[0] = uri.getQueryParameter(COLUMN_RECIPE_ID);
+            params[1] = uri.getQueryParameter(COLUMN_INGREDIENT_ID);
+            return params;
+
+        }
+
+        public static Uri buildShoppingUriWithRecipeId(String recipe_id) {
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_RECIPE_ID,recipe_id)
+                    .build();
+        }
+
+        public static String getRecipeIdFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_RECIPE_ID);
+
+        }
+    }
+
+    public static final class AvailableRestaurants implements BaseColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_AVAILABLE_RESTAURANTS).build();
+
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_AVAILABLE_RESTAURANTS;
+
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_AVAILABLE_RESTAURANTS;
+
+        public static final String TABLE_NAME = "available_restaurants";
+
+        public static final String COLUMN_RECIPE_ID = "recipe_id";
+        public static final String COLUMN_RESTAURANT_ID = "restaurant_id";
+        public static final String COLUMN_IMAGE = "image";
+        public static final String COLUMN_RESTAURANT_NAME = "restaurant_name";
+
+        public static Uri buildAvailableRestaurantsUri(long id) {
+            // content://com.padc.recipes/available_restaurants/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildAvailableRestaurantUriWithRecipeId(String recipeId) {
+            //content://com.padc.recipes/available_restaurants/?recipe_Id=something
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_RECIPE_ID, recipeId)
+                    .build();
+        }
+
+        public static String getRecipeIdFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_RECIPE_ID);
+        }
+
 
     }
 
