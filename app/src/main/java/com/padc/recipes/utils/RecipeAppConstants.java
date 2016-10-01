@@ -13,6 +13,7 @@ public class RecipeAppConstants {
     //public static final String ATTRACTION_BASE_URL = "http://www.aungpyaephyo.xyz/padc-fp/cooking-guide/";
     public static final String ATTRACTION_BASE_URL = "http://padc.sainumtown.xyz/";
     public static final String ACCESS_TOKEN = "b002c7e1a528b7cb460933fc2875e916";
+    public static final String ACCESS_TOKEN_YOU_TUBE = "AIzaSyDFnqRvI20lG-SM9EoYB7GKU_cjim8US0A";
     public static final String API_GET_RESTAURANT_LIST = "GetRestaurants.php";
     public static final String IMAGE_ROOT_DIR= "http://padc.sainumtown.xyz/images/";
 

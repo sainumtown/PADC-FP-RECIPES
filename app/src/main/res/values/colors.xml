@@ -27,7 +27,7 @@
     <color name="black_overlay">#9000</color>
     <color name="black_overlay_light">#6000</color>
     <color name="viewBg">#f1f5f8</color>
-
+    <color name="transparent_black">#E6000000</color>
 
 
 </resources>

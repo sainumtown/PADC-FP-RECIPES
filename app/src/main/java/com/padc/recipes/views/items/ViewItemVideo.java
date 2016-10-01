@@ -15,8 +15,6 @@ import butterknife.ButterKnife;
  */
 public class ViewItemVideo extends FrameLayout {
 
-    @BindView(R.id.tv_recipe_video_title)
-    TextView tvVideoTitle;
 
     public ViewItemVideo(Context context) {
         super(context);
@@ -36,8 +34,6 @@ public class ViewItemVideo extends FrameLayout {
         ButterKnife.bind(this, this);
     }
 
-    public void setData(String videoTitle) {
-        tvVideoTitle.setText(videoTitle);
-    }
+
 
 }

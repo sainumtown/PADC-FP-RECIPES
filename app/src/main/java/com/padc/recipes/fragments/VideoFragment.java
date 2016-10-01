@@ -2,17 +2,24 @@ package com.padc.recipes.fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.padc.recipes.R;
+import com.padc.recipes.activities.CustomLightboxActivity;
 import com.padc.recipes.adapters.RestaurantAdapter;
 import com.padc.recipes.adapters.VideoListAdapter;
+import com.padc.recipes.contents.YouTubeContent;
+import com.padc.recipes.utils.RecipeAppConstants;
 import com.padc.recipes.views.holders.VideoViewHolder;
 
 import butterknife.BindView;
@@ -21,14 +28,10 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class VideoFragment extends Fragment {
+public class VideoFragment extends ListFragment {
 
 
-    @BindView(R.id.rv_videos)
-    RecyclerView rvVideo;
-
-    private VideoListAdapter mVideoAdapter;
-    VideoViewHolder.ControllerVideoItem  mController;
+    VideoViewHolder.ControllerVideoItem mController;
 
     public static VideoFragment newInstance() {
 
@@ -43,10 +46,11 @@ public class VideoFragment extends Fragment {
         // Required empty public constructor
     }
 
+
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mController = (VideoViewHolder.ControllerVideoItem) context;
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setListAdapter(new VideoListAdapter(getActivity()));
     }
 
     @Override
@@ -60,12 +64,19 @@ public class VideoFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        mVideoAdapter = new VideoListAdapter(mController);
-        rvVideo.setAdapter(mVideoAdapter);
-
-        int gridColumnSpanCount = 1;
-        rvVideo.setLayoutManager(new GridLayoutManager(getContext(), gridColumnSpanCount));
         return view;
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+
+        final Context context = getActivity();
+        final String DEVELOPER_KEY = RecipeAppConstants.ACCESS_TOKEN_YOU_TUBE;
+        final YouTubeContent.YouTubeVideo video = YouTubeContent.ITEMS.get(position);
+
+        final Intent lightboxIntent = new Intent(context, CustomLightboxActivity.class);
+        lightboxIntent.putExtra(CustomLightboxActivity.KEY_VIDEO_ID, video.id);
+        startActivity(lightboxIntent);
     }
 
 }
