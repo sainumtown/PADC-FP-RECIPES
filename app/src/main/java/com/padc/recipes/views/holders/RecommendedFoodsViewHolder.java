@@ -35,7 +35,7 @@ public class RecommendedFoodsViewHolder extends RecyclerView.ViewHolder implemen
 
     @Override
     public void onClick(View view) {
-        mController.onTapRecommendedFoods(mMostPopularRecipe);
+        mController.onTapRecommendedFoods(String.valueOf(mMostPopularRecipe.getRecipe_id()));
     }
 
     public void bindData(MostPopularRecipeVO mostPopularRecipe) {
@@ -52,7 +52,7 @@ public class RecommendedFoodsViewHolder extends RecyclerView.ViewHolder implemen
     }
 
     public interface ControllerRecommendedFoods{
-        void onTapRecommendedFoods(MostPopularRecipeVO mostPopularRecipe);
+        void onTapRecommendedFoods(String recipeId);
     }
 
 

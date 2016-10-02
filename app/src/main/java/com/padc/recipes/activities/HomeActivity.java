@@ -246,10 +246,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void onTapFavourite(RecipeVO recipeVO) {
+    public void onTapFavourite(String recipeId ,boolean isFavourite) {
         // TODO add favourite recipe ID
 
-        RecipeModel.getInstance().AddToFavourite(recipeVO);
+        RecipeModel.getInstance().AddToFavourite(recipeId,isFavourite);
 
         mFavouriteOnClickListener = new View.OnClickListener() {
             @Override

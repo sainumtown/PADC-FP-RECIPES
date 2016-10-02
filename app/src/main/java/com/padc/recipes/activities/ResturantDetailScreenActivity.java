@@ -176,9 +176,9 @@ public class ResturantDetailScreenActivity extends AppCompatActivity implements 
     }
 
     @Override
-    public void onTapRecommendedFoods(MostPopularRecipeVO mostPopularRecipe) {
+    public void onTapRecommendedFoods(String recipeId) {
         //TODO to get the real id.
-        Intent intent = RecipesDetailScreenActivity.newIntent(String.valueOf(mostPopularRecipe.getRecipe_id()));
+        Intent intent = RecipesDetailScreenActivity.newIntent(String.valueOf(recipeId));
         startActivity(intent);
     }
 }

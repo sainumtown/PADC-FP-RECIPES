@@ -435,16 +435,16 @@ public class RecipeVO {
         return instructions;
     }
 
-    public static void saveOrRemoveFavourite(RecipeVO recipe) {
+    public static void saveOrRemoveFavourite(String recipeId, boolean isFavourite) {
         ContentValues presenterCV = new ContentValues();
-        if(!recipe.isNotFavourite()) {
+        if(isFavourite) {
             presenterCV.put(RecipeContract.RecipeEntry.COLUMN_IS_FAVOURITE, 1);
         }else {
             presenterCV.put(RecipeContract.RecipeEntry.COLUMN_IS_FAVOURITE, 0);
         }
 
         String selection =RecipeContract.RecipeEntry.COLUMN_ID+"=?";
-        String[] selectionArgs =new String[] {String.valueOf(recipe.getRecipe_id())};
+        String[] selectionArgs =new String[] {String.valueOf(recipeId)};
 
         Context context = RecipesApp.getContext();
         int updated = context.getContentResolver().update(RecipeContract.RecipeEntry.CONTENT_URI, presenterCV,selection,selectionArgs);
