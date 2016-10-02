@@ -85,7 +85,6 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
     RecyclerView rvRestaurant;
 
 
-
     private AvailableRestaurantAdapter mAvailableRestaurantAdapter;
     AvailableRestaurantsViewHolder.ControllerAvailableRestaurantItem mControllerAvailableRestaurantItem;
     private String mRecipeId;
@@ -129,7 +128,7 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
         mAvailableRestaurantAdapter = new AvailableRestaurantAdapter(this, availableRestaurantList);
         rvRestaurant.setAdapter(mAvailableRestaurantAdapter);
 
-        rvRestaurant.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        rvRestaurant.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         // Favourite click process
         favourite();
@@ -180,7 +179,12 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RecipeModel.getInstance().AddToFavourite(mRecipe);
+                if (!mRecipe.isNotFavourite()) {
+                    RecipeModel.getInstance().AddToFavourite(String.valueOf(mRecipe.getRecipe_id()), true);
+                } else {
+                    RecipeModel.getInstance().AddToFavourite(String.valueOf(mRecipe.getRecipe_id()), false);
+                }
+
                 Snackbar.make(findViewById(android.R.id.content), "Check Favourite List", Snackbar.LENGTH_LONG)
                         .setAction("View", mFavouriteListner)
                         .setActionTextColor(RecipesApp.getContext().getResources().getColor(R.color.primary))
@@ -263,13 +267,13 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
         // step by step
         stepByStepSetting();
 
-        if(mRecipe.isNotFavourite()){
+        if (mRecipe.isNotFavourite()) {
             fab.setBackgroundTintList(cslBeforeCheck);
-        }else {
+        } else {
             fab.setBackgroundTintList(cslAfterCheck);
         }
 
-        String imageUrl =  RecipeAppConstants.IMAGE_ROOT_DIR +mRecipe.getPhotos()[0];
+        String imageUrl = RecipeAppConstants.IMAGE_ROOT_DIR + mRecipe.getPhotos()[0];
         Glide.with(ivRecipe.getContext())
                 .load(imageUrl)
                 .centerCrop()
@@ -295,7 +299,7 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
             tvInstruction.setLineSpacing(1f, 1.2f);
             tvInstruction.setTextColor(getResources().getColor(R.color.text_black_ish));
             tvInstruction.setPadding(40, 5, 5, 40);
-            tvInstruction.setText( instruction.getInstruction_desc());
+            tvInstruction.setText(instruction.getInstruction_desc());
 
             llStepByStep.addView(tvInstruction);
         }
@@ -312,9 +316,9 @@ public class RecipesDetailScreenActivity extends AppCompatActivity implements Lo
     }
 
     @Override
-    public void onTapAvailableRestaurant(AvailableRestaurantVO availableRestaurant) {
+    public void onTapAvailableRestaurant(String restaurantId) {
         //TODO to get the real id.
-        Intent intent = ResturantDetailScreenActivity.newIntent(String.valueOf(availableRestaurant.getRestaurants_id()));
+        Intent intent = ResturantDetailScreenActivity.newIntent(String.valueOf(restaurantId));
         startActivity(intent);
     }
 }

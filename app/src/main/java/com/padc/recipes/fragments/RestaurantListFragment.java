@@ -93,7 +93,7 @@ public class RestaurantListFragment extends BaseFragment implements LoaderManage
         getActivity().setTitle(R.string.Resturants);
 
         // get restaurant data
-        RestaurantModel.getInstance().loadRestaurants();
+        //RestaurantModel.getInstance().loadRestaurants();
         List<RestaurantVO> restaurantList = new ArrayList<>();
 
         mRestaurantAdapter = new RestaurantAdapter(mControllerRestaurantItem, restaurantList);

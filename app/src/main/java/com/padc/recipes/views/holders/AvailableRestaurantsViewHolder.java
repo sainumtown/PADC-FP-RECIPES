@@ -36,7 +36,7 @@ public class AvailableRestaurantsViewHolder extends RecyclerView.ViewHolder impl
 
     @Override
     public void onClick(View view) {
-        mController.onTapAvailableRestaurant(mAvailableRestaurant);
+        mController.onTapAvailableRestaurant(String.valueOf(mAvailableRestaurant.getRestaurants_id()));
     }
 
     public void bindData(AvailableRestaurantVO availableRestaurant) {
@@ -53,7 +53,7 @@ public class AvailableRestaurantsViewHolder extends RecyclerView.ViewHolder impl
     }
 
     public interface ControllerAvailableRestaurantItem{
-        void onTapAvailableRestaurant(AvailableRestaurantVO availableRestaurant);
+        void onTapAvailableRestaurant(String  restaurantId);
     }
 
 

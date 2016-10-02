@@ -36,16 +36,19 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
         itemView.setOnClickListener(this);
         mController = controllerRecipeItem;
 
+
         ivOverflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO add to favourite list
                 if(!mRecipe.isNotFavourite()) {
                     ivOverflow.setImageResource(R.drawable.ic_favorite_border_24dp_enable);
+                    mController.onTapFavourite(String.valueOf(mRecipe.getRecipe_id()),true);
                 }else {
                     ivOverflow.setImageResource(R.drawable.ic_favorite_border_24dp);
+                    mController.onTapFavourite(String.valueOf(mRecipe.getRecipe_id()),false);
                 }
-                mController.onTapFavourite(mRecipe);
+
             }
         });
     }
@@ -75,7 +78,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
 
     public interface ControllerRecipeItem{
         void onTapRecipe(String recipeId);
-        void onTapFavourite(RecipeVO recipeVO);
+        void onTapFavourite(String recipeId,boolean isFavourite);
     }
 
 
