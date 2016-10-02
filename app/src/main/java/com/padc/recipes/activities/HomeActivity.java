@@ -25,6 +25,7 @@ import com.padc.recipes.R;
 import com.padc.recipes.RecipesApp;
 import com.padc.recipes.adapters.RecipeCategoryListAdapter;
 import com.padc.recipes.data.models.RecipeModel;
+import com.padc.recipes.data.models.RestaurantModel;
 import com.padc.recipes.data.vos.AvailableRestaurantVO;
 import com.padc.recipes.data.vos.IngredientVO;
 import com.padc.recipes.data.vos.RecipeVO;
@@ -128,6 +129,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     break;
             }
         }
+
+        RecipeModel.getInstance().loadRecipes();
+        RestaurantModel.getInstance().loadRestaurants();
     }
 
     private void navigateToSearch() {
