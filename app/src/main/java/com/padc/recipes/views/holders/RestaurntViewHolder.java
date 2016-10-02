@@ -5,9 +5,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.padc.recipes.R;
 import com.padc.recipes.RecipesApp;
 import com.padc.recipes.data.vos.RestaurantVO;
+import com.padc.recipes.utils.RecipeAppConstants;
+
+import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,22 +52,41 @@ public class RestaurntViewHolder extends RecyclerView.ViewHolder implements View
 
     @Override
     public void onClick(View view) {
-        mController.onTapRestaurant();
+        mController.onTapRestaurant(String.valueOf(mRestaurant.getRestaurant_id()));
     }
 
     public void bindData(RestaurantVO restaurantVO) {
         mRestaurant = restaurantVO;
+
         tvRestaurantTitle.setText(mRestaurant.getRestaurant_name());
         tvAddress.setText(mRestaurant.getAddress());
-        String serviceTime = RecipesApp.getContext().getString(R.string.lbl_morning) + " " + mRestaurant.getService_time().getStart()
-                + RecipesApp.getContext().getString(R.string.lbl_from) + " " + RecipesApp.getContext().getString(R.string.lbl_end)
-                + " " + mRestaurant.getService_time().getFinish();
-        tvOpenCloseTime.setText(serviceTime);
-        tvTownship.setText(mRestaurant.getTownship().getTownship_name());
-        tvRecommendedFood.setText(mRestaurant.getMost_popular_recipes().get(0).getRecipe_name());
+        String phoneNumber = Arrays.toString(mRestaurant.getPhone_number()).substring(1,Arrays.toString(mRestaurant.getPhone_number()).length()-1);
+        tvPhone.setText(phoneNumber);
+
+        if (mRestaurant.getService_time() != null) {
+            String serviceTime = mRestaurant.getService_time().getStart() + " "
+                    + RecipesApp.getContext().getString(R.string.lbl_from) + " " +  mRestaurant.getService_time().getFinish();
+            tvOpenCloseTime.setText(serviceTime);
+        }
+
+        if (mRestaurant.getTownship() != null) {
+            tvTownship.setText(mRestaurant.getTownship().getTownship_name());
+        }
+
+        if (mRestaurant.getMost_popular_recipes() != null) {
+            tvRecommendedFood.setText(mRestaurant.getMost_popular_recipes().get(0).getRecipe_name());
+        }
+
+        String imageUrl =  RecipeAppConstants.IMAGE_ROOT_DIR +mRestaurant.getPhotos()[0];
+        Glide.with(ivRestaurnatPhoto.getContext())
+                .load(imageUrl)
+                .centerCrop()
+                .placeholder(R.drawable.stock_photo_placeholder)
+                .error(R.drawable.stock_photo_placeholder)
+                .into(ivRestaurnatPhoto);
     }
 
     public interface ControllerRestaurantItem {
-        void onTapRestaurant();
+        void onTapRestaurant(String restaurantId);
     }
 }

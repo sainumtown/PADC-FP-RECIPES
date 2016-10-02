@@ -1,27 +1,35 @@
 package com.padc.recipes.fragments;
 
 import android.content.Context;
-import android.content.IntentFilter;
+import android.database.Cursor;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.padc.recipes.R;
+import com.padc.recipes.RecipesApp;
 import com.padc.recipes.adapters.RecipeAdapter;
 import com.padc.recipes.adapters.RecipeCategoryListAdapter;
 import com.padc.recipes.data.models.RecipeModel;
+import com.padc.recipes.data.persistence.RecipeContract;
 import com.padc.recipes.data.vos.RecipeVO;
 import com.padc.recipes.events.DataEvent;
+import com.padc.recipes.utils.RecipeAppConstants;
 import com.padc.recipes.views.holders.RecipeViewHolder;
+import com.padc.recipes.views.holders.VideoViewHolder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +42,8 @@ import de.greenrobot.event.EventBus;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class RecipeListFragment extends Fragment {
+public class RecipeListFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<Cursor> {
+
 
     @BindView(R.id.rv_recipes)
     RecyclerView rvRecipes;
@@ -44,6 +53,9 @@ public class RecipeListFragment extends Fragment {
 
     @BindView(R.id.spn_filter_category)
     Spinner spinnerRecipeCategoryFilter;
+
+    @BindView(R.id.btn_reset)
+    Button btnReset;
 
     private RecipeCategoryListAdapter mRecipeCategoryListAdapter;
 
@@ -76,9 +88,9 @@ public class RecipeListFragment extends Fragment {
 
         // get recipe data
         RecipeModel.getInstance().loadRecipes();
-        List<RecipeVO> recipeList = RecipeModel.getInstance().getRecipeList();
+        List<RecipeVO> recipeList = new ArrayList<RecipeVO>();
 
-        mRecipeAdapter = new RecipeAdapter(mControllerRecipeItem,recipeList);
+        mRecipeAdapter = new RecipeAdapter(mControllerRecipeItem, recipeList);
         rvRecipes.setAdapter(mRecipeAdapter);
 
         // spinner category filter
@@ -100,6 +112,38 @@ public class RecipeListFragment extends Fragment {
         mRecipeCategoryListAdapter = new RecipeCategoryListAdapter(recipesCategoryList);
         spinnerRecipeCategoryFilter.setAdapter(mRecipeCategoryListAdapter);
         spinnerRecipeCategoryFilter.setSelection(mRecipeCategoryListAdapter.getCount());
+
+        spinnerRecipeCategoryFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position != mRecipeCategoryListAdapter.getCount()) {
+                    String filterCategory = parent.getItemAtPosition(position).toString();
+                    List<RecipeVO> filterRecipeList = RecipeModel.getInstance().filterByCategory(filterCategory);
+                    mRecipeAdapter.setNewData(filterRecipeList);
+                    btnReset.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mRecipeAdapter.setNewData(RecipeModel.getInstance().getRecipeList());
+                spinnerRecipeCategoryFilter.setSelection(mRecipeCategoryListAdapter.getCount());
+                btnReset.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getActivity().getSupportLoaderManager().initLoader(RecipeAppConstants.RECIPE_LIST_LOADER, null, this);
     }
 
     @Override
@@ -125,7 +169,6 @@ public class RecipeListFragment extends Fragment {
         }
     }
 
-
     @Override
     public void onStop() {
         super.onStop();
@@ -141,5 +184,57 @@ public class RecipeListFragment extends Fragment {
 
         List<RecipeVO> newRecipeList = event.getRecipeList();
         mRecipeAdapter.setNewData(newRecipeList);
+    }
+
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(getContext(),
+                RecipeContract.RecipeEntry.CONTENT_URI,
+                null,
+                null,
+                null,
+                null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        List<RecipeVO> recipeList = new ArrayList<>();
+        if (data != null && data.moveToFirst()) {
+            do {
+                RecipeVO recipe = RecipeVO.parseFromCursor(data);
+                // set photo
+                recipe.setPhotos(RecipeVO.loadRecipeImagesByTitle(recipe.getRecipe_title()));
+                // set category
+                recipe.setCategory(RecipeVO.loadCategoryByCategoryId(String.valueOf(recipe.getCategory().getCategory_id())));
+                // set presenter
+                if (recipe.getPresenter().getPresenter_id() != null) {
+                    recipe.setPresenter(RecipeVO.loadPresenterByPresenterId(String.valueOf(recipe.getPresenter().getPresenter_id())));
+                }
+                // set ingredients
+                recipe.setIngredients(RecipeVO.loadRecipeIngredientsByRecipeId(String.valueOf(recipe.getRecipe_id())));
+
+                // set instructions
+                recipe.setInstructions(RecipeVO.loadRecipeInstructionsByRecipeId(String.valueOf(recipe.getRecipe_id())));
+
+                recipeList.add(recipe);
+            } while (data.moveToNext());
+        }
+
+        Log.d(RecipesApp.TAG, "Retrieved recipes  : " + recipeList.size());
+        mRecipeAdapter.setNewData(recipeList);
+
+        RecipeModel.getInstance().setStoredData(recipeList);
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
+    }
+
+    @Override
+    protected void onSendScreenHit() {
+
     }
 }

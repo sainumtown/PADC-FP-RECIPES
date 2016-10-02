@@ -4,12 +4,17 @@ package com.padc.recipes.fragments;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,10 +32,12 @@ import com.padc.recipes.adapters.RestaurantAdapter;
 import com.padc.recipes.adapters.TownshipAdapter;
 import com.padc.recipes.data.models.RecipeModel;
 import com.padc.recipes.data.models.RestaurantModel;
+import com.padc.recipes.data.persistence.RecipeContract;
 import com.padc.recipes.data.vos.RecipeVO;
 import com.padc.recipes.data.vos.RestaurantVO;
 import com.padc.recipes.dialogs.ShareDialog;
 import com.padc.recipes.events.DataEvent;
+import com.padc.recipes.utils.RecipeAppConstants;
 import com.padc.recipes.views.holders.RestaurntViewHolder;
 
 import java.util.ArrayList;
@@ -44,7 +51,7 @@ import de.greenrobot.event.EventBus;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RestaurantListFragment extends Fragment {
+public class RestaurantListFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     @BindView(R.id.rv_restaurants)
     RecyclerView rvRestaurant;
@@ -87,9 +94,9 @@ public class RestaurantListFragment extends Fragment {
 
         // get restaurant data
         RestaurantModel.getInstance().loadRestaurants();
-        List<RestaurantVO> restaurantList = RestaurantModel.getInstance().getRestaurantList();
+        List<RestaurantVO> restaurantList = new ArrayList<>();
 
-        mRestaurantAdapter = new RestaurantAdapter(mControllerRestaurantItem,restaurantList);
+        mRestaurantAdapter = new RestaurantAdapter(mControllerRestaurantItem, restaurantList);
         rvRestaurant.setAdapter(mRestaurantAdapter);
 
         int gridColumnSpanCount = 1;
@@ -108,6 +115,16 @@ public class RestaurantListFragment extends Fragment {
         }
     }
 
+    @Override
+    protected void onSendScreenHit() {
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getActivity().getSupportLoaderManager().initLoader(RecipeAppConstants.RESTAURANT_LIST_LOADER, null, this);
+    }
 
     @Override
     public void onStop() {
@@ -124,6 +141,49 @@ public class RestaurantListFragment extends Fragment {
 
         List<RestaurantVO> newRestaurantList = event.getRestaurantList();
         mRestaurantAdapter.setNewData(newRestaurantList);
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(getContext(),
+                RecipeContract.RestaurantEntry.CONTENT_URI,
+                null,
+                null,
+                null,
+                null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        List<RestaurantVO> restaurantList = new ArrayList<>();
+        if (data != null && data.moveToFirst()) {
+            do {
+                RestaurantVO restaurant = RestaurantVO.parseFromCursor(data);
+                restaurant.setPhotos(restaurant.loadRestaurantImagesByRestaurantId(restaurant.getRestaurant_id()));
+                // set township
+                if (restaurant.getTownship() != null) {
+                    restaurant.setTownship(restaurant.loadTownshipByTownshipId(String.valueOf(restaurant.getTownship().getTownship_id())));
+                }
+                // set servicetime
+                restaurant.setService_time(restaurant.loadRestaurantServiceTimeByRestaurantId(restaurant.getRestaurant_id()));
+
+                // set Recommended foods
+                restaurant.setMost_popular_recipes(restaurant.loadRestaurantRecommendedFoodByRestaurantId(restaurant.getRestaurant_id()));
+
+                restaurantList.add(restaurant);
+            } while (data.moveToNext());
+        }
+
+        Log.d(RecipesApp.TAG, "Retrieved restaurants : " + restaurantList.size());
+        mRestaurantAdapter.setNewData(restaurantList);
+
+        RestaurantModel.getInstance().setStoredData(restaurantList);
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
     }
 }
 

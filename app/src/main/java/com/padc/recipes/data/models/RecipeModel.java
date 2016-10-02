@@ -43,9 +43,9 @@ public class RecipeModel extends BaseModel {
         mRecipeList = recipeList;
 
         //keep the data in persistent layer.
-        // RecipeVO.saveAttractions(mRecipeList);
+        RecipeVO.saveRecipes(mRecipeList);
 
-        broadcastAttractionLoadedWithEventBus();
+        // broadcastAttractionLoadedWithEventBus();
     }
 
     public void notifyErrorInLoadingRecipes(String message) {
@@ -55,4 +55,25 @@ public class RecipeModel extends BaseModel {
     private void broadcastAttractionLoadedWithEventBus() {
         EventBus.getDefault().post(new DataEvent.RecipeDataLoadedEvent("extra-in-broadcast", mRecipeList));
     }
+
+    public void setStoredData(List<RecipeVO> recipeList) {
+        mRecipeList = recipeList;
+    }
+
+    public List<RecipeVO> filterByCategory(String filterCategory) {
+        List<RecipeVO> filterRecipes = new ArrayList<>();
+        for (int i = 0; i < mRecipeList.size(); i++) {
+            RecipeVO recipe = mRecipeList.get(i);
+            if (recipe.getCategory().getCategory_name().equals(filterCategory)) {
+                filterRecipes.add(recipe);
+            }
+        }
+        return filterRecipes;
+    }
+
+    public void AddToFavourite(RecipeVO recipeVO) {
+
+        RecipeVO.saveOrRemoveFavourite(recipeVO);
+    }
+
 }

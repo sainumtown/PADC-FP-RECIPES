@@ -1,11 +1,13 @@
 package com.padc.recipes.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -20,15 +22,22 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.padc.recipes.R;
+import com.padc.recipes.RecipesApp;
 import com.padc.recipes.adapters.RecipeCategoryListAdapter;
+import com.padc.recipes.data.models.RecipeModel;
+import com.padc.recipes.data.vos.AvailableRestaurantVO;
+import com.padc.recipes.data.vos.IngredientVO;
+import com.padc.recipes.data.vos.RecipeVO;
 import com.padc.recipes.fragments.FavouriteFragment;
 import com.padc.recipes.fragments.RecipeListFragment;
 import com.padc.recipes.fragments.RestaurantListFragment;
 import com.padc.recipes.fragments.ShoppingListFragment;
 import com.padc.recipes.fragments.VideoFragment;
+import com.padc.recipes.views.holders.AvailableRestaurantsViewHolder;
 import com.padc.recipes.views.holders.FavouriteViewHolder;
 import com.padc.recipes.views.holders.RecipeViewHolder;
 import com.padc.recipes.views.holders.RestaurntViewHolder;
+import com.padc.recipes.views.holders.ShoppingListViewHolder;
 import com.padc.recipes.views.holders.VideoViewHolder;
 
 import java.util.ArrayList;
@@ -42,7 +51,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         , RestaurntViewHolder.ControllerRestaurantItem
         , RecipeViewHolder.ControllerRecipeItem
         , VideoViewHolder.ControllerVideoItem
-        , FavouriteViewHolder.ControllerFavouriteItem {
+        , FavouriteViewHolder.ControllerFavouriteItem
+        , ShoppingListViewHolder.ControllerShoppingListItem {
+
+    private static final String IE_FRAGMENT = "IE_FRAGMENT";
+    public static final String FRAGMENT_FAVOURITE = "1";
+    public static final String FRAGMENT_SHOPPING_LIST = "2";
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -58,7 +72,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     Spinner spinnerRecipeCategoryFilter;
 
+    View.OnClickListener mFavouriteOnClickListener;
+
     private RecipeCategoryListAdapter mRecipeCategoryListAdapter;
+    private String mScreenID;
+
+    public static Intent newIntent(String attractionName) {
+        Intent intent = new Intent(RecipesApp.getContext(), HomeActivity.class);
+        intent.putExtra(IE_FRAGMENT, attractionName);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,12 +116,24 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 navigateToSearch();
             }
         });
+
+        mScreenID = getIntent().getStringExtra(IE_FRAGMENT);
+        if (mScreenID != null) {
+            switch (mScreenID) {
+                case FRAGMENT_FAVOURITE:
+                    navigateToFavourite();
+                    break;
+                case FRAGMENT_SHOPPING_LIST:
+                    navigateToShoppingList();
+                    break;
+            }
+        }
     }
 
     private void navigateToSearch() {
         Intent intent = SearchActivity.newIntent();
         startActivity(intent);
-       /* fabSearch.hide();*/
+        fabSearch.hide();
     }
 
     @Override
@@ -157,7 +192,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         return false;
     }
 
-    private void navigateToFavourite() {
+    public void navigateToFavourite() {
         fabSearch.hide();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, FavouriteFragment.newInstance())
@@ -187,7 +222,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void navigateToRestaurants() {
-        fabSearch.show();
+        fabSearch.hide();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, RestaurantListFragment.newInstance())
                 .commit();
@@ -195,19 +230,34 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void onTapRestaurant() {
-        //TODO to get the real id.
-        String dummyRestaurantId ="1";
-        Intent intent = ResturantDetailScreenActivity.newIntent(dummyRestaurantId);
+    public void onTapRestaurant(String restaurantId) {
+        Intent intent = ResturantDetailScreenActivity.newIntent(restaurantId);
         startActivity(intent);
     }
 
     @Override
-    public void onTapRecipe() {
-        //TODO to get the real id.
-        String dummyRecipeId ="1";
-        Intent intent = RecipesDetailScreenActivity.newIntent(dummyRecipeId);
+    public void onTapRecipe(String recipeId) {
+        Intent intent = RecipesDetailScreenActivity.newIntent(recipeId);
         startActivity(intent);
+    }
+
+    @Override
+    public void onTapFavourite(RecipeVO recipeVO) {
+        // TODO add favourite recipe ID
+
+        RecipeModel.getInstance().AddToFavourite(recipeVO);
+
+        mFavouriteOnClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToFavourite();
+            }
+        };
+
+        Snackbar.make(findViewById(android.R.id.content), "Check Favourite List", Snackbar.LENGTH_LONG)
+                .setAction("View", mFavouriteOnClickListener)
+                .setActionTextColor(Color.WHITE)
+                .show();
     }
 
     @Override
@@ -216,8 +266,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void onTapFavourite() {
-        Toast.makeText(getApplicationContext(), "Will go to detail page", Toast.LENGTH_SHORT).show();
+    public void onTapFavouriteItem(String recipeId) {
+        //TODO to get the real id.
+        Intent intent = RecipesDetailScreenActivity.newIntent(recipeId);
+        startActivity(intent);
+    }
+
+
+    @Override
+    public void onCheckShoppingListIngredient(String recipeId, String ingredientId, Boolean flagBought) {
+        RecipeVO.UpdateBoughtIngredient(recipeId, ingredientId, flagBought);
+    }
+
+    @Override
+    public void onClickRemoveAllIngredientsShoppingListByRecipeId(String recipeId) {
+        RecipeVO.removeAllIngredientsShoppingListByRecipeId(recipeId);
     }
 
 }
+

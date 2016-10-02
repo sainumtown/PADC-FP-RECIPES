@@ -1,13 +1,17 @@
 package com.padc.recipes.views.holders;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.padc.recipes.R;
+import com.padc.recipes.RecipesApp;
 import com.padc.recipes.data.vos.RecipeVO;
+import com.padc.recipes.utils.RecipeAppConstants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,6 +24,9 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
     @BindView(R.id.iv_recipe)
     ImageView ivRecipe;
 
+    @BindView(R.id.overflow)
+    ImageView ivOverflow;
+
     private ControllerRecipeItem mController;
     private RecipeVO mRecipe;
 
@@ -28,19 +35,48 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
         ButterKnife.bind(this, itemView);
         itemView.setOnClickListener(this);
         mController = controllerRecipeItem;
+
+        ivOverflow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO add to favourite list
+                if(!mRecipe.isNotFavourite()) {
+                    ivOverflow.setImageResource(R.drawable.ic_favorite_border_24dp_enable);
+                }else {
+                    ivOverflow.setImageResource(R.drawable.ic_favorite_border_24dp);
+                }
+                mController.onTapFavourite(mRecipe);
+            }
+        });
     }
 
     @Override
     public void onClick(View view) {
-        mController.onTapRecipe();
+        mController.onTapRecipe(String.valueOf(mRecipe.getRecipe_id()));
     }
 
     public void bindData(RecipeVO recipe) {
         mRecipe = recipe;
         tvRecipeTitle.setText(recipe.getRecipe_title());
+        if(mRecipe.isNotFavourite()) {
+            ivOverflow.setImageResource(R.drawable.ic_favorite_border_24dp_enable);
+        }else {
+            ivOverflow.setImageResource(R.drawable.ic_favorite_border_24dp);
+        }
+
+        String imageUrl =  RecipeAppConstants.IMAGE_ROOT_DIR +mRecipe.getPhotos()[0];
+        Glide.with(ivRecipe.getContext())
+                .load(imageUrl)
+                .centerCrop()
+                .placeholder(R.drawable.stock_photo_placeholder)
+                .error(R.drawable.stock_photo_placeholder)
+                .into(ivRecipe);
     }
 
     public interface ControllerRecipeItem{
-        void onTapRecipe();
+        void onTapRecipe(String recipeId);
+        void onTapFavourite(RecipeVO recipeVO);
     }
+
+
 }

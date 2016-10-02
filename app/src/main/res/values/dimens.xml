@@ -57,8 +57,8 @@
 
 
     <dimen name="screen_title_size">19sp</dimen>
-    <dimen name="restaurnt_width">100dp</dimen>
-    <dimen name="restaurnt_height">100dp</dimen>
+    <dimen name="restaurnt_width">130dp</dimen>
+    <dimen name="restaurnt_height">140dp</dimen>
     <dimen name="width_spinner_township">300dp</dimen>
     <dimen name="card_margin">5dp</dimen>
     <dimen name="card_album_radius">0dp</dimen>
