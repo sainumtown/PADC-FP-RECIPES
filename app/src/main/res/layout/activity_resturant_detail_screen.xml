@@ -71,6 +71,79 @@
             android:textSize="@dimen/text_regular_3x"
             android:text="Kyae-Oh and BBQ Resturant"/>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:src="@drawable/ic_alarm_black_24dp"
+                />
+
+        <com.padc.recipes.components.MMTextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:layout_marginRight="@dimen/margin_medium_2"
+            android:layout_marginBottom="@dimen/margin_medium_2"
+            android:textSize="@dimen/text_regular_2x"
+            android:text="Today    : 11:00 AM to 9:30 PM"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:src="@drawable/ic_call_black_24dp"
+                />
+
+        <com.padc.recipes.components.MMTextView
+            android:id="@+id/tv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:layout_marginRight="@dimen/margin_medium_2"
+            android:layout_marginBottom="@dimen/margin_medium_2"
+            android:textSize="@dimen/text_regular_2x"
+                android:text="Phone    : +951 401192, +951 401179"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:src="@drawable/ic_location_on_black_24dp"
+                />
+        <com.padc.recipes.components.MMTextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:layout_marginRight="@dimen/margin_medium_2"
+            android:layout_marginBottom="@dimen/margin_medium_2"
+            android:textSize="@dimen/text_regular_2x"
+                android:text="Address : No.(24/26), 6th Floor, South Race Course Street,
+    Race Course Condominium, Tamwe Township,
+    Yangon, Myanmar"/>
+</LinearLayout>
         <com.padc.recipes.components.MMTextView
             android:id="@+id/tv_service"
             android:layout_width="wrap_content"
@@ -80,39 +153,6 @@
             android:layout_marginBottom="@dimen/margin_medium_2"
             android:textSize="@dimen/text_regular"
             android:text="YKKO serves local dishes, asian and western food also. I recommend to try Kyay-Oh which is noodle soup. You can choose the ingredient, seafood or pork or chicken. If you don't like soup you can order Kyay-Oh Sickyet which is the dry version of Kyay-Oh. It's a traditional food of Myanmar and taste good. For ladies, Kyay-Oh mini is enough (the kyay-oh is quiet big portion)."/>
-
-        <com.padc.recipes.components.MMTextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_medium_2"
-            android:layout_marginRight="@dimen/margin_medium_2"
-            android:layout_marginBottom="@dimen/margin_medium_2"
-            android:textSize="@dimen/text_regular_2x"
-            android:text="Today    : 11:00 AM to 9:30 PM"/>
-
-        <com.padc.recipes.components.MMTextView
-            android:id="@+id/tv_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_medium_2"
-            android:layout_marginRight="@dimen/margin_medium_2"
-            android:layout_marginBottom="@dimen/margin_medium_2"
-            android:textSize="@dimen/text_regular_2x"
-                android:text="Phone    : +951 401192, +951 401179"/>
-
-        <com.padc.recipes.components.MMTextView
-            android:id="@+id/tv_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_medium_2"
-            android:layout_marginRight="@dimen/margin_medium_2"
-            android:layout_marginBottom="@dimen/margin_medium_2"
-            android:textSize="@dimen/text_regular_2x"
-                android:text="Address : No.(24/26), 6th Floor, South Race Course Street,
-    Race Course Condominium, Tamwe Township,
-    Yangon, Myanmar"/>
-
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_recommended_foods"
