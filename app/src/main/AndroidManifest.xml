@@ -27,6 +27,11 @@
                   android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+        <activity android:name=".activities.ResturantDetailScreenActivity"
+            android:parentActivityName=".activities.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <activity android:name=".activities.SearchActivity"></activity>
 
         <activity android:name=".activities.CustomLightboxActivity"></activity>
