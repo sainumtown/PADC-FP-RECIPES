@@ -60,7 +60,7 @@ public class VideoFragment extends ListFragment {
         View view = inflater.inflate(R.layout.fragment_video, container, false);
 
         // title
-        getActivity().setTitle(R.string.video_list_title);
+        getActivity().setTitle(R.string.Video);
 
         ButterKnife.bind(this, view);
 
