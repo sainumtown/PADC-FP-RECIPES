@@ -102,7 +102,7 @@
                 android:layout_below="@id/tv_township"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:layout_toRightOf="@id/iv_restaurant_photo"
+                android:layout_alignParentRight="true"
                 android:text="​ေျကးအိုး"
                 android:textColor="@color/primary"
                 android:textSize="@dimen/text_small" />

@@ -29,7 +29,7 @@
     </RelativeLayout>
 
     <!-- Video Title -->
-    <TextView
+    <com.padc.recipes.components.MMTextView
         android:id="@+id/tv_video_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
