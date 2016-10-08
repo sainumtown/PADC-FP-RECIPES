@@ -42,7 +42,7 @@ public class RecommendedFoodsViewHolder extends RecyclerView.ViewHolder implemen
         mMostPopularRecipe = mostPopularRecipe;
         tvRecommendedFoods.setText(mostPopularRecipe.getRecipe_name());
 
-        String imageUrl =  RecipeAppConstants.IMAGE_ROOT_DIR +mostPopularRecipe.getPhotos();
+        String imageUrl =  RecipeAppConstants.IMAGE_ROOT_DIR +mostPopularRecipe.getPhotos()[0];
         Glide.with(ivRecommendedFood.getContext())
                 .load(imageUrl)
                 .centerCrop()

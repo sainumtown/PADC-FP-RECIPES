@@ -5,7 +5,7 @@
         <item
             android:id="@+id/recipes"
             android:checked="true"
-            android:icon="@drawable/ic_home_black_24dp"
+            android:icon="@drawable/ic_chrome_reader_mode_black_24dp"
             android:title="@string/Recipes" />
 
         <item
@@ -15,17 +15,17 @@
 
         <item
             android:id="@+id/restaurants"
-            android:icon="@drawable/ic_file_download_black_24dp"
+            android:icon="@drawable/ic_store_mall_directory_24dp"
             android:title="@string/Resturants" />
 
         <item
             android:id="@+id/videos"
-            android:icon="@drawable/ic_recent_actors_24dp"
+            android:icon="@drawable/ic_videocam_black_24dp"
             android:title="@string/Video" />
 
         <item
             android:id="@+id/shoppingList"
-            android:icon="@drawable/ic_notifications_active_24dp"
+            android:icon="@drawable/ic_assignment_black_24dp"
             android:title="@string/ShoppingList" />
 
 
