@@ -106,7 +106,7 @@ public class RecipeListFragment extends BaseFragment implements LoaderManager.Lo
     private void filterCategorySetting() {
         // for spinner recipe category filter
         String[] recipesCategoryListArray = getResources().getStringArray(R.array.recipes_category);
-        List<String> recipesCategoryList = new ArrayList<>(Arrays.asList(recipesCategoryListArray));
+        final List<String> recipesCategoryList = new ArrayList<>(Arrays.asList(recipesCategoryListArray));
         recipesCategoryList.add(getString(R.string.choose_food));
 
         mRecipeCategoryListAdapter = new RecipeCategoryListAdapter(recipesCategoryList);
@@ -118,9 +118,15 @@ public class RecipeListFragment extends BaseFragment implements LoaderManager.Lo
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position != mRecipeCategoryListAdapter.getCount()) {
                     String filterCategory = parent.getItemAtPosition(position).toString();
-                    List<RecipeVO> filterRecipeList = RecipeModel.getInstance().filterByCategory(filterCategory);
-                    mRecipeAdapter.setNewData(filterRecipeList);
-                    btnReset.setVisibility(View.VISIBLE);
+                    if(position != recipesCategoryList.size()-2) {
+                        List<RecipeVO> filterRecipeList = RecipeModel.getInstance().filterByCategory(filterCategory);
+                        mRecipeAdapter.setNewData(filterRecipeList);
+                        btnReset.setVisibility(View.VISIBLE);
+                    }else{
+                        mRecipeAdapter.setNewData(RecipeModel.getInstance().getRecipeList());
+                        //spinnerRecipeCategoryFilter.setSelection(mRecipeCategoryListAdapter.getCount());
+                        btnReset.setVisibility(View.GONE);
+                    }
                 }
             }
 

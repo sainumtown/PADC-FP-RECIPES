@@ -150,13 +150,33 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_medium_2"
             android:layout_marginRight="@dimen/margin_medium_2"
-            android:layout_marginBottom="@dimen/margin_medium_2"
             android:textSize="@dimen/text_regular"
             android:text="YKKO serves local dishes, asian and western food also. I recommend to try Kyay-Oh which is noodle soup. You can choose the ingredient, seafood or pork or chicken. If you don't like soup you can order Kyay-Oh Sickyet which is the dry version of Kyay-Oh. It's a traditional food of Myanmar and taste good. For ladies, Kyay-Oh mini is enough (the kyay-oh is quiet big portion)."/>
+
+        <com.padc.recipes.components.MMTextView
+            android:id="@+id/tv_availableshop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium_2"
+            android:layout_marginLeft="@dimen/margin_medium_2"
+            android:layout_marginRight="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:text="ခ်က္ျပဳတ္နည္း ရွိေသာ အစားအေသာက္မ်ား"
+            android:textColor="@color/accent"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <View
+            android:id="@+id/separator3"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:layout_marginLeft="@dimen/margin_medium_2"
+            android:layout_marginRight="@dimen/margin_medium_2"
+            android:background="#949292" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_recommended_foods"
             android:layout_width="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/> />
 
